@@ -99,6 +99,7 @@
 				TargetAttributes = {
 					AAD971681CCF67E00089DEFF = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 4D942G6MF5;
 					};
 				};
 			};
@@ -253,7 +254,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Near/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Near.Near;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -264,7 +267,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Near/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Near.Near;
 				PRODUCT_NAME = "$(TARGET_NAME)";
