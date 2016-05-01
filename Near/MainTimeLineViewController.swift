@@ -9,16 +9,26 @@
 import UIKit
 
 class MainTimeLineViewController: UIViewController {
+    
+    let mainTimeLineVM = MainTimeLineViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor.blueColor()
+        
+        setUP()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setUP() {
+        let mainTimeLineV = UINib(nibName: "MainTimeLineView", bundle: nil).instantiateWithOwner(self, options: nil).first as! MainTimeLineView
+        mainTimeLineV.tableView.delegate = mainTimeLineVM
+        mainTimeLineV.tableView.dataSource = mainTimeLineVM
+        
+        self.view = mainTimeLineV
     }
     
 
