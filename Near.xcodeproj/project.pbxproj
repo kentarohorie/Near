@@ -10,6 +10,21 @@
 		AA84DF4E1CD5D0A500B635D1 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF4D1CD5D0A500B635D1 /* MessageListViewController.swift */; };
 		AA84DF501CD5D0B700B635D1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF4F1CD5D0B700B635D1 /* ProfileViewController.swift */; };
 		AA84DF521CD5D0C700B635D1 /* MainTimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF511CD5D0C700B635D1 /* MainTimeLineViewController.swift */; };
+		AA84DF541CD5D36300B635D1 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF531CD5D36300B635D1 /* MessageListViewModel.swift */; };
+		AA84DF561CD5D37700B635D1 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF551CD5D37700B635D1 /* MessageListView.swift */; };
+		AA84DF581CD5D3CB00B635D1 /* MainTimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF571CD5D3CB00B635D1 /* MainTimeLineViewModel.swift */; };
+		AA84DF5A1CD5D3DB00B635D1 /* MainTimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF591CD5D3DB00B635D1 /* MainTimeLineView.swift */; };
+		AA84DF5C1CD5D3E900B635D1 /* MainTimeLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF5B1CD5D3E900B635D1 /* MainTimeLineView.xib */; };
+		AA84DF5E1CD5D3F600B635D1 /* MessageListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF5D1CD5D3F600B635D1 /* MessageListView.xib */; };
+		AA84DF611CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF5F1CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.swift */; };
+		AA84DF621CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF601CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.xib */; };
+		AA84DF651CD5E4E900B635D1 /* me.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF641CD5E4E900B635D1 /* me.jpg */; };
+		AA84DF691CD5EAAA00B635D1 /* ten_message.png in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF661CD5EAAA00B635D1 /* ten_message.png */; };
+		AA84DF6A1CD5EAAA00B635D1 /* ten_pro.png in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF671CD5EAAA00B635D1 /* ten_pro.png */; };
+		AA84DF6B1CD5EAAA00B635D1 /* ten_time.png in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF681CD5EAAA00B635D1 /* ten_time.png */; };
+		AA84DF6D1CD5EB4600B635D1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF6C1CD5EB4600B635D1 /* ProfileViewModel.swift */; };
+		AA84DF6F1CD5EB5400B635D1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF6E1CD5EB5400B635D1 /* ProfileView.swift */; };
+		AA84DF711CD5EB5D00B635D1 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF701CD5EB5D00B635D1 /* ProfileView.xib */; };
 		AAD9716D1CCF67E00089DEFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD9716C1CCF67E00089DEFF /* AppDelegate.swift */; };
 		AAD971721CCF67E00089DEFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD971701CCF67E00089DEFF /* Main.storyboard */; };
 		AAD971751CCF67E00089DEFF /* Near.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAD971731CCF67E00089DEFF /* Near.xcdatamodeld */; };
@@ -21,6 +36,21 @@
 		AA84DF4D1CD5D0A500B635D1 /* MessageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
 		AA84DF4F1CD5D0B700B635D1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AA84DF511CD5D0C700B635D1 /* MainTimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTimeLineViewController.swift; sourceTree = "<group>"; };
+		AA84DF531CD5D36300B635D1 /* MessageListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewModel.swift; sourceTree = "<group>"; };
+		AA84DF551CD5D37700B635D1 /* MessageListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
+		AA84DF571CD5D3CB00B635D1 /* MainTimeLineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTimeLineViewModel.swift; sourceTree = "<group>"; };
+		AA84DF591CD5D3DB00B635D1 /* MainTimeLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTimeLineView.swift; sourceTree = "<group>"; };
+		AA84DF5B1CD5D3E900B635D1 /* MainTimeLineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTimeLineView.xib; sourceTree = "<group>"; };
+		AA84DF5D1CD5D3F600B635D1 /* MessageListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageListView.xib; sourceTree = "<group>"; };
+		AA84DF5F1CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTimeLineViewTableViewCell.swift; sourceTree = "<group>"; };
+		AA84DF601CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTimeLineViewTableViewCell.xib; sourceTree = "<group>"; };
+		AA84DF641CD5E4E900B635D1 /* me.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = me.jpg; sourceTree = "<group>"; };
+		AA84DF661CD5EAAA00B635D1 /* ten_message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ten_message.png; sourceTree = "<group>"; };
+		AA84DF671CD5EAAA00B635D1 /* ten_pro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ten_pro.png; sourceTree = "<group>"; };
+		AA84DF681CD5EAAA00B635D1 /* ten_time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ten_time.png; sourceTree = "<group>"; };
+		AA84DF6C1CD5EB4600B635D1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		AA84DF6E1CD5EB5400B635D1 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AA84DF701CD5EB5D00B635D1 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		AAD971691CCF67E00089DEFF /* Near.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Near.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD9716C1CCF67E00089DEFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAD971711CCF67E00089DEFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +123,8 @@
 		AA84DF441CD5CFF000B635D1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA84DF551CD5D37700B635D1 /* MessageListView.swift */,
+				AA84DF5D1CD5D3F600B635D1 /* MessageListView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -108,6 +140,7 @@
 		AA84DF461CD5D00600B635D1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AA84DF531CD5D36300B635D1 /* MessageListViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -115,6 +148,8 @@
 		AA84DF471CD5D03200B635D1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA84DF6E1CD5EB5400B635D1 /* ProfileView.swift */,
+				AA84DF701CD5EB5D00B635D1 /* ProfileView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -130,6 +165,7 @@
 		AA84DF491CD5D03C00B635D1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AA84DF6C1CD5EB4600B635D1 /* ProfileViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -137,6 +173,10 @@
 		AA84DF4A1CD5D04200B635D1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA84DF591CD5D3DB00B635D1 /* MainTimeLineView.swift */,
+				AA84DF5B1CD5D3E900B635D1 /* MainTimeLineView.xib */,
+				AA84DF5F1CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.swift */,
+				AA84DF601CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -152,8 +192,20 @@
 		AA84DF4C1CD5D04D00B635D1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AA84DF571CD5D3CB00B635D1 /* MainTimeLineViewModel.swift */,
 			);
 			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA84DF631CD5E4CF00B635D1 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				AA84DF641CD5E4E900B635D1 /* me.jpg */,
+				AA84DF661CD5EAAA00B635D1 /* ten_message.png */,
+				AA84DF671CD5EAAA00B635D1 /* ten_pro.png */,
+				AA84DF681CD5EAAA00B635D1 /* ten_time.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		AAD971601CCF67E00089DEFF = {
@@ -175,6 +227,7 @@
 		AAD9716B1CCF67E00089DEFF /* Near */ = {
 			isa = PBXGroup;
 			children = (
+				AA84DF631CD5E4CF00B635D1 /* images */,
 				AA84DF431CD5CFCE00B635D1 /* Application */,
 				AA84DF3F1CD5CCB600B635D1 /* Scene */,
 				AAD971761CCF67E00089DEFF /* Assets.xcassets */,
@@ -244,9 +297,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA84DF5C1CD5D3E900B635D1 /* MainTimeLineView.xib in Resources */,
+				AA84DF5E1CD5D3F600B635D1 /* MessageListView.xib in Resources */,
+				AA84DF711CD5EB5D00B635D1 /* ProfileView.xib in Resources */,
+				AA84DF621CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.xib in Resources */,
+				AA84DF6A1CD5EAAA00B635D1 /* ten_pro.png in Resources */,
+				AA84DF6B1CD5EAAA00B635D1 /* ten_time.png in Resources */,
 				AAD9717A1CCF67E00089DEFF /* LaunchScreen.storyboard in Resources */,
 				AAD971771CCF67E00089DEFF /* Assets.xcassets in Resources */,
+				AA84DF691CD5EAAA00B635D1 /* ten_message.png in Resources */,
 				AAD971721CCF67E00089DEFF /* Main.storyboard in Resources */,
+				AA84DF651CD5E4E900B635D1 /* me.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +319,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAD971751CCF67E00089DEFF /* Near.xcdatamodeld in Sources */,
+				AA84DF561CD5D37700B635D1 /* MessageListView.swift in Sources */,
 				AA84DF4E1CD5D0A500B635D1 /* MessageListViewController.swift in Sources */,
+				AA84DF541CD5D36300B635D1 /* MessageListViewModel.swift in Sources */,
+				AA84DF6F1CD5EB5400B635D1 /* ProfileView.swift in Sources */,
 				AA84DF521CD5D0C700B635D1 /* MainTimeLineViewController.swift in Sources */,
+				AA84DF5A1CD5D3DB00B635D1 /* MainTimeLineView.swift in Sources */,
 				AA84DF501CD5D0B700B635D1 /* ProfileViewController.swift in Sources */,
+				AA84DF6D1CD5EB4600B635D1 /* ProfileViewModel.swift in Sources */,
+				AA84DF581CD5D3CB00B635D1 /* MainTimeLineViewModel.swift in Sources */,
+				AA84DF611CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.swift in Sources */,
 				AAD9716D1CCF67E00089DEFF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,7 +444,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Near/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Near.Near;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -389,7 +457,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Near/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Near.Near;
 				PRODUCT_NAME = "$(TARGET_NAME)";
