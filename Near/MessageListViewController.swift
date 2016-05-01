@@ -10,10 +10,12 @@ import UIKit
 
 class MessageListViewController: UIViewController {
 
+    let messageListVM = MessageListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.redColor()
+        setUP()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +23,11 @@ class MessageListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setUP() {
+        let messageListV = UINib(nibName: "MessageListView", bundle: nil).instantiateWithOwner(self, options: nil).first as! MessageListView
+        messageListV.tableView.delegate = messageListVM
+        messageListV.tableView.dataSource = messageListVM
+        
+        self.view = messageListV
     }
-    */
-
 }
