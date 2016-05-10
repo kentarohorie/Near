@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LUq-Ab-46r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LUq-Ab-46r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -42,7 +42,7 @@
             </objects>
             <point key="canvasLocation" x="1255" y="447"/>
         </scene>
-        <!--Message-->
+        <!--Message List View Controller-->
         <scene sceneID="QmW-y1-24s">
             <objects>
                 <viewController id="I7B-3I-dm4" customClass="MessageListViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
@@ -55,11 +55,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Message" image="messa_pre.png" selectedImage="messa_pre.png" id="y0q-2s-iFE"/>
+                    <navigationItem key="navigationItem" id="Vqi-Su-FTj"/>
+                    <connections>
+                        <segue destination="KEL-k8-vWH" kind="show" identifier="ToMessageView" id="W8c-Fm-whG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hK-pu-KYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="1128"/>
+            <point key="canvasLocation" x="1823" y="1128"/>
+        </scene>
+        <!--Message View Controller-->
+        <scene sceneID="nGI-Nw-m4P">
+            <objects>
+                <viewController id="KEL-k8-vWH" customClass="MessageViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9e7-oX-rGw"/>
+                        <viewControllerLayoutGuide type="bottom" id="opx-FI-BTg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kT1-CZ-aog">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jXS-ms-Zaf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2487" y="1128"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="YZQ-VP-ZP2">
@@ -72,13 +93,32 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="c9M-BQ-seV"/>
-                        <segue destination="I7B-3I-dm4" kind="relationship" relationship="viewControllers" id="oKv-jg-tHX"/>
+                        <segue destination="K4k-bS-cf8" kind="relationship" relationship="viewControllers" id="oKv-jg-tHX"/>
                         <segue destination="BTX-BR-hLR" kind="relationship" relationship="viewControllers" id="XoN-7P-avS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyz-zd-Ywo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="443" y="447"/>
+        </scene>
+        <!--Message-->
+        <scene sceneID="9nK-mS-vCN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K4k-bS-cf8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Message" image="messa_pre.png" selectedImage="messa_pre.png" id="y0q-2s-iFE"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2lI-TM-N0I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="I7B-3I-dm4" kind="relationship" relationship="rootViewController" id="FAC-fC-x8U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zCl-bx-8j8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="1227"/>
         </scene>
     </scenes>
     <resources>
