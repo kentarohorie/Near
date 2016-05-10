@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="opA-Qz-qVJ">
             <objects>
                 <viewController id="BTX-BR-hLR" customClass="ProfileViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="CMs-7Y-Xbe"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="prof_pre.png" selectedImage="prof_pre.png" id="CMs-7Y-Xbe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ej-RD-May" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1001" y="-174"/>
+            <point key="canvasLocation" x="1002" y="-211"/>
         </scene>
-        <!--Main Time Line View Controller-->
+        <!--Near-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainTimeLineViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,13 +36,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="ten_time.png" selectedImage="ten_time.png" id="OvA-xh-r2U"/>
+                    <tabBarItem key="tabBarItem" title="Near" image="timeline_pre.png" selectedImage="timeline_pre.png" id="OvA-xh-r2U"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1255" y="447"/>
         </scene>
-        <!--Message List View Controller-->
+        <!--Message-->
         <scene sceneID="QmW-y1-24s">
             <objects>
                 <viewController id="I7B-3I-dm4" customClass="MessageListViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
@@ -55,7 +55,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="ten_message.png" selectedImage="ten_message.png" id="y0q-2s-iFE"/>
+                    <tabBarItem key="tabBarItem" title="Message" image="messa_pre.png" selectedImage="messa_pre.png" id="y0q-2s-iFE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hK-pu-KYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,7 +82,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ten_message.png" width="128" height="128"/>
-        <image name="ten_time.png" width="128" height="128"/>
+        <image name="messa_pre.png" width="32" height="32"/>
+        <image name="prof_pre.png" width="32" height="32"/>
+        <image name="timeline_pre.png" width="32" height="32"/>
     </resources>
 </document>
