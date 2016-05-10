@@ -8,7 +8,13 @@
 
 import UIKit
 
+@objc protocol MessageListViewModelDelegate {
+    optional func didTapMessageLiestViewTableViewCell()
+}
+
 class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource {
+    
+    var delegate: MessageListViewModelDelegate?
     
     
     //======================================
@@ -29,4 +35,9 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
     }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        delegate?.didTapMessageLiestViewTableViewCell!()
+    }
+    
 }
