@@ -20,5 +20,5 @@ class MessageListView: UIView {
     func setUP() {
         tableView.registerNib(UINib(nibName: "MainTimeLineViewTableViewCell", bundle: nil), forCellReuseIdentifier: "MainTimeLineViewTableViewCell")
     }
-
+    
 }

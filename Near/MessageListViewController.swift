@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageListViewController: UIViewController {
+class MessageListViewController: UIViewController, MessageListViewModelDelegate {
 
     let messageListVM = MessageListViewModel()
     
@@ -29,5 +29,11 @@ class MessageListViewController: UIViewController {
         messageListV.tableView.dataSource = messageListVM
         
         self.view = messageListV
+        
+        messageListVM.delegate = self
+    }
+    
+    func didTapMessageLiestViewTableViewCell() {
+        self.performSegueWithIdentifier("ToMessageView", sender: self)
     }
 }
