@@ -11,6 +11,8 @@ import UIKit
 class MainTimeLineViewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userAvatarIMageView: UIImageView!
+    @IBOutlet weak var userAgeLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
