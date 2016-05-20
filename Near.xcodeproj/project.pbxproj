@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0E94271CEED7D400C6E7BE /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */; };
+		AA0E94291CEEE7A300C6E7BE /* GeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */; };
+		AA0E942B1CEEF85200C6E7BE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */; };
+		AA0E942F1CEF0BC100C6E7BE /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E942E1CEF0BC100C6E7BE /* UIImageView+Extension.swift */; };
 		AA15E7821CE2080A00E998F4 /* LGSimpleChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA15E7811CE2080A00E998F4 /* LGSimpleChat.swift */; };
 		AA15E7841CE2083500E998F4 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA15E7831CE2083500E998F4 /* MessageViewController.swift */; };
 		AA15E7861CE2085000E998F4 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA15E7851CE2085000E998F4 /* MessageViewModel.swift */; };
@@ -59,6 +63,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
+		AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
+		AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		AA0E942E1CEF0BC100C6E7BE /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		AA15E7811CE2080A00E998F4 /* LGSimpleChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGSimpleChat.swift; sourceTree = "<group>"; };
 		AA15E7831CE2083500E998F4 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		AA15E7851CE2085000E998F4 /* MessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +131,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA0E94251CEED7BC00C6E7BE /* General */ = {
+			isa = PBXGroup;
+			children = (
+				AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */,
+				AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
 		AA15E7801CE207EE00E998F4 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				AA15E78C1CE20C1600E998F4 /* UIView+Extension.swift */,
+				AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */,
+				AA0E942E1CEF0BC100C6E7BE /* UIImageView+Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -340,6 +359,7 @@
 				AA84DF631CD5E4CF00B635D1 /* images */,
 				AA84DF431CD5CFCE00B635D1 /* Application */,
 				AA84DF3F1CD5CCB600B635D1 /* Scene */,
+				AA0E94251CEED7BC00C6E7BE /* General */,
 				AAD971761CCF67E00089DEFF /* Assets.xcassets */,
 				AAD971781CCF67E00089DEFF /* LaunchScreen.storyboard */,
 				AAD9717B1CCF67E00089DEFF /* Info.plist */,
@@ -451,12 +471,16 @@
 				AAD971751CCF67E00089DEFF /* Near.xcdatamodeld in Sources */,
 				AA84DF561CD5D37700B635D1 /* MessageListView.swift in Sources */,
 				AA84DF4E1CD5D0A500B635D1 /* MessageListViewController.swift in Sources */,
+				AA0E942F1CEF0BC100C6E7BE /* UIImageView+Extension.swift in Sources */,
 				AA84DF541CD5D36300B635D1 /* MessageListViewModel.swift in Sources */,
 				AA84DF6F1CD5EB5400B635D1 /* ProfileView.swift in Sources */,
 				AA84DF521CD5D0C700B635D1 /* MainTimeLineViewController.swift in Sources */,
+				AA0E94271CEED7D400C6E7BE /* GeneralViewController.swift in Sources */,
 				AA15E7841CE2083500E998F4 /* MessageViewController.swift in Sources */,
 				AA15E78D1CE20C1600E998F4 /* UIView+Extension.swift in Sources */,
 				AA15E7861CE2085000E998F4 /* MessageViewModel.swift in Sources */,
+				AA0E94291CEEE7A300C6E7BE /* GeneralViewModel.swift in Sources */,
+				AA0E942B1CEEF85200C6E7BE /* UIViewController+Extension.swift in Sources */,
 				AA84DF5A1CD5D3DB00B635D1 /* MainTimeLineView.swift in Sources */,
 				AA15E7821CE2080A00E998F4 /* LGSimpleChat.swift in Sources */,
 				AA84DF501CD5D0B700B635D1 /* ProfileViewController.swift in Sources */,
