@@ -13,6 +13,11 @@
 		AA15E7881CE2086300E998F4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA15E7871CE2086300E998F4 /* MessageView.swift */; };
 		AA15E78A1CE2086E00E998F4 /* MessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA15E7891CE2086E00E998F4 /* MessageView.xib */; };
 		AA15E78D1CE20C1600E998F4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA15E78C1CE20C1600E998F4 /* UIView+Extension.swift */; };
+		AA46235F1CE22D3B00D863EE /* user_sample_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AA46235C1CE22D3B00D863EE /* user_sample_2.png */; };
+		AA4623601CE22D3B00D863EE /* user_sample_3.png in Resources */ = {isa = PBXBuildFile; fileRef = AA46235D1CE22D3B00D863EE /* user_sample_3.png */; };
+		AA4623611CE22D3B00D863EE /* user_sample_6.png in Resources */ = {isa = PBXBuildFile; fileRef = AA46235E1CE22D3B00D863EE /* user_sample_6.png */; };
+		AA4623641CE22D4200D863EE /* sample_user_4.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4623621CE22D4200D863EE /* sample_user_4.png */; };
+		AA4623651CE22D4200D863EE /* sample_user_5.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4623631CE22D4200D863EE /* sample_user_5.png */; };
 		AA84DF4E1CD5D0A500B635D1 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF4D1CD5D0A500B635D1 /* MessageListViewController.swift */; };
 		AA84DF501CD5D0B700B635D1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF4F1CD5D0B700B635D1 /* ProfileViewController.swift */; };
 		AA84DF521CD5D0C700B635D1 /* MainTimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF511CD5D0C700B635D1 /* MainTimeLineViewController.swift */; };
@@ -44,6 +49,8 @@
 		AAD519781CE21095009D1E1D /* SwiftExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD519771CE21095009D1E1D /* SwiftExampleViewController.swift */; };
 		AAD5197A1CE21AD8009D1E1D /* User.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD519791CE21AD8009D1E1D /* User.png */; };
 		AAD5197E1CE2219E009D1E1D /* sample_user.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD5197D1CE2219E009D1E1D /* sample_user.png */; };
+		AAD519851CE2245C009D1E1D /* MessageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD519831CE2245C009D1E1D /* MessageListTableViewCell.swift */; };
+		AAD519861CE2245C009D1E1D /* MessageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD519841CE2245C009D1E1D /* MessageListTableViewCell.xib */; };
 		AAD9716D1CCF67E00089DEFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD9716C1CCF67E00089DEFF /* AppDelegate.swift */; };
 		AAD971721CCF67E00089DEFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD971701CCF67E00089DEFF /* Main.storyboard */; };
 		AAD971751CCF67E00089DEFF /* Near.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAD971731CCF67E00089DEFF /* Near.xcdatamodeld */; };
@@ -58,6 +65,11 @@
 		AA15E7871CE2086300E998F4 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		AA15E7891CE2086E00E998F4 /* MessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageView.xib; sourceTree = "<group>"; };
 		AA15E78C1CE20C1600E998F4 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		AA46235C1CE22D3B00D863EE /* user_sample_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_sample_2.png; sourceTree = "<group>"; };
+		AA46235D1CE22D3B00D863EE /* user_sample_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_sample_3.png; sourceTree = "<group>"; };
+		AA46235E1CE22D3B00D863EE /* user_sample_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_sample_6.png; sourceTree = "<group>"; };
+		AA4623621CE22D4200D863EE /* sample_user_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_user_4.png; sourceTree = "<group>"; };
+		AA4623631CE22D4200D863EE /* sample_user_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_user_5.png; sourceTree = "<group>"; };
 		AA84DF4D1CD5D0A500B635D1 /* MessageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
 		AA84DF4F1CD5D0B700B635D1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AA84DF511CD5D0C700B635D1 /* MainTimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTimeLineViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +101,8 @@
 		AAD519771CE21095009D1E1D /* SwiftExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftExampleViewController.swift; sourceTree = "<group>"; };
 		AAD519791CE21AD8009D1E1D /* User.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User.png; sourceTree = "<group>"; };
 		AAD5197D1CE2219E009D1E1D /* sample_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_user.png; sourceTree = "<group>"; };
+		AAD519831CE2245C009D1E1D /* MessageListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListTableViewCell.swift; sourceTree = "<group>"; };
+		AAD519841CE2245C009D1E1D /* MessageListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageListTableViewCell.xib; sourceTree = "<group>"; };
 		AAD971691CCF67E00089DEFF /* Near.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Near.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD9716C1CCF67E00089DEFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAD971711CCF67E00089DEFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +138,20 @@
 				AA15E78C1CE20C1600E998F4 /* UIView+Extension.swift */,
 			);
 			name = Extension;
+			sourceTree = "<group>";
+		};
+		AA46235B1CE22D2700D863EE /* user_sample_image */ = {
+			isa = PBXGroup;
+			children = (
+				AAD5197D1CE2219E009D1E1D /* sample_user.png */,
+				AAD519791CE21AD8009D1E1D /* User.png */,
+				AA46235C1CE22D3B00D863EE /* user_sample_2.png */,
+				AA46235D1CE22D3B00D863EE /* user_sample_3.png */,
+				AA46235E1CE22D3B00D863EE /* user_sample_6.png */,
+				AA4623621CE22D4200D863EE /* sample_user_4.png */,
+				AA4623631CE22D4200D863EE /* sample_user_5.png */,
+			);
+			name = user_sample_image;
 			sourceTree = "<group>";
 		};
 		AA84DF3F1CD5CCB600B635D1 /* Scene */ = {
@@ -182,6 +210,8 @@
 				AA84DF5D1CD5D3F600B635D1 /* MessageListView.xib */,
 				AA15E7871CE2086300E998F4 /* MessageView.swift */,
 				AA15E7891CE2086E00E998F4 /* MessageView.xib */,
+				AAD519831CE2245C009D1E1D /* MessageListTableViewCell.swift */,
+				AAD519841CE2245C009D1E1D /* MessageListTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -259,8 +289,7 @@
 		AA84DF631CD5E4CF00B635D1 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				AAD519791CE21AD8009D1E1D /* User.png */,
-				AAD5197D1CE2219E009D1E1D /* sample_user.png */,
+				AA46235B1CE22D2700D863EE /* user_sample_image */,
 				AA84DF7A1CD7374600B635D1 /* profile */,
 				AA84DF721CD6086A00B635D1 /* cat.jpg */,
 				AA84DF641CD5E4E900B635D1 /* me.jpg */,
@@ -379,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA84DF8C1CD73A7B00B635D1 /* prof_image_sample2.jpg in Resources */,
+				AAD519861CE2245C009D1E1D /* MessageListTableViewCell.xib in Resources */,
 				AA84DF5C1CD5D3E900B635D1 /* MainTimeLineView.xib in Resources */,
 				AA15E78A1CE2086E00E998F4 /* MessageView.xib in Resources */,
 				AA84DF841CD7375200B635D1 /* work_prof.png in Resources */,
@@ -386,6 +416,8 @@
 				AA84DF5E1CD5D3F600B635D1 /* MessageListView.xib in Resources */,
 				AA84DF711CD5EB5D00B635D1 /* ProfileView.xib in Resources */,
 				AA84DF781CD626D300B635D1 /* prof_pre.png in Resources */,
+				AA46235F1CE22D3B00D863EE /* user_sample_2.png in Resources */,
+				AA4623651CE22D4200D863EE /* sample_user_5.png in Resources */,
 				AA84DF801CD7375200B635D1 /* home_prof.png in Resources */,
 				AA84DF861CD738AB00B635D1 /* message_prof.png in Resources */,
 				AA84DF621CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.xib in Resources */,
@@ -393,6 +425,7 @@
 				AAD9717A1CCF67E00089DEFF /* LaunchScreen.storyboard in Resources */,
 				AA84DF831CD7375200B635D1 /* univ_prof.png in Resources */,
 				AA84DF8B1CD73A7B00B635D1 /* prof_image_sample1.jpg in Resources */,
+				AA4623611CE22D3B00D863EE /* user_sample_6.png in Resources */,
 				AAD971771CCF67E00089DEFF /* Assets.xcassets in Resources */,
 				AA84DF791CD626D300B635D1 /* timeline_pre.png in Resources */,
 				AA84DF771CD626D300B635D1 /* messa_pre.png in Resources */,
@@ -400,7 +433,9 @@
 				AAD971721CCF67E00089DEFF /* Main.storyboard in Resources */,
 				AA84DF811CD7375200B635D1 /* love_prof.png in Resources */,
 				AA84DF651CD5E4E900B635D1 /* me.jpg in Resources */,
+				AA4623641CE22D4200D863EE /* sample_user_4.png in Resources */,
 				AA84DF821CD7375200B635D1 /* point_prof.png in Resources */,
+				AA4623601CE22D3B00D863EE /* user_sample_3.png in Resources */,
 				AAD5197A1CE21AD8009D1E1D /* User.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD519851CE2245C009D1E1D /* MessageListTableViewCell.swift in Sources */,
 				AAD971751CCF67E00089DEFF /* Near.xcdatamodeld in Sources */,
 				AA84DF561CD5D37700B635D1 /* MessageListView.swift in Sources */,
 				AA84DF4E1CD5D0A500B635D1 /* MessageListViewController.swift in Sources */,

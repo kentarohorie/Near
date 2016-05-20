@@ -34,6 +34,7 @@ class MessageListViewController: UIViewController, MessageListViewModelDelegate 
     }
     
     func didTapMessageLiestViewTableViewCell() {
+        print("hoge")
         self.performSegueWithIdentifier("ToMessageView", sender: self)
     }
 }
