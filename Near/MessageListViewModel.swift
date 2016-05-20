@@ -15,6 +15,8 @@ import UIKit
 class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var delegate: MessageListViewModelDelegate?
+    let userSampleImage = ["sample_user", "user_sample_2", "user_sample_3", "sample_user_4", "sample_user_5", "user_sample_6"]
+    let userSampleName = ["Amanda", "Emi", "May", "Kitty", "Ann", "Ema"]
     
     
     //======================================
@@ -23,11 +25,14 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return userSampleImage.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MainTimeLineViewTableViewCell", forIndexPath: indexPath) as! MainTimeLineViewTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MessageListTableViewCell", forIndexPath: indexPath) as! MessageListTableViewCell
+        let avatarImage = UIImage(named: "\(userSampleImage[indexPath.row])")
+        cell.avatarImageView.image = avatarImage
+        cell.userNameLabel.text = userSampleName[indexPath.row]
         
         return cell
     }
