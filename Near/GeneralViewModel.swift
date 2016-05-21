@@ -9,22 +9,79 @@
 
 import UIKit
 
-class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate {
+class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate, NearNavigationViewDelegate {
     
-    var navItems: [UIView]?
-    var navBarView: UIView?
-    var currentPage: String = "MainTimeLineViewController"
-    var isTouching = true
+    internal var navItems: [UIView]?
+    internal var pageVC: UIPageViewController?
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed {
-            let currentVC = pageViewController.viewControllers![0]
-            currentPage = currentVC.getClassName()
+    private var navBarView: UIView?
+    private var currentPage: String = "MainTimeLineViewController"
+    private var isTouching = true
+    private let orange = UIColor.customOrange()
+    private let gray = UIColor.customGray()
+    private var isTapNavBar = false
+    private var isForward = false
+    
+    internal func tapNavigationImageView(index: Int) {
+        var vc: UIViewController?
+        var direction: UIPageViewControllerNavigationDirection = .Forward
+        if currentPage == "MainTimeLineViewController" {
+            switch index {
+            case 0:
+                vc = ProfileViewController()
+                direction = .Reverse
+                isForward = false
+                currentPage = "ProfileViewController"
+            case 1:
+                break
+            case 2:
+                vc = MessageListViewController()
+                direction = .Forward
+                isForward = true
+                currentPage = "MessageListViewController"
+            default:
+                break
+            }
+        } else if currentPage == "ProfileViewController" {
+            switch index {
+            case 0:
+                break
+            case 1:
+                vc = MainTimeLineViewController()
+                direction = .Forward
+                isForward = true
+                currentPage = "MainTimeLineViewController"
+            default:
+                break
+            }
+        } else if currentPage == "MessageListViewController" {
+            switch index {
+            case 1:
+                vc = MainTimeLineViewController()
+                direction = .Reverse
+                isForward = false
+                currentPage = "MainTimeLineViewController"
+            case 2:
+                break
+            default:
+                break
+            }
         }
+        
+        guard let unwrapvc = vc else {
+            return
+        }
+        isTapNavBar = true
+        pageVC?.setViewControllers([unwrapvc], direction: direction, animated: true, completion: nil)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    internal func scrollViewDidScroll(scrollView: UIScrollView) {
+        guard let navItems = self.navItems else {
+            return
+        }
+        
         isTouching = true
+        
         var xOffset = scrollView.contentOffset.x //ここを動いた分だけとるように変更
         
         if currentPage == "ProfileViewController" {
@@ -41,6 +98,14 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
             }
         }
         
+        if isTapNavBar {
+            if isForward {
+                xOffset -= 375
+            } else {
+                xOffset += 375
+            }
+        }
+        
         let distance = CGFloat(100)
         
         for (i, v) in self.navItems!.enumerate() {
@@ -49,10 +114,7 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
             v.frame.origin      = CGPoint(x: originX, y: 8)
         }
         
-        let orange = UIColor(red: 255/255, green: 69.0/255, blue: 0.0/255, alpha: 1.0)
-        let gray = UIColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1.0)
-        
-        for imgV in navItems! {
+        for imgV in navItems {
             var c = gray
             let originX = Double(imgV.frame.origin.x)
             
@@ -71,7 +133,11 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
         isTouching = false
     }
     
-    func getOriginX(vSize: CGSize, idx: CGFloat, distance: CGFloat, xOffset: CGFloat) -> CGFloat{
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        isTapNavBar = false
+    }
+    
+    private func getOriginX(vSize: CGSize, idx: CGFloat, distance: CGFloat, xOffset: CGFloat) -> CGFloat {
         
         //真ん中の配置
         var result = UIScreen.mainScreen().bounds.width / 2.0 - vSize.width/2.0
@@ -81,7 +147,7 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
         return result
     }
     
-    func gradient(percent: Double, topX: Double, bottomX: Double, initC: UIColor, goal: UIColor) -> UIColor{
+    private func gradient(percent: Double, topX: Double, bottomX: Double, initC: UIColor, goal: UIColor) -> UIColor{
         
         //1 or 0(右、左）
         let t = (percent - bottomX) / (topX - bottomX)
@@ -94,14 +160,21 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
         let b = cgInit[2] + CGFloat(t) * (cgGoal[2] - cgInit[2])
         
         return UIColor(red: r, green: g, blue: b, alpha: 1.0)
-    } // 動きに合わせて色を返す CGFloatで動的にしている。
+    }
     
     
-
+    //========= pageviewcontroller delegate ===========
+    
+    internal func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            let currentVC = pageViewController.viewControllers![0]
+            currentPage = currentVC.getClassName()
+        }
+    }
     
     //========= pageviewcontroller datasource ===========
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    internal func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let className = viewController.getClassName()
         
         if className == "MainTimeLineViewController" {
@@ -113,7 +186,7 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    internal func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         let className = viewController.getClassName()
         
         if className == "MainTimeLineViewController" {

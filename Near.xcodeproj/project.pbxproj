@@ -17,6 +17,8 @@
 		AA15E7881CE2086300E998F4 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA15E7871CE2086300E998F4 /* MessageView.swift */; };
 		AA15E78A1CE2086E00E998F4 /* MessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA15E7891CE2086E00E998F4 /* MessageView.xib */; };
 		AA15E78D1CE20C1600E998F4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA15E78C1CE20C1600E998F4 /* UIView+Extension.swift */; };
+		AA17CB9F1CF06AA5002C2C19 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA17CB9E1CF06AA5002C2C19 /* UIColor+Extension.swift */; };
+		AA17CBA21CF06C76002C2C19 /* NearNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA17CBA11CF06C76002C2C19 /* NearNavigationView.swift */; };
 		AA46235F1CE22D3B00D863EE /* user_sample_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AA46235C1CE22D3B00D863EE /* user_sample_2.png */; };
 		AA4623601CE22D3B00D863EE /* user_sample_3.png in Resources */ = {isa = PBXBuildFile; fileRef = AA46235D1CE22D3B00D863EE /* user_sample_3.png */; };
 		AA4623611CE22D3B00D863EE /* user_sample_6.png in Resources */ = {isa = PBXBuildFile; fileRef = AA46235E1CE22D3B00D863EE /* user_sample_6.png */; };
@@ -73,6 +75,8 @@
 		AA15E7871CE2086300E998F4 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		AA15E7891CE2086E00E998F4 /* MessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageView.xib; sourceTree = "<group>"; };
 		AA15E78C1CE20C1600E998F4 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		AA17CB9E1CF06AA5002C2C19 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		AA17CBA11CF06C76002C2C19 /* NearNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearNavigationView.swift; sourceTree = "<group>"; };
 		AA46235C1CE22D3B00D863EE /* user_sample_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_sample_2.png; sourceTree = "<group>"; };
 		AA46235D1CE22D3B00D863EE /* user_sample_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_sample_3.png; sourceTree = "<group>"; };
 		AA46235E1CE22D3B00D863EE /* user_sample_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_sample_6.png; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 		AA0E94251CEED7BC00C6E7BE /* General */ = {
 			isa = PBXGroup;
 			children = (
+				AA17CBA01CF06C5A002C2C19 /* View */,
 				AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */,
 				AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */,
 			);
@@ -155,8 +160,17 @@
 				AA15E78C1CE20C1600E998F4 /* UIView+Extension.swift */,
 				AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */,
 				AA0E942E1CEF0BC100C6E7BE /* UIImageView+Extension.swift */,
+				AA17CB9E1CF06AA5002C2C19 /* UIColor+Extension.swift */,
 			);
 			name = Extension;
+			sourceTree = "<group>";
+		};
+		AA17CBA01CF06C5A002C2C19 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA17CBA11CF06C76002C2C19 /* NearNavigationView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		AA46235B1CE22D2700D863EE /* user_sample_image */ = {
@@ -482,12 +496,14 @@
 				AA0E94291CEEE7A300C6E7BE /* GeneralViewModel.swift in Sources */,
 				AA0E942B1CEEF85200C6E7BE /* UIViewController+Extension.swift in Sources */,
 				AA84DF5A1CD5D3DB00B635D1 /* MainTimeLineView.swift in Sources */,
+				AA17CB9F1CF06AA5002C2C19 /* UIColor+Extension.swift in Sources */,
 				AA15E7821CE2080A00E998F4 /* LGSimpleChat.swift in Sources */,
 				AA84DF501CD5D0B700B635D1 /* ProfileViewController.swift in Sources */,
 				AAD519781CE21095009D1E1D /* SwiftExampleViewController.swift in Sources */,
 				AA84DF6D1CD5EB4600B635D1 /* ProfileViewModel.swift in Sources */,
 				AA15E7881CE2086300E998F4 /* MessageView.swift in Sources */,
 				AA84DF581CD5D3CB00B635D1 /* MainTimeLineViewModel.swift in Sources */,
+				AA17CBA21CF06C76002C2C19 /* NearNavigationView.swift in Sources */,
 				AA84DF611CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.swift in Sources */,
 				AAD9716D1CCF67E00089DEFF /* AppDelegate.swift in Sources */,
 			);
