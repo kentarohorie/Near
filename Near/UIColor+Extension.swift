@@ -1,0 +1,30 @@
+//
+//  UIColor+Extension.swift
+//  Near
+//
+//  Created by 堀江健太朗 on 2016/05/21.
+//  Copyright © 2016年 kentaro. All rights reserved.
+//
+
+import UIKit
+
+extension UIColor {
+    class func customOrange() -> UIColor{
+        return UIColor(red: 255/255, green: 69.0/255, blue: 0.0/255, alpha: 1.0)
+    }
+    
+    class func customGray() -> UIColor {
+        return UIColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1.0)
+    }
+    
+    class func appCustomDefaultGray() -> UIColor {
+        let cgInit = CGColorGetComponents(UIColor.customOrange().CGColor)
+        let cgGoal = CGColorGetComponents(UIColor.customGray().CGColor)
+        
+        let r = cgInit[0] + cgGoal[0] - cgInit[0]
+        let g = cgInit[1] + cgGoal[1] - cgInit[1]
+        let b = cgInit[2] + cgGoal[2] - cgInit[2]
+        
+        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
+    }
+}

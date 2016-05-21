@@ -11,6 +11,20 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     let profileVM = ProfileViewModel()
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+        setUP()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

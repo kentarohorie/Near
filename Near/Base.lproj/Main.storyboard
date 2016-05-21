@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LUq-Ab-46r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JSG-f3-xJ1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--General View Controller-->
+        <scene sceneID="9le-kH-LkA">
+            <objects>
+                <viewController id="2rJ-bT-2SM" customClass="GeneralViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SNY-fu-TqD"/>
+                        <viewControllerLayoutGuide type="bottom" id="ph5-gr-Lxe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bwS-2h-HhQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="H3B-Gz-EvG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ykJ-FY-ccv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1265" y="456"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="opA-Qz-qVJ">
             <objects>
@@ -21,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ej-RD-May" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1002" y="-211"/>
+            <point key="canvasLocation" x="1814" y="-211"/>
         </scene>
         <!--Near-->
         <scene sceneID="tne-QT-ifu">
@@ -40,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1255" y="447"/>
+            <point key="canvasLocation" x="2067" y="447"/>
         </scene>
         <!--Message List View Controller-->
         <scene sceneID="QmW-y1-24s">
@@ -82,47 +101,26 @@
             </objects>
             <point key="canvasLocation" x="2487" y="1128"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="YZQ-VP-ZP2">
+        <!--Navigation Controller-->
+        <scene sceneID="cZL-Hi-FWd">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="LUq-Ab-46r" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JSG-f3-xJ1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="ekI-dw-lI7">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="c9M-BQ-seV"/>
-                        <segue destination="K4k-bS-cf8" kind="relationship" relationship="viewControllers" id="oKv-jg-tHX"/>
-                        <segue destination="BTX-BR-hLR" kind="relationship" relationship="viewControllers" id="XoN-7P-avS"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yyz-zd-Ywo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="443" y="447"/>
-        </scene>
-        <!--Message-->
-        <scene sceneID="9nK-mS-vCN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K4k-bS-cf8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Message" image="messa_pre.png" selectedImage="messa_pre.png" id="y0q-2s-iFE"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2lI-TM-N0I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Fg-Em-WLp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="I7B-3I-dm4" kind="relationship" relationship="rootViewController" id="FAC-fC-x8U"/>
+                        <segue destination="2rJ-bT-2SM" kind="relationship" relationship="rootViewController" id="7hQ-wU-txH"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zCl-bx-8j8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TLu-hP-5Or" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="1227"/>
+            <point key="canvasLocation" x="373" y="400"/>
         </scene>
     </scenes>
     <resources>
-        <image name="messa_pre.png" width="32" height="32"/>
         <image name="prof_pre.png" width="32" height="32"/>
         <image name="timeline_pre.png" width="32" height="32"/>
     </resources>
