@@ -52,5 +52,23 @@ class MessageViewController: LGChatController, LGChatControllerDelegate {
          */
         return true
     }
+    
+    var navBar: UINavigationBar!
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        guard parent?.getClassName() == nil else {
+            navBar = (parent as! UINavigationController).navigationBar
+            return
+        }
+        for i in navBar.subviews {
+            if let navView = i as? NearNavigationView {
+                for v in navView.subviews {
+                    v.userInteractionEnabled = true
+                    v.hidden = false
+                }
+                navView.hidden = false
+            }
+        }
+    }
 
 }
