@@ -29,7 +29,7 @@ class MainTimeLineViewModel: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
+        return 101
     }
     
 }

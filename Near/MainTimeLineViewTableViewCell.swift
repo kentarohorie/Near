@@ -27,7 +27,7 @@ class MainTimeLineViewTableViewCell: UITableViewCell {
     }
     
     func setUP() {
-        userAvatarIMageView.layer.cornerRadius = userAvatarIMageView.frame.width / 2
+        userAvatarIMageView.layer.cornerRadius = userAvatarIMageView.frame.width / 10
         userAvatarIMageView.clipsToBounds = true
         self.layer.borderColor = UIColor.grayColor().CGColor
     }
