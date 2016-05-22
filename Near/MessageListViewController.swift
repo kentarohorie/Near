@@ -47,7 +47,15 @@ class MessageListViewController: UIViewController, MessageListViewModelDelegate 
     }
     
     func didTapMessageLiestViewTableViewCell() {
-        print("hoge")
-        self.performSegueWithIdentifier("ToMessageView", sender: self)
+        let messageVC = MessageViewController()
+
+        let navBarView = self.navigationController?.navigationBar.subviews[1] as! NearNavigationView
+        for v in navBarView.subviews {
+            v.userInteractionEnabled = false
+            v.hidden = true
+        }
+        navBarView.hidden = true
+        
+        self.navigationController?.pushViewController(messageVC, animated: true)
     }
 }
