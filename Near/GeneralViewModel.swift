@@ -106,12 +106,12 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
             }
         }
         
-        let distance = CGFloat(100)
+        let distance = CGFloat(150)
         
         for (i, v) in self.navItems!.enumerate() {
             let vSize    = v.frame.size
             let originX  = self.getOriginX(vSize, idx: CGFloat(i), distance: CGFloat(distance), xOffset: xOffset)
-            v.frame.origin      = CGPoint(x: originX, y: 8)
+            v.frame.origin      = CGPoint(x: originX, y: 0)
         }
         
         for imgV in navItems {
