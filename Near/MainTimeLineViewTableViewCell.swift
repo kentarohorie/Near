@@ -11,8 +11,12 @@ import UIKit
 class MainTimeLineViewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userAvatarIMageView: UIImageView!
-    @IBOutlet weak var userAgeLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var greetingMessage: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +34,7 @@ class MainTimeLineViewTableViewCell: UITableViewCell {
         userAvatarIMageView.layer.cornerRadius = userAvatarIMageView.frame.width / 10
         userAvatarIMageView.clipsToBounds = true
         self.layer.borderColor = UIColor.grayColor().CGColor
+        self.selectionStyle = .None
     }
     
 }

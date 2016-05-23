@@ -82,14 +82,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hjW-NB-ers">
                                         <rect key="frame" x="0.0" y="25" width="34" height="15"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvt-Jl-cNK">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="Cvt-Jl-cNK">
                                                 <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
                                                 <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="4oE-xg-uj9"/>
                                                     <constraint firstAttribute="width" constant="15" id="m6f-td-nwK"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -145,7 +145,11 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="userAgeLabel" destination="Cvt-Jl-cNK" id="qx0-jd-jGv"/>
+                <outlet property="ageLabel" destination="Cvt-Jl-cNK" id="nEF-x9-s9B"/>
+                <outlet property="greetingMessage" destination="eb8-2v-Lge" id="Zsd-uZ-PXJ"/>
+                <outlet property="locationLabel" destination="0sC-ua-Wkv" id="TZR-M0-NqD"/>
+                <outlet property="loginLabel" destination="sGE-MH-ThK" id="WBk-ze-G4i"/>
+                <outlet property="statusLabel" destination="bxU-ly-T7V" id="Vkd-wr-v98"/>
                 <outlet property="userAvatarIMageView" destination="kFh-qQ-vml" id="wVD-jO-g2z"/>
                 <outlet property="userNameLabel" destination="vXe-VO-VE2" id="BiQ-Es-nEo"/>
             </connections>
