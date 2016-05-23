@@ -34,7 +34,7 @@
                                             <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大阪市立大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q4-tR-CSY">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21歳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q4-tR-CSY">
                                             <rect key="frame" x="0.0" y="35" width="205" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,6 +54,9 @@
                                         <constraint firstAttribute="width" constant="44" id="oCC-qO-LwC"/>
                                     </constraints>
                                     <state key="normal" image="message_prof.png"/>
+                                    <connections>
+                                        <action selector="tapMessageButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="XKd-tU-5s4"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -261,7 +264,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6A1-vH-KAb">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prof_image_sample1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="gQf-UR-oub">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gQf-UR-oub">
                                     <rect key="frame" x="0.0" y="0.0" width="125" height="140"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="140" id="qar-cC-LZ2"/>
@@ -274,7 +277,7 @@
                                         </mask>
                                     </variation>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prof_image_sample2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="PHC-je-TQA">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PHC-je-TQA">
                                     <rect key="frame" x="125" y="0.0" width="125" height="140"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="125" id="Zkm-jO-eD4"/>
@@ -287,7 +290,7 @@
                                         </mask>
                                     </variation>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="23g-ES-NtK">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="23g-ES-NtK">
                                     <rect key="frame" x="250" y="0.0" width="125" height="140"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="140" id="Dlf-Ty-I4v"/>
@@ -339,7 +342,7 @@
                         <constraint firstAttribute="width" constant="74" id="fLe-HN-4hD"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="gfT-eY-oHG">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gfT-eY-oHG">
                     <rect key="frame" x="40" y="254" width="70" height="70"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="g3A-vB-iAJ"/>
@@ -366,21 +369,29 @@
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <connections>
+                <outlet property="address" destination="VPg-46-x1T" id="RfT-3Z-57s"/>
+                <outlet property="age" destination="0Q4-tR-CSY" id="qch-c5-20o"/>
+                <outlet property="company" destination="lg0-iG-W6P" id="MN0-Z9-9Py"/>
+                <outlet property="fbImage1" destination="gQf-UR-oub" id="sLP-Vz-hlQ"/>
+                <outlet property="fbImage2" destination="PHC-je-TQA" id="yea-ue-Bmd"/>
+                <outlet property="fbImage3" destination="23g-ES-NtK" id="YS4-Y6-yLg"/>
+                <outlet property="greetingMessage" destination="xqZ-iI-lWg" id="HH6-KL-a9a"/>
                 <outlet property="headerScrollView" destination="T6M-d7-CWh" id="kDj-uu-Dlh"/>
                 <outlet property="imageCoverView" destination="wkH-J4-Fv7" id="e7E-bo-oTe"/>
+                <outlet property="location" destination="LjK-Zj-Au3" id="jA6-Ln-J3d"/>
+                <outlet property="messageButton" destination="3lA-KK-Ki6" id="guo-ME-Q9d"/>
+                <outlet property="name" destination="VM4-vu-Ym7" id="a4h-OG-yNk"/>
+                <outlet property="relationship" destination="f14-Jj-OG9" id="QqA-6N-fSg"/>
+                <outlet property="university" destination="Uds-EC-pm0" id="J4M-cX-4qu"/>
                 <outlet property="userAvatarImageView" destination="gfT-eY-oHG" id="kZI-Cr-JlJ"/>
             </connections>
         </view>
     </objects>
     <resources>
-        <image name="cat.jpg" width="1920" height="1080"/>
         <image name="home_prof.png" width="64" height="64"/>
         <image name="love_prof.png" width="64" height="64"/>
-        <image name="me.jpg" width="407" height="639"/>
         <image name="message_prof.png" width="128" height="128"/>
         <image name="point_prof.png" width="64" height="64"/>
-        <image name="prof_image_sample1.jpg" width="2048" height="1365"/>
-        <image name="prof_image_sample2.jpg" width="639" height="960"/>
         <image name="univ_prof.png" width="64" height="64"/>
         <image name="work_prof.png" width="64" height="64"/>
     </resources>
