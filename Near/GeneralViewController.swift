@@ -18,6 +18,8 @@ class GeneralViewController: UIViewController {
 
         setPageViewController()
         setNavigationBar()
+        
+        User.sampleSetUP()
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +53,17 @@ class GeneralViewController: UIViewController {
     
     func setNavigationBar() {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: (self.navigationController?.navigationBar.frame.height)!)
-        let navBarView = NearNavigationView(frame: frame, imageNames: ["prof_pre", "timeline_pre", "messa_pre"], firstIndex: 1)
+        let navBarView = NearNavigationView(frame: frame, imageNames: ["prof_nav", "location_nav", "message_nav"], firstIndex: 1)
+        navBarView.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 60/255, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 58/255, green: 58/255, blue: 60/255, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+//        let navBarTitleLabel = UILabel(frame: CGRectZero)
+//        navBarTitleLabel.text = self.navigationItem.title
+//        navBarTitleLabel.textColor = UIColor.whiteColor()
+//        navBarTitleLabel.sizeToFit()
+//        self.navigationItem.titleView = navBarTitleLabel
+        
         navBarView.delegate = generalVM
         generalVM.navItems = navBarView.getItems()
         generalVM.pageVC = self.pageViewController
@@ -59,6 +71,10 @@ class GeneralViewController: UIViewController {
 
         self.navigationController?.navigationBar.addSubview(navBarView)
         self.navigationController?.navigationBar.translucent = false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
     }
 
 }

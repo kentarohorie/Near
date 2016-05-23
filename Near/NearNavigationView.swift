@@ -45,8 +45,9 @@ class NearNavigationView: UIView {
     private func setNavItemsToView() {
         for (i, v) in items.enumerate() {
             let screenSize = UIScreen.mainScreen().bounds.size
-            let originX = (screenSize.width/2.0 - v.frame.size.width/2) + CGFloat(i * 100) - 100
-            v.frame.origin = CGPoint(x: originX, y: 8)
+            let distance = 150
+            let originX = (screenSize.width/2.0 - v.frame.size.width/2) + CGFloat(i * distance) - CGFloat(distance)
+            v.frame.origin = CGPoint(x: originX, y: 0)
             v.tag = i
             let tapGestureRecog = UITapGestureRecognizer(target: self, action: #selector(NearNavigationView.tapOnHeader(_:)))
             v.addGestureRecognizer(tapGestureRecog)
@@ -58,6 +59,7 @@ class NearNavigationView: UIView {
     private func setImageViewsToItems(imageNames: [String], callback: () -> Void) {
         for (i, name) in imageNames.enumerate() {
             let imageView = UIImageView.setImageViewWithSetAlwaysRenderingMode(name)
+            imageView.frame.size = CGSize(width: 50, height: 50)
             imageView.tintColor = UIColor.appCustomDefaultGray()
             if i == firstNavItemIndex {
                 imageView.tintColor = UIColor.customOrange()

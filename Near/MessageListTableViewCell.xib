@@ -15,62 +15,103 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cqz-Mn-sAt">
-                        <rect key="frame" x="8" y="8" width="226" height="70"/>
+                        <rect key="frame" x="8" y="6" width="359" height="75"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="G6V-nC-h2o">
-                                <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="G6V-nC-h2o">
+                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="AdT-Go-7x7"/>
-                                    <constraint firstAttribute="width" constant="70" id="sWG-lh-uf5"/>
+                                    <constraint firstAttribute="height" constant="75" id="AdT-Go-7x7"/>
+                                    <constraint firstAttribute="width" constant="75" id="sWG-lh-uf5"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="M0b-UK-Jts">
-                                <rect key="frame" x="78" y="17" width="148" height="37"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YdL-ra-LGo">
+                                <rect key="frame" x="83" y="0.0" width="276" height="75"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anne　Hathaway" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppc-WW-roP">
-                                        <rect key="frame" x="0.0" y="0.0" width="148" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5分前" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzl-RN-mGa">
+                                        <rect key="frame" x="0.0" y="0.0" width="276" height="11"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="17" id="me8-lm-bz3"/>
+                                            <constraint firstAttribute="height" constant="11" id="gMh-1G-Vlf"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you now?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S49-3c-SqP">
-                                        <rect key="frame" x="0.0" y="17" width="148" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="Run-fq-Iip"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="M0b-UK-Jts">
+                                        <rect key="frame" x="0.0" y="11" width="276" height="64"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anne　Hathaway" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppc-WW-roP">
+                                                <rect key="frame" x="0.0" y="0.0" width="276" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="17" id="QS1-7h-3bR"/>
+                                                    <constraint firstAttribute="height" constant="17" id="me8-lm-bz3"/>
+                                                    <constraint firstAttribute="height" constant="17" id="zIg-Z7-wmY"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="QS1-7h-3bR"/>
+                                                        <exclude reference="me8-lm-bz3"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you now?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S49-3c-SqP">
+                                                <rect key="frame" x="0.0" y="17" width="276" height="47"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="Run-fq-Iip"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Run-fq-Iip"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="S49-3c-SqP" secondAttribute="bottom" id="0Fl-8i-9NB"/>
+                                            <constraint firstItem="S49-3c-SqP" firstAttribute="leading" secondItem="M0b-UK-Jts" secondAttribute="leading" id="Ga9-7Y-zUa"/>
+                                            <constraint firstItem="ppc-WW-roP" firstAttribute="top" secondItem="M0b-UK-Jts" secondAttribute="top" id="Hal-Eb-NoL"/>
+                                            <constraint firstAttribute="trailing" secondItem="S49-3c-SqP" secondAttribute="trailing" id="aRg-LU-3zI"/>
+                                            <constraint firstItem="ppc-WW-roP" firstAttribute="leading" secondItem="M0b-UK-Jts" secondAttribute="leading" id="brX-wb-RFL"/>
+                                            <constraint firstAttribute="height" constant="37" id="lLe-eB-Hbf"/>
+                                            <constraint firstItem="S49-3c-SqP" firstAttribute="top" secondItem="ppc-WW-roP" secondAttribute="bottom" id="sIO-GF-rNi"/>
+                                            <constraint firstItem="S49-3c-SqP" firstAttribute="top" secondItem="ppc-WW-roP" secondAttribute="bottom" id="tOn-xH-QMQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="ppc-WW-roP" secondAttribute="trailing" id="vKg-0Y-cyI"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="lLe-eB-Hbf"/>
+                                                <exclude reference="tOn-xH-QMQ"/>
+                                            </mask>
+                                        </variation>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="S49-3c-SqP" firstAttribute="leading" secondItem="M0b-UK-Jts" secondAttribute="leading" id="Ga9-7Y-zUa"/>
-                                    <constraint firstAttribute="trailing" secondItem="S49-3c-SqP" secondAttribute="trailing" id="aRg-LU-3zI"/>
-                                    <constraint firstItem="ppc-WW-roP" firstAttribute="leading" secondItem="M0b-UK-Jts" secondAttribute="leading" id="brX-wb-RFL"/>
-                                    <constraint firstAttribute="height" constant="37" id="lLe-eB-Hbf"/>
-                                    <constraint firstItem="S49-3c-SqP" firstAttribute="top" secondItem="ppc-WW-roP" secondAttribute="bottom" id="tOn-xH-QMQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="ppc-WW-roP" secondAttribute="trailing" id="vKg-0Y-cyI"/>
+                                    <constraint firstItem="zzl-RN-mGa" firstAttribute="top" secondItem="YdL-ra-LGo" secondAttribute="top" id="4b1-yH-yqS"/>
+                                    <constraint firstAttribute="trailing" secondItem="zzl-RN-mGa" secondAttribute="trailing" id="9a5-em-wF8"/>
+                                    <constraint firstItem="zzl-RN-mGa" firstAttribute="leading" secondItem="YdL-ra-LGo" secondAttribute="leading" id="N7u-lf-L6y"/>
+                                    <constraint firstItem="M0b-UK-Jts" firstAttribute="top" secondItem="zzl-RN-mGa" secondAttribute="bottom" id="rUD-ZC-bqo"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="G6V-nC-h2o" firstAttribute="top" secondItem="Cqz-Mn-sAt" secondAttribute="top" id="1wn-l8-T6Z"/>
-                            <constraint firstAttribute="height" constant="70" id="Dlx-iy-kOf"/>
+                            <constraint firstAttribute="height" constant="75" id="Dlx-iy-kOf"/>
                             <constraint firstItem="G6V-nC-h2o" firstAttribute="leading" secondItem="Cqz-Mn-sAt" secondAttribute="leading" id="JfX-te-vwm"/>
                             <constraint firstAttribute="bottom" secondItem="G6V-nC-h2o" secondAttribute="bottom" id="JfY-O3-ObR"/>
-                            <constraint firstItem="M0b-UK-Jts" firstAttribute="centerY" secondItem="Cqz-Mn-sAt" secondAttribute="centerY" id="uPl-bq-BtE"/>
+                            <constraint firstItem="YdL-ra-LGo" firstAttribute="top" secondItem="Cqz-Mn-sAt" secondAttribute="top" id="JwL-Tk-5O6"/>
+                            <constraint firstItem="YdL-ra-LGo" firstAttribute="leading" secondItem="G6V-nC-h2o" secondAttribute="trailing" constant="8" id="XNS-Aw-hR0"/>
+                            <constraint firstAttribute="trailing" secondItem="YdL-ra-LGo" secondAttribute="trailing" id="esv-q6-o4L"/>
+                            <constraint firstAttribute="bottom" secondItem="YdL-ra-LGo" secondAttribute="bottom" id="lQl-CW-kAh"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="uPl-bq-BtE"/>
-                            </mask>
-                        </variation>
                     </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="Cqz-Mn-sAt" secondAttribute="trailing" id="CbB-a7-ogP"/>
                     <constraint firstItem="Cqz-Mn-sAt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Dfh-C0-0l4"/>
                     <constraint firstItem="Cqz-Mn-sAt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="rDc-hH-Is2"/>
                 </constraints>

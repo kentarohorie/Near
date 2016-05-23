@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MainTimeLineViewController: UIViewController {
+class MainTimeLineViewController: UIViewController, MainTimeLineViewModelDelegate {
     
-    let mainTimeLineVM = MainTimeLineViewModel()
+    var mainTimeLineVM = MainTimeLineViewModel()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,8 +39,25 @@ class MainTimeLineViewController: UIViewController {
         let mainTimeLineV = UINib(nibName: "MainTimeLineView", bundle: nil).instantiateWithOwner(self, options: nil).first as! MainTimeLineView
         mainTimeLineV.tableView.delegate = mainTimeLineVM
         mainTimeLineV.tableView.dataSource = mainTimeLineVM
+        mainTimeLineVM.delegate = self
         
         self.view = mainTimeLineV
+    }
+    
+    func didTapMainTimeLineTableViewCell(selectedUser: User) {
+        let profileVC = ProfileViewController(user: selectedUser)
+        
+        for i in (self.navigationController?.navigationBar.subviews)! {
+            if let navView = i as? NearNavigationView {
+                for v in navView.subviews {
+                    v.userInteractionEnabled = false
+                    v.hidden = true
+                }
+                navView.hidden = true
+            }
+        }
+        
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
 
 }

@@ -32,7 +32,7 @@ class MessageViewController: LGChatController, LGChatControllerDelegate {
     
     func launchChatController() {
         self.opponentImage = UIImage(named: "sample_user")
-        self.title = "Anne Hathaway"
+//        self.title = "Anne Hathaway"
         let helloWorld = LGChatMessage(content: "Hello", sentBy: .Opponent)
         let helloWorld2 = LGChatMessage(content: "Where you are now?", sentBy: .Opponent)
         self.messages = [helloWorld, helloWorld2]
@@ -51,6 +51,24 @@ class MessageViewController: LGChatController, LGChatControllerDelegate {
          Use this space to prevent sending a message, or to alter a message.  For example, you might want to hold a message until its successfully uploaded to a server.
          */
         return true
+    }
+    
+    var navBar: UINavigationBar!
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        guard parent?.getClassName() == nil else {
+            navBar = (parent as! UINavigationController).navigationBar
+            return
+        }
+        for i in navBar.subviews {
+            if let navView = i as? NearNavigationView {
+                for v in navView.subviews {
+                    v.userInteractionEnabled = true
+                    v.hidden = false
+                }
+                navView.hidden = false
+            }
+        }
     }
 
 }

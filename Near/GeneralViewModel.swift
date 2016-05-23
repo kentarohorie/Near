@@ -28,7 +28,7 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
         if currentPage == "MainTimeLineViewController" {
             switch index {
             case 0:
-                vc = ProfileViewController()
+                vc = ProfileViewController(user: User.currentUser())
                 direction = .Reverse
                 isForward = false
                 currentPage = "ProfileViewController"
@@ -106,12 +106,12 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
             }
         }
         
-        let distance = CGFloat(100)
+        let distance = CGFloat(150)
         
         for (i, v) in self.navItems!.enumerate() {
             let vSize    = v.frame.size
             let originX  = self.getOriginX(vSize, idx: CGFloat(i), distance: CGFloat(distance), xOffset: xOffset)
-            v.frame.origin      = CGPoint(x: originX, y: 8)
+            v.frame.origin      = CGPoint(x: originX, y: 0)
         }
         
         for imgV in navItems {
@@ -178,7 +178,7 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
         let className = viewController.getClassName()
         
         if className == "MainTimeLineViewController" {
-            return ProfileViewController()
+            return ProfileViewController(user: User.currentUser())
         } else if className == "MessageListViewController" {
             return MainTimeLineViewController()
         } else {

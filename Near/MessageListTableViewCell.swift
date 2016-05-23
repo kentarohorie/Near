@@ -26,7 +26,7 @@ class MessageListTableViewCell: UITableViewCell {
     }
     
     func setUP() {
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 10
         avatarImageView.clipsToBounds = true
         self.selectionStyle = .None
     }

@@ -23,84 +23,6 @@
             </objects>
             <point key="canvasLocation" x="1265" y="456"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="opA-Qz-qVJ">
-            <objects>
-                <viewController id="BTX-BR-hLR" customClass="ProfileViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KLX-77-I9X"/>
-                        <viewControllerLayoutGuide type="bottom" id="zfG-5T-xor"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="not-L7-5ku">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="prof_pre.png" selectedImage="prof_pre.png" id="CMs-7Y-Xbe"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ej-RD-May" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1814" y="-211"/>
-        </scene>
-        <!--Near-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainTimeLineViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Near" image="timeline_pre.png" selectedImage="timeline_pre.png" id="OvA-xh-r2U"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2067" y="447"/>
-        </scene>
-        <!--Message List View Controller-->
-        <scene sceneID="QmW-y1-24s">
-            <objects>
-                <viewController id="I7B-3I-dm4" customClass="MessageListViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CWf-L1-DVw"/>
-                        <viewControllerLayoutGuide type="bottom" id="dEL-mH-Mcj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="uWi-Cb-aKM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Vqi-Su-FTj"/>
-                    <connections>
-                        <segue destination="KEL-k8-vWH" kind="show" identifier="ToMessageView" id="W8c-Fm-whG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9hK-pu-KYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1823" y="1128"/>
-        </scene>
-        <!--Message View Controller-->
-        <scene sceneID="nGI-Nw-m4P">
-            <objects>
-                <viewController id="KEL-k8-vWH" customClass="MessageViewController" customModule="Near" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9e7-oX-rGw"/>
-                        <viewControllerLayoutGuide type="bottom" id="opx-FI-BTg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kT1-CZ-aog">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jXS-ms-Zaf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2487" y="1128"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="cZL-Hi-FWd">
             <objects>
@@ -120,8 +42,4 @@
             <point key="canvasLocation" x="373" y="400"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="prof_pre.png" width="32" height="32"/>
-        <image name="timeline_pre.png" width="32" height="32"/>
-    </resources>
 </document>
