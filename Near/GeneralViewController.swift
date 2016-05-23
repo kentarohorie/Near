@@ -18,6 +18,8 @@ class GeneralViewController: UIViewController {
 
         setPageViewController()
         setNavigationBar()
+        
+        User.sampleSetUP()
     }
 
     override func didReceiveMemoryWarning() {
