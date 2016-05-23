@@ -49,12 +49,15 @@ class MessageListViewController: UIViewController, MessageListViewModelDelegate 
     func didTapMessageLiestViewTableViewCell() {
         let messageVC = MessageViewController()
 
-        let navBarView = self.navigationController?.navigationBar.subviews[1] as! NearNavigationView
-        for v in navBarView.subviews {
-            v.userInteractionEnabled = false
-            v.hidden = true
+        for i in (self.navigationController?.navigationBar.subviews)! {
+            if let navView = i as? NearNavigationView {
+                for v in navView.subviews {
+                    v.userInteractionEnabled = false
+                    v.hidden = true
+                }
+                navView.hidden = true
+            }
         }
-        navBarView.hidden = true
         
         self.navigationController?.pushViewController(messageVC, animated: true)
     }

@@ -32,7 +32,7 @@ class MessageViewController: LGChatController, LGChatControllerDelegate {
     
     func launchChatController() {
         self.opponentImage = UIImage(named: "sample_user")
-        self.title = "Anne Hathaway"
+//        self.title = "Anne Hathaway"
         let helloWorld = LGChatMessage(content: "Hello", sentBy: .Opponent)
         let helloWorld2 = LGChatMessage(content: "Where you are now?", sentBy: .Opponent)
         self.messages = [helloWorld, helloWorld2]
