@@ -7,23 +7,43 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class GeneralViewController: UIViewController {
     
     private let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     private let generalVM = GeneralViewModel()
+    private let fbLoginVM = FBLoginViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setPageViewController()
-        setNavigationBar()
         
-        User.sampleSetUP()
+        if (FBSDKAccessToken.currentAccessToken() != nil) {
+            print("already login")
+            setFBLoginView(nil) //fb fetch data test
+        } else {
+            print("yet")
+//            setFBLoginView {
+                            self.setPageViewController()
+                            self.setNavigationBar()
+                
+                            User.sampleSetUP()
+//            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setFBLoginView(callback: (() -> Void)?) {
+        let fbLoginView = FBLoginView(frame: view.frame, delegate: fbLoginVM)
+        self.view.addSubview(fbLoginView)
+        
+        guard let cb = callback else {
+            return
+        }
+        cb()
     }
     
     //============ set pageviewcontroller ==========

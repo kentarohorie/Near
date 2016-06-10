@@ -9,6 +9,8 @@
 import UIKit
 
 class User: NSObject {
+    static var currentUser: User = User()
+    
     var userName: String?
     var age: Int?
     var avatar: UIImage?
@@ -44,8 +46,10 @@ class User: NSObject {
         return users
     }
     
-    class func currentUser() -> User {
-        return setUser("Inoue Non", age: 28, avatar: UIImage(named: "inoue"), profileCoverImage: UIImage(named: "inoue_cover"), fbETCImage: [UIImage(named: "mark")!, UIImage(named: "inoue_sel1")!, UIImage(named: "inoue_sel2")!], greetingMessage: "よろしく〜", company: "Google inc,", university: "立教大学", address: "新宿区", relationship: "アン・ハサウェイと交際中", location: "渋谷区", loginTime: 12)
+    class func setsCurrentUser(name: String, age: Int, fbID: String, gender: String) {
+//        currentUser
+        
+        setUser("Inoue Non", age: 28, avatar: UIImage(named: "inoue"), profileCoverImage: UIImage(named: "inoue_cover"), fbETCImage: [UIImage(named: "mark")!, UIImage(named: "inoue_sel1")!, UIImage(named: "inoue_sel2")!], greetingMessage: "よろしく〜", company: "Google inc,", university: "立教大学", address: "新宿区", relationship: "アン・ハサウェイと交際中", location: "渋谷区", loginTime: 12)
     }
     
     private class func setUser(name: String?, age: Int?, avatar: UIImage?, profileCoverImage: UIImage?, fbETCImage: [UIImage]?  , greetingMessage: String?, company: String?, university: String?, address: String?, relationship: String?, location: String?, loginTime: Int?) -> User {

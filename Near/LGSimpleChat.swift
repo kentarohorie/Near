@@ -330,7 +330,7 @@ class LGChatController : UIViewController, UITableViewDelegate, UITableViewDataS
     
     private func listenForKeyboardChanges() {
         let defaultCenter = NSNotificationCenter.defaultCenter()
-        defaultCenter.addObserver(self, selector: "keyboardWillChangeFrame:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+        defaultCenter.addObserver(self, selector: #selector(LGChatController.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
     }
     
     private func unregisterKeyboardObservers() {
@@ -555,7 +555,7 @@ class LGChatInput : UIView, LGStretchyTextViewDelegate {
     func setupSendButton() {
         self.sendButton.enabled = false
         self.sendButton.setTitle("Send", forState: .Normal)
-        self.sendButton.addTarget(self, action: "sendButtonPressed:", forControlEvents: .TouchUpInside)
+        self.sendButton.addTarget(self, action: #selector(LGChatInput.sendButtonPressed(_:)), forControlEvents: .TouchUpInside)
         self.sendButton.bounds = CGRect(x: 0, y: 0, width: 40, height: 1)
         self.addSubview(sendButton)
     }
