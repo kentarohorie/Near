@@ -4,6 +4,5 @@
 use_frameworks!
 
 target 'Near' do
-	pod 'FBSDKLoginKit', '~> 4.7.0'
 end
 
