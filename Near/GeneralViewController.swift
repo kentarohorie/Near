@@ -20,14 +20,15 @@ class GeneralViewController: UIViewController {
         
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             print("already login")
+            setFBLoginView(nil) //fb fetch data test
         } else {
             print("yet")
-            setFBLoginView {
-                //            self.setPageViewController()
-                //            self.setNavigationBar()
+//            setFBLoginView {
+                            self.setPageViewController()
+                            self.setNavigationBar()
                 
-                //            User.sampleSetUP()
-            }
+                            User.sampleSetUP()
+//            }
         }
     }
 
@@ -35,11 +36,14 @@ class GeneralViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func setFBLoginView(callback: () -> Void) {
+    func setFBLoginView(callback: (() -> Void)?) {
         let fbLoginView = FBLoginView(frame: view.frame, delegate: fbLoginVM)
         self.view.addSubview(fbLoginView)
         
-        callback()
+        guard let cb = callback else {
+            return
+        }
+        cb()
     }
     
     //============ set pageviewcontroller ==========

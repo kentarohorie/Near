@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController {
     var navBar: UINavigationBar!
     
     override func didMoveToParentViewController(parent: UIViewController?) {
-        if User.currentUser().userName == self.user!.userName {
+        if User.currentUser.userName == self.user!.userName {
             
         } else {
         guard parent?.getClassName() == nil else {

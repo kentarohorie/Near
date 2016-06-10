@@ -9,10 +9,11 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import SwiftyJSON
 
 class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
     
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    internal func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
 
         guard (error == nil) else {
             print("login error :\(error)")
@@ -25,10 +26,24 @@ class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
         }
         
         print("user login")
-        
+        loginButton.readPermissions = ["public_profile"]
+        fetchUserData()
     }
     
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    internal func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("user log out with facebook")
+    }
+    
+    private func fetchUserData() {
+        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, age_range,  gender, picture, education"])
+        
+        graphRequest.startWithCompletionHandler { (connection, result, error) in
+            guard (error == nil) else {
+                print("fetch error with facebook: \(error)")
+                return
+            }
+            
+            print(JSON(result))
+        }
     }
 }

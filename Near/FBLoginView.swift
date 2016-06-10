@@ -18,8 +18,7 @@ class FBLoginView: UIView {
         loginButton = FBSDKLoginButton()
         loginButton.center = self.center
         loginButton.delegate = delegate
-        loginButton.readPermissions = ["public_profile"] //学歴、居住地は各々が埋めるものにすべきかも 
-                                                         //facebookの許可が必要
+
         self.addSubview(loginButton)
     }
     
