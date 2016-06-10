@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59FD0D1CC8EF4FAB68ACC958 /* Pods_Near.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A16B7427380FCF1FEC1A8E6 /* Pods_Near.framework */; };
 		AA0E94271CEED7D400C6E7BE /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */; };
 		AA0E94291CEEE7A300C6E7BE /* GeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */; };
 		AA0E942B1CEEF85200C6E7BE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */; };
@@ -63,9 +64,15 @@
 		AAD971751CCF67E00089DEFF /* Near.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAD971731CCF67E00089DEFF /* Near.xcdatamodeld */; };
 		AAD971771CCF67E00089DEFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD971761CCF67E00089DEFF /* Assets.xcassets */; };
 		AAD9717A1CCF67E00089DEFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD971781CCF67E00089DEFF /* LaunchScreen.storyboard */; };
+		AAED41C61D0A4D8D001B2AB5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAED41C31D0A4D8D001B2AB5 /* FBSDKCoreKit.framework */; };
+		AAED41C71D0A4D8D001B2AB5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAED41C41D0A4D8D001B2AB5 /* FBSDKLoginKit.framework */; };
+		AAED41C81D0A4D8D001B2AB5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAED41C51D0A4D8D001B2AB5 /* FBSDKShareKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3DFE3EE98F8BF756CC3685C9 /* Pods-Near.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near.release.xcconfig"; path = "Pods/Target Support Files/Pods-Near/Pods-Near.release.xcconfig"; sourceTree = "<group>"; };
+		6A16B7427380FCF1FEC1A8E6 /* Pods_Near.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Near.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9284387568F735E6972C5C3 /* Pods-Near.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Near/Pods-Near.debug.xcconfig"; sourceTree = "<group>"; };
 		AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
 		AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -124,6 +131,9 @@
 		AAD971761CCF67E00089DEFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAD971791CCF67E00089DEFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAD9717B1CCF67E00089DEFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAED41C31D0A4D8D001B2AB5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		AAED41C41D0A4D8D001B2AB5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		AAED41C51D0A4D8D001B2AB5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,12 +141,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAED41C81D0A4D8D001B2AB5 /* FBSDKShareKit.framework in Frameworks */,
+				59FD0D1CC8EF4FAB68ACC958 /* Pods_Near.framework in Frameworks */,
+				AAED41C61D0A4D8D001B2AB5 /* FBSDKCoreKit.framework in Frameworks */,
+				AAED41C71D0A4D8D001B2AB5 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B146CEBB32249B962507219 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A9284387568F735E6972C5C3 /* Pods-Near.debug.xcconfig */,
+				3DFE3EE98F8BF756CC3685C9 /* Pods-Near.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		457BBB16B53B95DFB205C134 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAED41C31D0A4D8D001B2AB5 /* FBSDKCoreKit.framework */,
+				AAED41C41D0A4D8D001B2AB5 /* FBSDKLoginKit.framework */,
+				AAED41C51D0A4D8D001B2AB5 /* FBSDKShareKit.framework */,
+				6A16B7427380FCF1FEC1A8E6 /* Pods_Near.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AA0E94251CEED7BC00C6E7BE /* General */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +407,8 @@
 			children = (
 				AAD9716B1CCF67E00089DEFF /* Near */,
 				AAD9716A1CCF67E00089DEFF /* Products */,
+				1B146CEBB32249B962507219 /* Pods */,
+				457BBB16B53B95DFB205C134 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -408,9 +444,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAD9717E1CCF67E00089DEFF /* Build configuration list for PBXNativeTarget "Near" */;
 			buildPhases = (
+				76B1EF7B3F4AA27C7F8572F9 /* Check Pods Manifest.lock */,
 				AAD971651CCF67E00089DEFF /* Sources */,
 				AAD971661CCF67E00089DEFF /* Frameworks */,
 				AAD971671CCF67E00089DEFF /* Resources */,
+				9A8CE7B8B3EED6DAE7885CD3 /* Embed Pods Frameworks */,
+				B95735FC39C4761D8F2660F7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -495,6 +534,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		76B1EF7B3F4AA27C7F8572F9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9A8CE7B8B3EED6DAE7885CD3 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Near/Pods-Near-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B95735FC39C4761D8F2660F7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Near/Pods-Near-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AAD971651CCF67E00089DEFF /* Sources */ = {
@@ -636,9 +723,14 @@
 		};
 		AAD9717F1CCF67E00089DEFF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9284387568F735E6972C5C3 /* Pods-Near.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Near/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -649,9 +741,14 @@
 		};
 		AAD971801CCF67E00089DEFF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DFE3EE98F8BF756CC3685C9 /* Pods-Near.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Near/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
