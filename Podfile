@@ -4,5 +4,7 @@
 use_frameworks!
 
 target 'Near' do
+    pod 'Alamofire', '~> 3.0’
+    pod 'SwiftyJSON'
 end
 
