@@ -74,8 +74,9 @@ class GeneralViewController: UIViewController {
     func setNavigationBar() {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: (self.navigationController?.navigationBar.frame.height)!)
         let navBarView = NearNavigationView(frame: frame, imageNames: ["prof_nav", "location_nav", "message_nav"], firstIndex: 1)
-        navBarView.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 60/255, alpha: 1.0)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 58/255, green: 58/255, blue: 60/255, alpha: 1.0)
+        let navBarColor = UIColor(red: 0, green: 187/255, blue: 211/255, alpha: 1)
+        navBarView.backgroundColor = navBarColor
+        self.navigationController?.navigationBar.barTintColor = navBarColor
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
 //        let navBarTitleLabel = UILabel(frame: CGRectZero)

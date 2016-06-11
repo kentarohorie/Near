@@ -10,11 +10,11 @@ import UIKit
 
 extension UIColor {
     class func customOrange() -> UIColor{
-        return UIColor(red: 255/255, green: 69.0/255, blue: 0.0/255, alpha: 1.0)
+        return UIColor(red: 0, green: 150/255, blue: 166/255, alpha: 1)//UIColor(red: 255/255, green: 69.0/255, blue: 0.0/255, alpha: 1.0)
     }
     
     class func customGray() -> UIColor {
-        return UIColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1.0)
+        return UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1.0)
     }
     
     class func appCustomDefaultGray() -> UIColor {
