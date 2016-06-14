@@ -19,7 +19,7 @@ class FBLoginView: UIView {
         loginButton.center = self.center
         loginButton.delegate = delegate
 
-        self.addSubview(loginButton)
+         self.addSubview(loginButton)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -20,15 +20,17 @@ class GeneralViewController: UIViewController {
         
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             print("already login")
-            setFBLoginView(nil) //fb fetch data test
+            setFBLoginView({ 
+                User.fetchFromAPI()
+            })
         } else {
             print("yet")
-//            setFBLoginView {
-                            self.setPageViewController()
-                            self.setNavigationBar()
-                
-                            User.sampleSetUP()
-//            }
+            setFBLoginView {
+//                            self.setPageViewController()
+//                            self.setNavigationBar()
+//                
+//                            User.sampleSetUP()
+            }
         }
     }
 
