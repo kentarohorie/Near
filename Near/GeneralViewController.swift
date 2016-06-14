@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 
-class GeneralViewController: UIViewController {
+class GeneralViewController: UIViewController, FBLoginViewModeldelegate {
     
     private let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     private let generalVM = GeneralViewModel()
@@ -20,16 +20,18 @@ class GeneralViewController: UIViewController {
         
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             print("already login")
-            setFBLoginView({ 
-                User.fetchFromAPI()
-            })
+//            setFBLoginView({ 
+                User.fetchFromAPI({
+                    print("complete fetch from api")
+                    self.setPageViewController()
+                    self.setNavigationBar()
+                    
+                    User.sampleSetUP()
+                }) //testが終わればUser.fetchFromAPIだけ
+//            })
         } else {
             print("yet")
             setFBLoginView {
-//                            self.setPageViewController()
-//                            self.setNavigationBar()
-//                
-//                            User.sampleSetUP()
             }
         }
     }
@@ -40,12 +42,21 @@ class GeneralViewController: UIViewController {
     
     func setFBLoginView(callback: (() -> Void)?) {
         let fbLoginView = FBLoginView(frame: view.frame, delegate: fbLoginVM)
+        fbLoginVM.customDelegate = self
         self.view.addSubview(fbLoginView)
         
         guard let cb = callback else {
             return
         }
         cb()
+    }
+    
+    func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject) {
+        print("fbloginview delegate method")
+        self.setPageViewController()
+        self.setNavigationBar()
+        
+        User.sampleSetUP()
     }
     
     //============ set pageviewcontroller ==========

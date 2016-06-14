@@ -17,13 +17,14 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     private var etcInfoLabelFontSize: CGFloat!
     private var textCoverView: UIView = UIView()
     private var textLabelArray: [UILabel] = []
+    private var user: User?
     
     override func awakeFromNib() {
-        setUP()
     }
     
     internal func setUser(user: User) {
-
+        self.user = user
+        setUP()
     }
     
     private func setUP() {
@@ -31,12 +32,12 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         baseHeadScrollViewHeight = self.frame.height / 5 * 3
         nameAgeLabelFontSize = 21
         etcInfoLabelFontSize = 10
-        
         // set view. right order
-        setHeadImageScrollView()
+        setHeadImageScrollView(user!.avatar!)
         textCoverView.frame.origin = CGPoint(x: 0, y: baseHeadScrollViewHeight)
         boardScrollView.addSubview(textCoverView)
-        setNameAgeLabel("Kentaro Horie", age: "21")
+        print(user!.age!)
+        setNameAgeLabel((user?.userName)!, age: String(user!.age!))
         setAllETCLabel(["フリーランス", "関西大学卒業", "ログイン １時間前"])
         setTextCoverViewFrame()
         setTextView("楽しいことが大好き〜！\n\n好きな物は映画鑑賞とか読書とか〜！\n楽しい方とお話し出来たら嬉しいです！")
@@ -47,13 +48,13 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     
     //================== set views ==================
     
-    private func setHeadImageScrollView() {
+    private func setHeadImageScrollView(image: UIImage) {
         let scrollView = UIScrollView()
         scrollView.frame.size = CGSize(width: self.frame.width, height: baseHeadScrollViewHeight)
         scrollView.frame.origin = CGPoint(x: 0, y: 0)
         boardScrollView.addSubview(scrollView)
         
-        let imageView = UIImageView(image: UIImage(named: "inoue")!)
+        let imageView = UIImageView(image: image)
         imageView.frame = scrollView.frame
         imageView.contentMode = .ScaleAspectFill
         scrollView.addSubview(imageView)

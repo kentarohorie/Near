@@ -11,7 +11,13 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import SwiftyJSON
 
+@objc protocol FBLoginViewModeldelegate {
+    func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject)
+}
+
 class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
+    
+    internal var customDelegate: FBLoginViewModeldelegate?
     
     internal func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         guard (error == nil) else {
@@ -51,7 +57,11 @@ class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
                 age = maxAge
             }
             
-            User.createUser(id!, gender: gender!, age: age, name: name!)
+            User.createUser(id!, gender: gender!, age: age, name: name!, callback: {
+                User.fetchFromAPI({ 
+                    self.customDelegate?.fbLoginViewModel(didFetchFBDataAndSetData: self)
+                })
+            })
         }
     } // user情報の保存、フェッチはできたから、それの反映のさせかた。特に、初回と二回目以降の反映させ方について。また、facebookIDが同じユーザーの登録ngなど
 }

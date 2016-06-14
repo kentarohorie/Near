@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-import Alamofire
+import Alamofire //dataが無い場合に代替データを突っ込んでエラーを回避しよう。
 
 class User: NSObject {
     static var currentUser: User = User()
@@ -27,37 +27,6 @@ class User: NSObject {
     var location: String?
     var loginTime: Int?
     var fbID: String?
-    
-    class func createUser(fbID: String, gender: String, age: Int, name: String) {
-        let params = [
-            "facebook_id": fbID,
-            "gender": gender,
-            "age": age,
-            "name": name
-        ]
-        Alamofire.request(.POST, "http://localhost:3000/api/v1/users/create", parameters: params as? [String : AnyObject], encoding: .JSON).responseJSON { (response) in
-            guard response.result.error == nil else {
-                print("create user request error: \(response.result.error)")
-                return
-            }
-            let userID = response.result.value!["userID"]!
-            let ud = NSUserDefaults.standardUserDefaults()
-            ud.setObject(userID, forKey: "userID")
-        }
-    } 
-    
-    class func fetchFromAPI() {
-        let ud = NSUserDefaults.standardUserDefaults()
-        let userID = ud.objectForKey("userID")
-        
-        Alamofire.request(.GET, "http://localhost:3000/api/v1/users/\(userID!)").responseJSON { (response) in
-            guard response.result.error == nil else {
-                print("fetch from API request error: \(response.result.error)")
-                return
-            }
-            print(response.result.value)
-        }
-    }
     
     class func sampleSetUP() -> [User] {
         let sampleNames = ["Milly", "Emi", "May", "Anna", "Jenne", "Ema"]
@@ -81,10 +50,22 @@ class User: NSObject {
         return users
     }
     
-    class func setsCurrentUser(name: String, age: Int, fbID: String, gender: String) {
-//        currentUser
+    class func setCurrentUser(name: String, age: Int, fbID: String, gender: String) {
+        var profileImage: UIImage!
+        let URL = NSURL(string: "https://graph.facebook.com/\(fbID)/picture?type=large")
         
-        setUser("Inoue Non", age: 28, avatar: UIImage(named: "inoue"), profileCoverImage: UIImage(named: "inoue_cover"), fbETCImage: [UIImage(named: "mark")!, UIImage(named: "inoue_sel1")!, UIImage(named: "inoue_sel2")!], greetingMessage: "よろしく〜", company: "Google inc,", university: "立教大学", address: "新宿区", relationship: "アン・ハサウェイと交際中", location: "渋谷区", loginTime: 12)
+        guard let contentURL = URL else {
+            profileImage = UIImage(named: "empty_user")
+            return
+        }
+        profileImage = UIImage(data: NSData(contentsOfURL: contentURL)!)
+        self.currentUser.avatar = profileImage
+        self.currentUser.userName = name
+        self.currentUser.age = age
+        self.currentUser.gender = gender
+        
+        
+//        setUser("Inoue Non", age: 28, avatar: UIImage(named: "inoue"), profileCoverImage: UIImage(named: "inoue_cover"), fbETCImage: [UIImage(named: "mark")!, UIImage(named: "inoue_sel1")!, UIImage(named: "inoue_sel2")!], greetingMessage: "よろしく〜", company: "Google inc,", university: "立教大学", address: "新宿区", relationship: "アン・ハサウェイと交際中", location: "渋谷区", loginTime: 12)
     }
     
     private class func setUser(name: String?, age: Int?, avatar: UIImage?, profileCoverImage: UIImage?, fbETCImage: [UIImage]?  , greetingMessage: String?, company: String?, university: String?, address: String?, relationship: String?, location: String?, loginTime: Int?) -> User {
@@ -112,6 +93,45 @@ class User: NSObject {
         }
         
         return imgViews
+    }
+    
+    //============= API request =====================
+    //===============================================
+    
+    class func createUser(fbID: String, gender: String, age: Int, name: String, callback: () -> Void) {
+        let params = [
+            "facebook_id": fbID,
+            "gender": gender,
+            "age": age,
+            "name": name
+        ]
+        Alamofire.request(.POST, "http://localhost:3000/api/v1/users/create", parameters: params as? [String : AnyObject], encoding: .JSON).responseJSON { (response) in
+            guard response.result.error == nil else {
+                print("create user request error: \(response.result.error)")
+                return
+            }
+            let userID = response.result.value!["userID"]!
+            let ud = NSUserDefaults.standardUserDefaults()
+            ud.setObject(userID, forKey: "userID")
+            callback()
+        }
+    }
+    
+    class func fetchFromAPI(callback: () -> Void) {
+        let ud = NSUserDefaults.standardUserDefaults()
+        let userID = ud.objectForKey("userID")
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/v1/users/\(userID!)").responseJSON { (response) in
+            guard response.result.error == nil, let value = response.result.value else {
+                print("fetch from API request error: \(response.result.error)")
+                return
+            }
+            print(response.result.value)
+            print(JSON(value))
+            let jValue = JSON(value)
+            setCurrentUser(jValue["name"].string!, age: jValue["age"].int!, fbID: jValue["fbID"].string!, gender: jValue["gender"].string!)
+            callback()
+        }
     }
     
 }
