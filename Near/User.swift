@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class User: NSObject {
     static var currentUser: User = User()
     
     var userName: String?
+    var gender: String?
     var age: Int?
     var avatar: UIImage?
     var profileCoverImage: UIImage?
@@ -23,6 +26,38 @@ class User: NSObject {
     var relationship: String?
     var location: String?
     var loginTime: Int?
+    var fbID: String?
+    
+    class func createUser(fbID: String, gender: String, age: Int, name: String) {
+        let params = [
+            "facebook_id": fbID,
+            "gender": gender,
+            "age": age,
+            "name": name
+        ]
+        Alamofire.request(.POST, "http://localhost:3000/api/v1/users/create", parameters: params as? [String : AnyObject], encoding: .JSON).responseJSON { (response) in
+            guard response.result.error == nil else {
+                print("create user request error: \(response.result.error)")
+                return
+            }
+            let userID = response.result.value!["userID"]!
+            let ud = NSUserDefaults.standardUserDefaults()
+            ud.setObject(userID, forKey: "userID")
+        }
+    } 
+    
+    class func fetchFromAPI() {
+        let ud = NSUserDefaults.standardUserDefaults()
+        let userID = ud.objectForKey("userID")
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/v1/users/\(userID!)").responseJSON { (response) in
+            guard response.result.error == nil else {
+                print("fetch from API request error: \(response.result.error)")
+                return
+            }
+            print(response.result.value)
+        }
+    }
     
     class func sampleSetUP() -> [User] {
         let sampleNames = ["Milly", "Emi", "May", "Anna", "Jenne", "Ema"]
@@ -78,5 +113,6 @@ class User: NSObject {
         
         return imgViews
     }
+    
 }
 
