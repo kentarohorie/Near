@@ -109,9 +109,9 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
         let distance = CGFloat(150)
         
         for (i, v) in self.navItems!.enumerate() {
-            let vSize    = v.frame.size
-            let originX  = self.getOriginX(vSize, idx: CGFloat(i), distance: CGFloat(distance), xOffset: xOffset)
-            v.frame.origin      = CGPoint(x: originX, y: 0)
+            let vSize = v.frame.size
+            let originX = self.getOriginX(vSize, idx: CGFloat(i), distance: CGFloat(distance), xOffset: xOffset)
+            v.frame.origin = CGPoint(x: originX, y: 0)
         }
         
         for imgV in navItems {
@@ -124,7 +124,7 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
             else if (originX > 171.5 && originX < 271.5) {
                 c = self.gradient(originX, topX: 172.5, bottomX: 270.5, initC: gray, goal: orange)
             }
-            else if(originX == 171.5){
+            else if(originX == 171.5) {
                 c = orange
             }
             imgV.tintColor = c

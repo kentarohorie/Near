@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 
-class GeneralViewController: UIViewController {
+class GeneralViewController: UIViewController, FBLoginViewModeldelegate {
     
     private let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     private let generalVM = GeneralViewModel()
@@ -20,15 +20,16 @@ class GeneralViewController: UIViewController {
         
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             print("already login")
-            setFBLoginView(nil) //fb fetch data test
+                User.fetchFromAPI({
+                    print("complete fetch from api")
+                    self.setPageViewController()
+                    self.setNavigationBar()
+                    
+                    User.sampleSetUP()
+                })
         } else {
-            print("yet")
-//            setFBLoginView {
-                            self.setPageViewController()
-                            self.setNavigationBar()
-                
-                            User.sampleSetUP()
-//            }
+            print("yet login")
+            setFBLoginView()
         }
     }
 
@@ -36,14 +37,18 @@ class GeneralViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func setFBLoginView(callback: (() -> Void)?) {
+    func setFBLoginView() {
         let fbLoginView = FBLoginView(frame: view.frame, delegate: fbLoginVM)
+        fbLoginVM.customDelegate = self
         self.view.addSubview(fbLoginView)
+    }
+    
+    func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject) {
+        print("fbloginview delegate method")
+        self.setPageViewController()
+        self.setNavigationBar()
         
-        guard let cb = callback else {
-            return
-        }
-        cb()
+        User.sampleSetUP()
     }
     
     //============ set pageviewcontroller ==========
@@ -74,8 +79,9 @@ class GeneralViewController: UIViewController {
     func setNavigationBar() {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: (self.navigationController?.navigationBar.frame.height)!)
         let navBarView = NearNavigationView(frame: frame, imageNames: ["prof_nav", "location_nav", "message_nav"], firstIndex: 1)
-        navBarView.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 60/255, alpha: 1.0)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 58/255, green: 58/255, blue: 60/255, alpha: 1.0)
+        let navBarColor = UIColor(red: 0, green: 187/255, blue: 211/255, alpha: 1)
+        navBarView.backgroundColor = navBarColor
+        self.navigationController?.navigationBar.barTintColor = navBarColor
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
 //        let navBarTitleLabel = UILabel(frame: CGRectZero)

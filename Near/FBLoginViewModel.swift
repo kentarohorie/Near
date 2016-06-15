@@ -11,10 +11,15 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import SwiftyJSON
 
+@objc protocol FBLoginViewModeldelegate {
+    func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject)
+}
+
 class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
     
+    internal var customDelegate: FBLoginViewModeldelegate?
+    
     internal func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-
         guard (error == nil) else {
             print("login error :\(error)")
             return
@@ -25,7 +30,6 @@ class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
             return
         }
         
-        print("user login")
         loginButton.readPermissions = ["public_profile"]
         fetchUserData()
     }
@@ -43,7 +47,21 @@ class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
                 return
             }
             
-            print(JSON(result))
+            let name = JSON(result)["name"].string
+            let gender = JSON(result)["gender"].string
+            let id = JSON(result)["id"].string
+            var age = 0
+            if let minAge = (JSON(result)["age_range"]["min"].int) {
+                age = minAge
+            } else if let maxAge = (JSON(result)["age_range"]["max"].int) {
+                age = maxAge
+            }
+            
+            User.createUser(id!, gender: gender!, age: age, name: name!, callback: {
+                User.fetchFromAPI({ 
+                    self.customDelegate?.fbLoginViewModel(didFetchFBDataAndSetData: self)
+                })
+            })
         }
-    }
+    } // user情報の保存、フェッチはできたから、それの反映のさせかた。特に、初回と二回目以降の反映させ方について。また、facebookIDが同じユーザーの登録ngなど
 }
