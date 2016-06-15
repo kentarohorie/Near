@@ -20,19 +20,16 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate {
         
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             print("already login")
-//            setFBLoginView({ 
                 User.fetchFromAPI({
                     print("complete fetch from api")
                     self.setPageViewController()
                     self.setNavigationBar()
                     
                     User.sampleSetUP()
-                }) //testが終わればUser.fetchFromAPIだけ
-//            })
+                })
         } else {
-            print("yet")
-            setFBLoginView {
-            }
+            print("yet login")
+            setFBLoginView()
         }
     }
 
@@ -40,15 +37,10 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate {
         super.didReceiveMemoryWarning()
     }
     
-    func setFBLoginView(callback: (() -> Void)?) {
+    func setFBLoginView() {
         let fbLoginView = FBLoginView(frame: view.frame, delegate: fbLoginVM)
         fbLoginVM.customDelegate = self
         self.view.addSubview(fbLoginView)
-        
-        guard let cb = callback else {
-            return
-        }
-        cb()
     }
     
     func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject) {
