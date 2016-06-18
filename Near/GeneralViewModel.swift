@@ -8,8 +8,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate, NearNavigationViewDelegate {
+class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate, NearNavigationViewDelegate, CLLocationManagerDelegate {
     
     internal var navItems: [UIView]?
     internal var pageVC: UIPageViewController?
@@ -21,6 +22,9 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
     private let gray = UIColor.customGray()
     private var isTapNavBar = false
     private var isForward = false
+    private var locationManager: CLLocationManager!
+    
+    //========== Tinder UI logic ==============
     
     internal func tapNavigationImageView(index: Int) {
         var vc: UIViewController?
@@ -195,6 +199,37 @@ class GeneralViewModel: NSObject, UIPageViewControllerDelegate, UIPageViewContro
             return MainTimeLineViewController()
         } else {
             return nil
+        }
+    }
+    
+    //=========== CLLocationManager Delegate =============
+    
+    internal func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations)
+        locationManager.stopUpdatingLocation()
+    }
+    
+    //========= generalVC delegate ===========
+    
+    internal func generalViewController(viewDidLoad sender: UIViewController) {
+        setLocationManager()
+    } //locationを取る前にアプリを開始させたくない。現在地の取得は成功。タイムラインの前、もっというとタイムラインを読み込む前に現在地をセットしなければいけない。
+    
+    //===========  VM private method    ==============
+    
+    private func setLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 100
+        locationManager.startUpdatingLocation()
+    }
+    
+    private func locationAuthorization() {
+        let status = CLLocationManager.authorizationStatus()
+        if status == CLAuthorizationStatus.NotDetermined {
+            locationManager.requestAlwaysAuthorization()
         }
     }
 }

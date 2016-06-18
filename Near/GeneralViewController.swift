@@ -9,14 +9,23 @@
 import UIKit
 import FBSDKLoginKit
 
+@objc protocol GeneralViewControllerDelegate {
+    func generalViewController(viewDidLoad sender: UIViewController)
+}
+
 class GeneralViewController: UIViewController, FBLoginViewModeldelegate {
     
     private let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     private let generalVM = GeneralViewModel()
     private let fbLoginVM = FBLoginViewModel()
+    
+    internal var delegate: GeneralViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        delegate?.generalViewController(viewDidLoad: self)
+        generalVM.generalViewController(viewDidLoad: self)
         
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             print("already login")
