@@ -10,10 +10,15 @@
 import UIKit
 import CoreLocation
 
+@objc protocol GeneralViewModelDelegate {
+    optional func generalViewModel(didGetLocation sender: NSObject)
+}
+
 class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate, NearNavigationViewDelegate, CLLocationManagerDelegate {
     
     internal var navItems: [UIView]?
     internal var pageVC: UIPageViewController?
+    internal var delegate: GeneralViewModelDelegate?
     
     private var navBarView: UIView?
     private var currentPage: String = "MainTimeLineViewController"
@@ -23,6 +28,7 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
     private var isTapNavBar = false
     private var isForward = false
     private var locationManager: CLLocationManager!
+    private var isFirstTimeGetLocation = true
     
     //========== Tinder UI logic ==============
     
@@ -205,15 +211,20 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
     //=========== CLLocationManager Delegate =============
     
     internal func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
         locationManager.stopUpdatingLocation()
+        if isFirstTimeGetLocation {
+            let coordinate = [String(locations[0].coordinate.latitude), String(locations[0].coordinate.longitude)]
+            User.coordinate = coordinate
+            delegate?.generalViewModel?(didGetLocation: self)
+        }
+        isFirstTimeGetLocation = false
     }
     
     //========= generalVC delegate ===========
     
     internal func generalViewController(viewDidLoad sender: UIViewController) {
         setLocationManager()
-    } //locationを取る前にアプリを開始させたくない。現在地の取得は成功。タイムラインの前、もっというとタイムラインを読み込む前に現在地をセットしなければいけない。
+    } //locationを取る前にアプリを開始させたくない。現在地の取得は成功。タイムラインの前、もっというとタイムラインを読み込む前に現在地をセットしなければいけない。現在地をとれなければタイムラインを非表示にするような実装。
     
     //===========  VM private method    ==============
     

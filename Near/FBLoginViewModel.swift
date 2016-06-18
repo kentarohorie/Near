@@ -57,11 +57,11 @@ class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
                 age = maxAge
             }
             
-            User.createUser(id!, gender: gender!, age: age, name: name!, callback: {
-                User.fetchFromAPI({ 
+            User.createUserWithAPI(id!, gender: gender!, age: age, name: name!, callback: {
+                User.fetchFromAPI({
                     self.customDelegate?.fbLoginViewModel(didFetchFBDataAndSetData: self)
                 })
             })
         }
-    } // user情報の保存、フェッチはできたから、それの反映のさせかた。特に、初回と二回目以降の反映させ方について。また、facebookIDが同じユーザーの登録ngなど
+    }
 }
