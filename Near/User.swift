@@ -12,6 +12,7 @@ import Alamofire //dataが無い場合に代替データを突っ込んでエラ
 
 class User: NSObject {
     static var currentUser: User = User()
+    static var coordinate: [String] = [] 
     
     var userName: String?
     var gender: String?
@@ -98,14 +99,16 @@ class User: NSObject {
     //============= API request =====================
     //===============================================
     
-    class func createUser(fbID: String, gender: String, age: Int, name: String, callback: () -> Void) {
+    class func createUserWithAPI(fbID: String, gender: String, age: Int, name: String, callback: () -> Void) {
         let params = [
             "facebook_id": fbID,
             "gender": gender,
             "age": age,
-            "name": name
+            "name": name,
+            "latitude": User.coordinate[0],
+            "longitude": User.coordinate[1]
         ]
-        Alamofire.request(.POST, "http://localhost:3000/api/v1/users/create", parameters: params as? [String : AnyObject], encoding: .JSON).responseJSON { (response) in
+        Alamofire.request(.POST, "http://172.20.10.4:3000/api/v1/users/create"/*"http://localhost:3000/api/v1/users/create"*/, parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
             guard response.result.error == nil else {
                 print("create user request error: \(response.result.error)")
                 return
@@ -121,18 +124,38 @@ class User: NSObject {
         let ud = NSUserDefaults.standardUserDefaults()
         let userID = ud.objectForKey("userID")
         
-        Alamofire.request(.GET, "http://localhost:3000/api/v1/users/\(userID!)").responseJSON { (response) in
+        Alamofire.request(.GET, "http://172.20.10.4:3000/api/v1/users/\(userID!)"/*"http://localhost:3000/api/v1/users/\(userID!)"*/).responseJSON { (response) in
             guard response.result.error == nil, let value = response.result.value else {
                 print("fetch from API request error: \(response.result.error)")
                 return
             }
-            print(response.result.value)
             print(JSON(value))
             let jValue = JSON(value)
             setCurrentUser(jValue["name"].string!, age: jValue["age"].int!, fbID: jValue["fbID"].string!, gender: jValue["gender"].string!)
             callback()
         }
     }
+    
+    class func updateUserWithAPI(age: Int, name: String, latitude: String, longitude: String, callback: () -> Void) {
+        let ud = NSUserDefaults.standardUserDefaults()
+        let userID = ud.objectForKey("userID")
+        
+        let params = [
+            "age": age,
+            "name": name,
+            "latitude": latitude,
+            "longitude": longitude
+        ]
+        
+        Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/\(userID!)", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
+            guard response.result.error == nil else {
+                print("update API error: \(response.result.error)")
+                return
+            }
+            
+            callback()
+        }
+    } //ログインの度に更新
     
 }
 
