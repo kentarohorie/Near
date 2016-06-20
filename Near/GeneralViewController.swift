@@ -42,9 +42,10 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
             print("already login")
             User.fetchFromAPI({
                 User.updateUserWithAPI(User.currentUser.age!, name: User.currentUser.userName!, latitude: User.coordinate[0], longitude: User.coordinate[1], callback: {
-                    self.setPageViewController()
-                    self.setNavigationBar()
-                    User.sampleSetUP()
+                    User.getUsersForTimelineAPI({
+                        self.setPageViewController()
+                        self.setNavigationBar()
+                    })
                 })
             })
         } else {
@@ -56,10 +57,10 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
 
     
     internal func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject) {
-        self.setPageViewController()
-        self.setNavigationBar()
-        
-        User.sampleSetUP()
+        User.getUsersForTimelineAPI { 
+            self.setPageViewController()
+            self.setNavigationBar()
+        }
     }
     
     private func setNoLocationView() {
