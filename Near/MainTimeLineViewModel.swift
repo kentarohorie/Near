@@ -14,8 +14,7 @@ import UIKit
 
 class MainTimeLineViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    let users = User.sampleSetUP()
-    let statuses = ["社", "学", "社", "社", "学", "学"]
+    let users = User.timeLineUsers
     var delegate: MainTimeLineViewModelDelegate?
     //======================================
     //              TableView setting
@@ -25,18 +24,18 @@ class MainTimeLineViewModel: NSObject, UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCellWithIdentifier("MainTimeLineViewTableViewCell", forIndexPath: indexPath) as! MainTimeLineViewTableViewCell
         cell.userAvatarIMageView.image = users[indexPath.row].avatar //UIImage(named: "\(userSampleImage[indexPath.row])")
         cell.userNameLabel.text = users[indexPath.row].userName//userSampleName[indexPath.row]
-        cell.greetingMessage.text = users[indexPath.row].greetingMessage
-        cell.locationLabel.text = users[indexPath.row].location
-        let loginTime = users[indexPath.row].loginTime!
-        var loginTimeString = ""
-        if loginTime >= 10 {
-            loginTimeString = String(loginTime) + "分前"
-        } else {
-            loginTimeString = String(loginTime) + "時間前"
-        }
-        cell.loginLabel.text = loginTimeString
-        cell.ageLabel.text = String(users[indexPath.row].age!)
-        cell.statusLabel.text = statuses[indexPath.row]
+        cell.greetingMessage.text = "hoge"//users[indexPath.row].greetingMessage
+        cell.locationLabel.text = String(users[indexPath.row].distanceFromCurrentUser!) + "m"
+//        let loginTime = users[indexPath.row].loginTime!
+//        var loginTimeString = ""
+//        if loginTime >= 10 {
+//            loginTimeString = String(loginTime) + "分前"
+//        } else {
+//            loginTimeString = String(loginTime) + "時間前"
+//        }
+//        cell.loginLabel.text = loginTimeString
+        cell.ageLabel.text = String(users[indexPath.row].age!) + "歳"
+//        cell.statusLabel.text = statuses[indexPath.row]
         
         return cell
     }
