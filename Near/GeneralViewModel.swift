@@ -224,6 +224,7 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
     
     internal func generalViewController(viewDidLoad sender: UIViewController) {
         setLocationManager()
+        User.setNowLoginTime()
     } //locationを取る前にアプリを開始させたくない。現在地の取得は成功。タイムラインの前、もっというとタイムラインを読み込む前に現在地をセットしなければいけない。現在地をとれなければタイムラインを非表示にするような実装。
     
     //===========  VM private method    ==============

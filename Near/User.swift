@@ -27,7 +27,7 @@ class User: NSObject {
     var address: String?
     var relationship: String?
     var location: String?
-    var loginTime: Int?
+    var loginTime: String? //current => 0000/00/00 ...., others => 00分前
     var fbID: String?
     var distanceFromCurrentUser: Int?
     
@@ -69,6 +69,14 @@ class User: NSObject {
         self.currentUser.fbID = fbID
     }
     
+    class func setNowLoginTime() {
+        let now = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeStyle = .MediumStyle
+        dateFormatter.dateStyle = .MediumStyle
+        currentUser.loginTime = dateFormatter.stringFromDate(now)
+    }
+    
     private class func setUser(name: String?, age: Int?, avatar: UIImage?, profileCoverImage: UIImage?, fbETCImage: [UIImage]?  , greetingMessage: String?, company: String?, university: String?, address: String?, relationship: String?, location: String?, loginTime: Int?) -> User {
         let user = User()
         user.userName = name
@@ -82,7 +90,7 @@ class User: NSObject {
         user.address = address
         user.relationship = relationship
         user.location = location
-        user.loginTime = loginTime
+//        user.loginTime = loginTime
         return user
     }
     
@@ -98,11 +106,18 @@ class User: NSObject {
             profileImage = UIImage(data: NSData(contentsOfURL: contentURL)!)
             
             let user = User()
+            let nsDate = NSDate()
             user.userName = jUser["name"].string!
             user.age = jUser["age"].int!
             user.gender = jUser["gender"].string!
             user.distanceFromCurrentUser = jUser["distance"].int!
             user.avatar = profileImage
+            
+            let date = jUser["loginTime"].string!
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            let dateData = dateFormatter.dateFromString(date)
+            user.loginTime = nsDate.offsetFrom(dateData!)
             timeLineUsers.append(user)
         }
     }
@@ -127,9 +142,10 @@ class User: NSObject {
             "age": age,
             "name": name,
             "latitude": User.coordinate[0],
-            "longitude": User.coordinate[1]
+            "longitude": User.coordinate[1],
+            "login_time": User.currentUser.loginTime!
         ]
-        Alamofire.request(.POST, "http://172.20.10.4:3000/api/v1/users/create"/*"http://localhost:3000/api/v1/users/create"*/, parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
+        Alamofire.request(.POST, "http://172.20.10.4:3000/api/v1/users/create", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
             guard response.result.error == nil else {
                 print("create user request error: \(response.result.error)")
                 return
@@ -145,7 +161,7 @@ class User: NSObject {
         let ud = NSUserDefaults.standardUserDefaults()
         let userID = ud.objectForKey("userID")
         
-        Alamofire.request(.GET, "http://172.20.10.4:3000/api/v1/users/\(userID!)"/*"http://localhost:3000/api/v1/users/\(userID!)"*/).responseJSON { (response) in
+        Alamofire.request(.GET, "http://172.20.10.4:3000/api/v1/users/\(userID!)").responseJSON { (response) in
             guard response.result.error == nil, let value = response.result.value else {
                 print("fetch from API request error: \(response.result.error)")
                 return
@@ -156,7 +172,7 @@ class User: NSObject {
         }
     }
     
-    class func updateUserWithAPI(age: Int, name: String, latitude: String, longitude: String, callback: () -> Void) {
+    class func updateUserWithAPI(age: Int, name: String, latitude: String, longitude: String, loginTime: String, callback: () -> Void) {
         let ud = NSUserDefaults.standardUserDefaults()
         let userID = ud.objectForKey("userID")
         
@@ -164,7 +180,8 @@ class User: NSObject {
             "age": age,
             "name": name,
             "latitude": latitude,
-            "longitude": longitude
+            "longitude": longitude,
+            "login_time": loginTime
         ]
         
         Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/\(userID!)", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
