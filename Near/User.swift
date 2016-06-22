@@ -12,6 +12,8 @@ import Alamofire //dataが無い場合に代替データを突っ込んでエラ
 
 class User: NSObject {
     static var currentUser: User = User()
+    static var coordinate: [String] = []
+    static var timeLineUsers: [User] = []
     
     var userName: String?
     var gender: String?
@@ -25,8 +27,9 @@ class User: NSObject {
     var address: String?
     var relationship: String?
     var location: String?
-    var loginTime: Int?
+    var loginTime: String? //current => 0000/00/00 ...., others => 00分前
     var fbID: String?
+    var distanceFromCurrentUser: Int?
     
     class func sampleSetUP() -> [User] {
         let sampleNames = ["Milly", "Emi", "May", "Anna", "Jenne", "Ema"]
@@ -63,9 +66,15 @@ class User: NSObject {
         self.currentUser.userName = name
         self.currentUser.age = age
         self.currentUser.gender = gender
-        
-        
-//        setUser("Inoue Non", age: 28, avatar: UIImage(named: "inoue"), profileCoverImage: UIImage(named: "inoue_cover"), fbETCImage: [UIImage(named: "mark")!, UIImage(named: "inoue_sel1")!, UIImage(named: "inoue_sel2")!], greetingMessage: "よろしく〜", company: "Google inc,", university: "立教大学", address: "新宿区", relationship: "アン・ハサウェイと交際中", location: "渋谷区", loginTime: 12)
+        self.currentUser.fbID = fbID
+    }
+    
+    class func setNowLoginTime() {
+        let now = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeStyle = .MediumStyle
+        dateFormatter.dateStyle = .MediumStyle
+        currentUser.loginTime = dateFormatter.stringFromDate(now)
     }
     
     private class func setUser(name: String?, age: Int?, avatar: UIImage?, profileCoverImage: UIImage?, fbETCImage: [UIImage]?  , greetingMessage: String?, company: String?, university: String?, address: String?, relationship: String?, location: String?, loginTime: Int?) -> User {
@@ -81,8 +90,36 @@ class User: NSObject {
         user.address = address
         user.relationship = relationship
         user.location = location
-        user.loginTime = loginTime
+//        user.loginTime = loginTime
         return user
+    }
+    
+    private class func setTimelineUsersFromJSON(users: [JSON]) {
+        for jUser in users {
+            var profileImage: UIImage!
+            let URL = NSURL(string: "https://graph.facebook.com/\(jUser["fbID"].string!)/picture?type=large")
+            
+            guard let contentURL = URL else {
+                profileImage = UIImage(named: "empty_user")
+                return
+            }
+            profileImage = UIImage(data: NSData(contentsOfURL: contentURL)!)
+            
+            let user = User()
+            let nsDate = NSDate()
+            user.userName = jUser["name"].string!
+            user.age = jUser["age"].int!
+            user.gender = jUser["gender"].string!
+            user.distanceFromCurrentUser = jUser["distance"].int!
+            user.avatar = profileImage
+            
+            let date = jUser["loginTime"].string!
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            let dateData = dateFormatter.dateFromString(date)
+            user.loginTime = nsDate.offsetFrom(dateData!)
+            timeLineUsers.append(user)
+        }
     }
     
     private class func setAvatarImage() -> [UIImage]{
@@ -98,14 +135,17 @@ class User: NSObject {
     //============= API request =====================
     //===============================================
     
-    class func createUser(fbID: String, gender: String, age: Int, name: String, callback: () -> Void) {
+    class func createUserWithAPI(fbID: String, gender: String, age: Int, name: String, callback: () -> Void) {
         let params = [
             "facebook_id": fbID,
             "gender": gender,
             "age": age,
-            "name": name
+            "name": name,
+            "latitude": User.coordinate[0],
+            "longitude": User.coordinate[1],
+            "login_time": User.currentUser.loginTime!
         ]
-        Alamofire.request(.POST, "http://localhost:3000/api/v1/users/create", parameters: params as? [String : AnyObject], encoding: .JSON).responseJSON { (response) in
+        Alamofire.request(.POST, "http://172.20.10.4:3000/api/v1/users/create", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
             guard response.result.error == nil else {
                 print("create user request error: \(response.result.error)")
                 return
@@ -121,15 +161,52 @@ class User: NSObject {
         let ud = NSUserDefaults.standardUserDefaults()
         let userID = ud.objectForKey("userID")
         
-        Alamofire.request(.GET, "http://localhost:3000/api/v1/users/\(userID!)").responseJSON { (response) in
+        Alamofire.request(.GET, "http://172.20.10.4:3000/api/v1/users/\(userID!)").responseJSON { (response) in
             guard response.result.error == nil, let value = response.result.value else {
                 print("fetch from API request error: \(response.result.error)")
                 return
             }
-            print(response.result.value)
-            print(JSON(value))
             let jValue = JSON(value)
             setCurrentUser(jValue["name"].string!, age: jValue["age"].int!, fbID: jValue["fbID"].string!, gender: jValue["gender"].string!)
+            callback()
+        }
+    }
+    
+    class func updateUserWithAPI(age: Int, name: String, latitude: String, longitude: String, loginTime: String, callback: () -> Void) {
+        let ud = NSUserDefaults.standardUserDefaults()
+        let userID = ud.objectForKey("userID")
+        
+        let params = [
+            "age": age,
+            "name": name,
+            "latitude": latitude,
+            "longitude": longitude,
+            "login_time": loginTime
+        ]
+        
+        Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/\(userID!)", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
+            guard response.result.error == nil else {
+                print("update API error: \(response.result.error)")
+                return
+            }
+            
+            callback()
+        }
+    }
+    
+    class func getUsersForTimelineAPI(callback: () -> Void) {
+        let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "http://172.20.10.4:3000/api/v1/users/")!)
+        mutableURLRequest.HTTPMethod = "GET"
+        mutableURLRequest.addValue(currentUser.fbID!, forHTTPHeaderField: "Fbid")
+        let manager = Alamofire.Manager.sharedInstance
+        manager.request(mutableURLRequest).responseJSON { (response) in
+            guard response.result.error == nil, let value = response.result.value else {
+                print("get timeline users error: \(response.result.error)")
+                return
+            }
+            
+            let jValue = JSON(value)
+            setTimelineUsersFromJSON(jValue.array!)
             callback()
         }
     }

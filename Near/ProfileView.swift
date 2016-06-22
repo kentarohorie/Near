@@ -36,7 +36,6 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         setHeadImageScrollView(user!.avatar!)
         textCoverView.frame.origin = CGPoint(x: 0, y: baseHeadScrollViewHeight)
         boardScrollView.addSubview(textCoverView)
-        print(user!.age!)
         setNameAgeLabel((user?.userName)!, age: String(user!.age!))
         setAllETCLabel(["フリーランス", "関西大学卒業", "ログイン １時間前"])
         setTextCoverViewFrame()

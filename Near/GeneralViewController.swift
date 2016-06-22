@@ -9,51 +9,76 @@
 import UIKit
 import FBSDKLoginKit
 
-class GeneralViewController: UIViewController, FBLoginViewModeldelegate {
+@objc protocol GeneralViewControllerDelegate {
+    func generalViewController(viewDidLoad sender: UIViewController)
+}
+
+class GeneralViewController: UIViewController, FBLoginViewModeldelegate, GeneralViewModelDelegate {
     
     private let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     private let generalVM = GeneralViewModel()
     private let fbLoginVM = FBLoginViewModel()
+    private let noLocationView = UIView()
+    
+    internal var delegate: GeneralViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (FBSDKAccessToken.currentAccessToken() != nil) {
-            print("already login")
-                User.fetchFromAPI({
-                    print("complete fetch from api")
-                    self.setPageViewController()
-                    self.setNavigationBar()
-                    
-                    User.sampleSetUP()
-                })
-        } else {
-            print("yet login")
-            setFBLoginView()
-        }
+        delegate?.generalViewController(viewDidLoad: self)
+        generalVM.generalViewController(viewDidLoad: self)
+        generalVM.delegate = self
+        
+        setNoLocationView()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func setFBLoginView() {
+    internal func generalViewModel(didGetLocation sender: NSObject) {
+        noLocationView.removeFromSuperview()
+        if (FBSDKAccessToken.currentAccessToken() != nil) {
+            print("already login")
+            User.fetchFromAPI({
+                User.updateUserWithAPI(User.currentUser.age!, name: User.currentUser.userName!, latitude: User.coordinate[0], longitude: User.coordinate[1], loginTime: User.currentUser.loginTime!, callback: {
+                    User.getUsersForTimelineAPI({
+                        self.setPageViewController()
+                        self.setNavigationBar()
+                    })
+                })
+            })
+        } else {
+            print("yet login")
+            setFBLoginView()
+        }
+    }
+    
+
+    
+    internal func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject) {
+        User.getUsersForTimelineAPI { 
+            self.setPageViewController()
+            self.setNavigationBar()
+        }
+    }
+    
+    private func setNoLocationView() {
+        noLocationView.frame = self.view.frame
+        noLocationView.backgroundColor = UIColor.redColor()
+        self.view.addSubview(noLocationView)
+    }
+    
+    private func setFBLoginView() {
         let fbLoginView = FBLoginView(frame: view.frame, delegate: fbLoginVM)
         fbLoginVM.customDelegate = self
         self.view.addSubview(fbLoginView)
     }
     
-    func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject) {
-        print("fbloginview delegate method")
-        self.setPageViewController()
-        self.setNavigationBar()
-        
-        User.sampleSetUP()
-    }
     
     //============ set pageviewcontroller ==========
     
-    func setPageViewController() {
+    private func setPageViewController() {
         
         let startingViewController = MainTimeLineViewController()
         let viewControllers = [startingViewController]
@@ -76,7 +101,7 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate {
     
     //============ set navigationBar ============
     
-    func setNavigationBar() {
+    private func setNavigationBar() {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: (self.navigationController?.navigationBar.frame.height)!)
         let navBarView = NearNavigationView(frame: frame, imageNames: ["prof_nav", "location_nav", "message_nav"], firstIndex: 1)
         let navBarColor = UIColor(red: 0, green: 187/255, blue: 211/255, alpha: 1)

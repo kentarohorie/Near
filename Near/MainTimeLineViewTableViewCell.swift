@@ -16,7 +16,6 @@ class MainTimeLineViewTableViewCell: UITableViewCell {
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var greetingMessage: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +25,7 @@ class MainTimeLineViewTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
