@@ -41,7 +41,7 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             print("already login")
             User.fetchFromAPI({
-                User.updateUserWithAPI(User.currentUser.age!, name: User.currentUser.userName!, latitude: User.coordinate[0], longitude: User.coordinate[1], callback: {
+                User.updateUserWithAPI(User.currentUser.age!, name: User.currentUser.userName!, latitude: User.coordinate[0], longitude: User.coordinate[1], loginTime: User.currentUser.loginTime!, callback: {
                     User.getUsersForTimelineAPI({
                         self.setPageViewController()
                         self.setNavigationBar()
