@@ -10,8 +10,7 @@ import UIKit
 
 class ProfileView: UIView, ProfileViewModelDelegate {
 
-    @IBOutlet weak var boardScrollView: UIScrollView!
-    
+    private var boardScrollView: UIScrollView!
     private var baseHeadScrollViewHeight: CGFloat!
     private var nameAgeLabelFontSize: CGFloat!
     private var etcInfoLabelFontSize: CGFloat!
@@ -19,7 +18,15 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     private var textLabelArray: [UILabel] = []
     private var user: User?
     
-    override func awakeFromNib() {
+    internal var isCurrentUser = false
+    
+    init(frame: CGRect, isCurrentUser: Bool) {
+        super.init(frame: frame)
+        self.isCurrentUser = isCurrentUser
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     internal func setUser(user: User) {
@@ -32,11 +39,14 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         baseHeadScrollViewHeight = self.frame.height / 5 * 3
         nameAgeLabelFontSize = 21
         etcInfoLabelFontSize = 10
+        
         // set view. right order
+        setBoardScrollView()
         setHeadImageScrollView(user!.avatar!)
         textCoverView.frame.origin = CGPoint(x: 0, y: baseHeadScrollViewHeight)
         boardScrollView.addSubview(textCoverView)
         setNameAgeLabel((user?.userName)!, age: String(user!.age!))
+        setActionButton()
         setAllETCLabel(["フリーランス", "関西大学卒業", "ログイン １時間前"])
         setTextCoverViewFrame()
         setTextView("楽しいことが大好き〜！\n\n好きな物は映画鑑賞とか読書とか〜！\n楽しい方とお話し出来たら嬉しいです！")
@@ -46,6 +56,13 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     }
     
     //================== set views ==================
+    
+    private func setBoardScrollView() {
+        boardScrollView = UIScrollView()
+        boardScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        boardScrollView.backgroundColor = UIColor.whiteColor()
+        self.addSubview(boardScrollView)
+    }
     
     private func setHeadImageScrollView(image: UIImage) {
         let scrollView = UIScrollView()
@@ -85,7 +102,6 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         textCoverView.addSubview(nameLabel)
         textCoverView.addSubview(ageLabel)
         textLabelArray.append(nameLabel)
-        
     }
     
     private func setETCLabel(text: String, topLabel: UILabel) {
@@ -124,6 +140,7 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         textView.font = UIFont(name: "AppleSDGothicNeo-Light", size: etcInfoLabelFontSize + 3)
         textView.sizeToFit()
         textView.frame.origin = CGPoint(x: 11, y: baseY + titleLabel.frame.height)
+        textView.scrollEnabled = false
         
         boardScrollView.addSubview(titleLabel)
         boardScrollView.addSubview(textView)
@@ -131,7 +148,33 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     }
     
     private func setBoardScrollViewContentSize(baseView: UIView) {
-        boardScrollView.contentSize = CGSize(width: self.frame.width, height: baseView.frame.height + baseView.frame.origin.y)
+        boardScrollView.contentSize = CGSize(width: self.frame.width, height: baseView.frame.height + baseView.frame.origin.y + 100)
+    }
+    
+    private func setActionButton() {
+        var imageName = ""
+        
+        if isCurrentUser {
+            imageName = "system"
+        } else {
+            imageName = "message_prof"
+        }
+        let imageView = UIImageView(image: UIImage(named: imageName)!.imageWithRenderingMode(.AlwaysTemplate))
+        let gestureRecog = UITapGestureRecognizer(target: self, action: #selector(ProfileView.tapActionButton))
+        imageView.tintColor = UIColor.customOrange()
+        imageView.frame.size = CGSize(width: 64, height: 64)
+        imageView.frame.origin = CGPoint(x: self.frame.width - 72, y: 8)
+        imageView.addGestureRecognizer(gestureRecog)
+        imageView.userInteractionEnabled = true
+        textCoverView.addSubview(imageView)
+    }
+    
+    func tapActionButton() {
+        if isCurrentUser {
+            print("go system")
+        } else {
+            print("go message")
+        }
     }
 
 }

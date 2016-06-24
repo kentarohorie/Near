@@ -10,7 +10,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    var user: User? = nil
+    private var user: User? = nil
+    private var isCurrentUser: Bool!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -20,9 +21,10 @@ class ProfileViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(user: User) {
+    convenience init(user: User, isCurrentUser: Bool) {
         self.init(nibName: nil, bundle: nil)
         self.user = user
+        self.isCurrentUser = isCurrentUser
         setUP()
     }
     
@@ -37,7 +39,7 @@ class ProfileViewController: UIViewController {
     }
     
     private func setUP() {
-        let profileV = UINib(nibName: "ProfileView", bundle: nil).instantiateWithOwner(self, options: nil).first as! ProfileView
+        let profileV = ProfileView(frame: self.view.frame, isCurrentUser: self.isCurrentUser)
         self.view = profileV
         
         guard let user = self.user else {
