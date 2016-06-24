@@ -38,7 +38,7 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
         if currentPage == "MainTimeLineViewController" {
             switch index {
             case 0:
-                vc = ProfileViewController(user: User.currentUser)
+                vc = ProfileViewController(user: User.currentUser, isCurrentUser: true)
                 direction = .Reverse
                 isForward = false
                 currentPage = "ProfileViewController"
@@ -188,7 +188,7 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
         let className = viewController.getClassName()
         
         if className == "MainTimeLineViewController" {
-            return ProfileViewController(user: User.currentUser)
+            return ProfileViewController(user: User.currentUser, isCurrentUser: true)
         } else if className == "MessageListViewController" {
             return MainTimeLineViewController()
         } else {
