@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		59FD0D1CC8EF4FAB68ACC958 /* Pods_Near.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A16B7427380FCF1FEC1A8E6 /* Pods_Near.framework */; };
+		AA016EBA1D1E66A000DCEF83 /* ProfileEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA016EB91D1E66A000DCEF83 /* ProfileEditingViewController.swift */; };
 		AA0E94271CEED7D400C6E7BE /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */; };
 		AA0E94291CEEE7A300C6E7BE /* GeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */; };
 		AA0E942B1CEEF85200C6E7BE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */; };
@@ -30,6 +31,9 @@
 		AA4623651CE22D4200D863EE /* sample_user_5.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4623631CE22D4200D863EE /* sample_user_5.png */; };
 		AA6809951D1A839500435279 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6809941D1A839500435279 /* NSDate+Extension.swift */; };
 		AA6809971D1D000100435279 /* system.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6809961D1D000100435279 /* system.png */; };
+		AA6809991D1E412700435279 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6809981D1E412700435279 /* ProfileEditView.swift */; };
+		AA68099F1D1E5E1100435279 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68099E1D1E5E1100435279 /* ProfileEditViewModel.swift */; };
+		AA6809A11D1E63AC00435279 /* ProfileEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6809A01D1E63AC00435279 /* ProfileEditView.xib */; };
 		AA84DF4E1CD5D0A500B635D1 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF4D1CD5D0A500B635D1 /* MessageListViewController.swift */; };
 		AA84DF501CD5D0B700B635D1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF4F1CD5D0B700B635D1 /* ProfileViewController.swift */; };
 		AA84DF521CD5D0C700B635D1 /* MainTimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF511CD5D0C700B635D1 /* MainTimeLineViewController.swift */; };
@@ -69,6 +73,7 @@
 		3DFE3EE98F8BF756CC3685C9 /* Pods-Near.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near.release.xcconfig"; path = "Pods/Target Support Files/Pods-Near/Pods-Near.release.xcconfig"; sourceTree = "<group>"; };
 		6A16B7427380FCF1FEC1A8E6 /* Pods_Near.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Near.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9284387568F735E6972C5C3 /* Pods-Near.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Near/Pods-Near.debug.xcconfig"; sourceTree = "<group>"; };
+		AA016EB91D1E66A000DCEF83 /* ProfileEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewController.swift; sourceTree = "<group>"; };
 		AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
 		AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -91,6 +96,9 @@
 		AA4623631CE22D4200D863EE /* sample_user_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_user_5.png; sourceTree = "<group>"; };
 		AA6809941D1A839500435279 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		AA6809961D1D000100435279 /* system.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = system.png; sourceTree = "<group>"; };
+		AA6809981D1E412700435279 /* ProfileEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
+		AA68099E1D1E5E1100435279 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
+		AA6809A01D1E63AC00435279 /* ProfileEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileEditView.xib; sourceTree = "<group>"; };
 		AA84DF4D1CD5D0A500B635D1 /* MessageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
 		AA84DF4F1CD5D0B700B635D1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AA84DF511CD5D0C700B635D1 /* MainTimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTimeLineViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				AA84DF6E1CD5EB5400B635D1 /* ProfileView.swift */,
+				AA6809981D1E412700435279 /* ProfileEditView.swift */,
+				AA6809A01D1E63AC00435279 /* ProfileEditView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -333,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				AA84DF4F1CD5D0B700B635D1 /* ProfileViewController.swift */,
+				AA016EB91D1E66A000DCEF83 /* ProfileEditingViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -341,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				AA84DF6C1CD5EB4600B635D1 /* ProfileViewModel.swift */,
+				AA68099E1D1E5E1100435279 /* ProfileEditViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -509,6 +521,7 @@
 				AA84DF841CD7375200B635D1 /* work_prof.png in Resources */,
 				AA84DF5E1CD5D3F600B635D1 /* MessageListView.xib in Resources */,
 				AA46235F1CE22D3B00D863EE /* user_sample_2.png in Resources */,
+				AA6809A11D1E63AC00435279 /* ProfileEditView.xib in Resources */,
 				AA17CBA81CF184D8002C2C19 /* prof_nav.png in Resources */,
 				AA6809971D1D000100435279 /* system.png in Resources */,
 				AA17CBA71CF184D8002C2C19 /* message_nav.png in Resources */,
@@ -599,10 +612,13 @@
 				AA0E94271CEED7D400C6E7BE /* GeneralViewController.swift in Sources */,
 				AA15E7841CE2083500E998F4 /* MessageViewController.swift in Sources */,
 				AA15E78D1CE20C1600E998F4 /* UIView+Extension.swift in Sources */,
+				AA6809991D1E412700435279 /* ProfileEditView.swift in Sources */,
+				AA68099F1D1E5E1100435279 /* ProfileEditViewModel.swift in Sources */,
 				AA15E7861CE2085000E998F4 /* MessageViewModel.swift in Sources */,
 				AAED41CD1D0A54C7001B2AB5 /* FBLoginViewModel.swift in Sources */,
 				AA0E94291CEEE7A300C6E7BE /* GeneralViewModel.swift in Sources */,
 				AA0E942B1CEEF85200C6E7BE /* UIViewController+Extension.swift in Sources */,
+				AA016EBA1D1E66A000DCEF83 /* ProfileEditingViewController.swift in Sources */,
 				AA84DF5A1CD5D3DB00B635D1 /* MainTimeLineView.swift in Sources */,
 				AA17CB9F1CF06AA5002C2C19 /* UIColor+Extension.swift in Sources */,
 				AA15E7821CE2080A00E998F4 /* LGSimpleChat.swift in Sources */,

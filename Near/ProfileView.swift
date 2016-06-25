@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc protocol ProfileViewDelegate {
+    func profileView(tapEdit sender: UIView)
+}
+
 class ProfileView: UIView, ProfileViewModelDelegate {
 
     private var boardScrollView: UIScrollView!
@@ -19,6 +23,7 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     private var user: User?
     
     internal var isCurrentUser = false
+    internal var delegate: ProfileViewDelegate?
     
     init(frame: CGRect, isCurrentUser: Bool) {
         super.init(frame: frame)
@@ -171,7 +176,7 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     
     func tapActionButton() {
         if isCurrentUser {
-            print("go system")
+            delegate?.profileView(tapEdit: self)
         } else {
             print("go message")
         }
