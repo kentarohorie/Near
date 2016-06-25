@@ -36,7 +36,7 @@ class User: NSObject {
         let age = [21, 30, 28, 25, 19, 23]
         let avatar = setAvatarImage()
         let profileCoverImages = setAvatarImage()
-        let facebookImage: [UIImage] = [UIImage(named: "profile_sample_11")!, UIImage(named: "profile_sample_12")!, UIImage(named: "profile_sample_13")!]
+        let facebookImage: [UIImage] = [UIImage(named: "profile_sample_2")!, UIImage(named: "profile_sample_3")!, UIImage(named: "profile_sample_4")!]
         let greetingMessage = ["友達が欲しい", "海外行きたい!", "１人の夜は寂しい。。。", "飲みに行きたいなぁ", "", "ジム通い中"]
         let company = ["NRI", "Google", "", "", "softbank", "Recruit"]
         let university = ["明治大学", "東京大学", "早稲田大学", "慶応義塾大学", "京都大学", "早稲田大学"]
@@ -209,6 +209,15 @@ class User: NSObject {
             setTimelineUsersFromJSON(jValue.array!)
             callback()
         }
+    }
+    
+    class func uploadImageTest() {
+        let imageData = UIImagePNGRepresentation(currentUser.avatar!)?.base64EncodedDataWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        
+        let params = [
+            "image": currentUser.avatar!]
+        
+        Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/3", parameters: params)
     }
     
 }
