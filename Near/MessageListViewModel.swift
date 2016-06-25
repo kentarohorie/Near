@@ -16,7 +16,7 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
     
     var delegate: MessageListViewModelDelegate?
     
-    let users = User.sampleSetUP()
+    let users = User.timeLineUsers
     let messages = ["ご飯いかない？", "はじめまして！", "いや。。。ﾑﾘ。。。"]
     
     
@@ -31,8 +31,8 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MessageListTableViewCell", forIndexPath: indexPath) as! MessageListTableViewCell
-        let avatarImage = users[indexPath.row + 3].avatar!//UIImage(named: "\(userSampleImage[indexPath.row])")
-        cell.avatarImageView.image = avatarImage
+//        let avatarImage = users[indexPath.row + 3].avatar!//UIImage(named: "\(userSampleImage[indexPath.row])")
+        cell.avatarImageView.image = users[indexPath.row].avatar
         cell.userNameLabel.text = users[indexPath.row].userName//userSampleName[indexPath.row]
         cell.newMessageLabel.text = messages[indexPath.row]
         
