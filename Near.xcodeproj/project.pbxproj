@@ -296,6 +296,10 @@
 			children = (
 				AAD9716C1CCF67E00089DEFF /* AppDelegate.swift */,
 				AAD971701CCF67E00089DEFF /* Main.storyboard */,
+				AAD971761CCF67E00089DEFF /* Assets.xcassets */,
+				AAD971781CCF67E00089DEFF /* LaunchScreen.storyboard */,
+				AAD9717B1CCF67E00089DEFF /* Info.plist */,
+				AAD971731CCF67E00089DEFF /* Near.xcdatamodeld */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -436,10 +440,6 @@
 				AA84DF431CD5CFCE00B635D1 /* Application */,
 				AA84DF3F1CD5CCB600B635D1 /* Scene */,
 				AA0E94251CEED7BC00C6E7BE /* General */,
-				AAD971761CCF67E00089DEFF /* Assets.xcassets */,
-				AAD971781CCF67E00089DEFF /* LaunchScreen.storyboard */,
-				AAD9717B1CCF67E00089DEFF /* Info.plist */,
-				AAD971731CCF67E00089DEFF /* Near.xcdatamodeld */,
 			);
 			path = Near;
 			sourceTree = "<group>";

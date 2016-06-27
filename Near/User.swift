@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Alamofire //dataが無い場合に代替データを突っ込んでエラーを回避しよう。
+import AWSS3
 
 class User: NSObject {
     static var currentUser: User = User()
@@ -212,12 +213,36 @@ class User: NSObject {
     }
     
     class func uploadImageTest() {
-        let imageData = UIImagePNGRepresentation(currentUser.avatar!)?.base64EncodedDataWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+//        let imageData = UIImagePNGRepresentation(currentUser.avatar!)?.base64EncodedDataWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+//        
+//        let params = [
+//            "image": currentUser.avatar!]
+//        
+//        Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/3", parameters: params)
         
-        let params = [
-            "image": currentUser.avatar!]
         
-        Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/3", parameters: params)
+//        let docDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+//        let text = "Upload File."
+//        let fileName = "test.txt"
+//        let filePath = "\(docDir)/\(fileName)"
+//        try! text.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+//        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+//        
+//        let uploadRequest = AWSS3TransferManagerUploadRequest()
+//        uploadRequest.bucket = "nearfornearinc"
+//        uploadRequest.key = "sample.txt"
+//        uploadRequest.body = NSURL(string: "file://\(filePath)")
+//        uploadRequest.ACL = .PublicRead
+//        uploadRequest.contentType = "text/plain"
+//        
+//        transferManager.upload(uploadRequest).continueWithBlock { (task: AWSTask) -> AnyObject? in
+//            if task.error == nil && task.exception == nil {
+//                print("success")
+//            } else {
+//                print("fail")
+//            }
+//            return nil
+//        }
     }
     
 }
