@@ -8,12 +8,20 @@
 
 import UIKit
 
+@objc protocol ProfileEditingViewControllerDelegate {
+    func profileEditingViewController(tapDone sender: UIViewController)
+}
+
 class ProfileEditingViewController: UIViewController, ProfileEditViewDelegate {
+    internal var delegate: ProfileEditingViewControllerDelegate?
+    
     private let profileEditVM = ProfileEditViewModel()
+    private var profileEditV: ProfileEditView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
+        setNavBar()
     }
     
     override func didReceiveMemoryWarning() {
@@ -22,7 +30,7 @@ class ProfileEditingViewController: UIViewController, ProfileEditViewDelegate {
     }
     
     private func setView() {
-        let profileEditV = UINib(nibName: "ProfileEditView", bundle: nil).instantiateWithOwner(self, options: nil).first as! ProfileEditView
+        profileEditV = UINib(nibName: "ProfileEditView", bundle: nil).instantiateWithOwner(self, options: nil).first as! ProfileEditView
         profileEditV.delegate = profileEditVM
         profileEditV.delegate = self
         profileEditVM.delegate = profileEditV
@@ -50,13 +58,27 @@ class ProfileEditingViewController: UIViewController, ProfileEditViewDelegate {
         }
     }
     
-    func profileEditView(tapEditImage sender: UIView) {
+    func profileEditView(tapEditImage sender: UIView, isMain: Bool, subImageName: String) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
             let imagePickerController = UIImagePickerController()
             imagePickerController.sourceType = .PhotoLibrary
             imagePickerController.allowsEditing = true
             imagePickerController.delegate = profileEditVM
+            profileEditVM.isMainForImage = isMain
+            profileEditVM.subImageName = subImageName
             presentViewController(imagePickerController, animated: true, completion: nil)
         }
     }
+    
+    private func setNavBar() {
+        let button = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(ProfileEditingViewController.tapDoneButton))
+        self.navigationItem.setRightBarButtonItem(button, animated: true)
+    }
+    
+    func tapDoneButton() {
+        profileEditV.setInputDataToUser()
+        profileEditVM.profileEditingViewController(tapDone: self)
+        delegate?.profileEditingViewController(tapDone: self)
+    }
+    
 }
