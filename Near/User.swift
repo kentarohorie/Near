@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-import Alamofire //dataが無い場合に代替データを突っ込んでエラーを回避しよう。
+import Alamofire
 import AWSS3
 
 class User: NSObject {
@@ -19,40 +19,16 @@ class User: NSObject {
     var userName: String?
     var gender: String?
     var age: Int?
-    var avatar: UIImage?
-    var profileCoverImage: UIImage?
     var facebookETCImage: [UIImage]?
     var greetingMessage: String?
-    var company: String?
-    var university: String?
-    var address: String?
-    var relationship: String?
-    var location: String?
-    var loginTime: String? //current => 0000/00/00 ...., others => 00分前
+    var work: String?
+    var school: String?
+    var loginTime: String?
     var fbID: String?
     var distanceFromCurrentUser: Int?
     
-    class func sampleSetUP() -> [User] {
-        let sampleNames = ["Milly", "Emi", "May", "Anna", "Jenne", "Ema"]
-        let age = [21, 30, 28, 25, 19, 23]
-        let avatar = setAvatarImage()
-        let profileCoverImages = setAvatarImage()
-        let facebookImage: [UIImage] = [UIImage(named: "profile_sample_2")!, UIImage(named: "profile_sample_3")!, UIImage(named: "profile_sample_4")!]
-        let greetingMessage = ["友達が欲しい", "海外行きたい!", "１人の夜は寂しい。。。", "飲みに行きたいなぁ", "", "ジム通い中"]
-        let company = ["NRI", "Google", "", "", "softbank", "Recruit"]
-        let university = ["明治大学", "東京大学", "早稲田大学", "慶応義塾大学", "京都大学", "早稲田大学"]
-        let address = ["世田谷区", "新宿区", "渋谷区", "渋谷区", "新宿区", "渋谷区"]
-        let relationship = ["Kana Nishino", "", "Aruki Hotta", "", "", "福山雅治"]
-        let location = ["200m", "500mm", "1.6km", "2km", "2.2km", "3km"]//["世田谷", "渋谷区", "渋谷区", "新宿", "銀座", "渋谷区"]
-        let loginTime = [15, 40, 1, 1, 2, 4]
-        
-        var users: [User] = []
-        for i in 0...5 {
-            users.append(setUser(sampleNames[i], age: age[i], avatar: avatar[i], profileCoverImage: profileCoverImages[i], fbETCImage: facebookImage, greetingMessage: greetingMessage[i], company: company[i], university: university[i], address: address[i], relationship: relationship[i], location: location[i], loginTime: loginTime[i]))
-        }
-        
-        return users
-    }
+    var avatar: UIImage?
+    var subImages: [UIImage?] = [nil, nil, nil, nil, nil]
     
     class func setCurrentUser(name: String, age: Int, fbID: String, gender: String) {
         var profileImage: UIImage!
@@ -76,23 +52,6 @@ class User: NSObject {
         dateFormatter.timeStyle = .MediumStyle
         dateFormatter.dateStyle = .MediumStyle
         currentUser.loginTime = dateFormatter.stringFromDate(now)
-    }
-    
-    private class func setUser(name: String?, age: Int?, avatar: UIImage?, profileCoverImage: UIImage?, fbETCImage: [UIImage]?  , greetingMessage: String?, company: String?, university: String?, address: String?, relationship: String?, location: String?, loginTime: Int?) -> User {
-        let user = User()
-        user.userName = name
-        user.age = age
-        user.avatar = avatar
-        user.profileCoverImage = profileCoverImage
-        user.facebookETCImage = fbETCImage
-        user.greetingMessage = greetingMessage
-        user.company = company
-        user.university = university
-        user.address = address
-        user.relationship = relationship
-        user.location = location
-//        user.loginTime = loginTime
-        return user
     }
     
     private class func setTimelineUsersFromJSON(users: [JSON]) {
@@ -151,7 +110,8 @@ class User: NSObject {
                 print("create user request error: \(response.result.error)")
                 return
             }
-            let userID = response.result.value!["userID"]!
+            let jValue = JSON(response.result.value!)
+            let userID = jValue["userID"].int!
             let ud = NSUserDefaults.standardUserDefaults()
             ud.setObject(userID, forKey: "userID")
             callback()
@@ -212,6 +172,9 @@ class User: NSObject {
         }
     }
     
+    //=========== API request for AWS S3=============
+    //===============================================
+    
     class func uploadImageToS3(uploadFileURL: NSURL, image: UIImage, uploadImageName: String, isMain: Bool) {
         let uploadFileURL = uploadFileURL
         let imageName = uploadFileURL.lastPathComponent
@@ -250,7 +213,63 @@ class User: NSObject {
             }
             return nil;
         }
+    }
+    
+    class func downLoadAllImageFromS3(user: User, callback: () -> Void) {
+        downloadImageFromS3(currentUser, imageKeyPath: "main.png", callback: { (image) in
+            if let img = image {
+                user.avatar = img
+            }
+        })
+        for (i, _) in user.subImages.enumerate() {
+            downloadImageFromS3(user, imageKeyPath: "subs/\(i).png", callback: { (image) in
+                if let img = image {
+                    user.subImages[i] = img
+                }
+            })
+            if i == 4 {
+                callback()
+            }
+        }
+    }
+    
+    // edit doneを押したらしばらくお待ち下さい画面。その間にview情報の更新や、アップデート、s3アップロード。
+    
+    class func downloadImageFromS3(user: User, imageKeyPath: String, callback: (image: UIImage?) -> Void) {
+        let S3BucketName: String = "nearfornearinc"
+        let S3DownloadKeyName: String = "users/\(user.fbID!)/images/\(imageKeyPath)"
         
+        let expression = AWSS3TransferUtilityDownloadExpression()
+        let completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock = { (task, location, data, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                if ((error) != nil){
+                    NSLog("Failed with error")
+                    NSLog("Error: %@",error!);
+                }
+                else {
+                    callback(image: UIImage(data: data!))
+                }
+            })
+        }
+        
+        let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
+        
+        transferUtility.downloadDataFromBucket(
+            S3BucketName,
+            key: S3DownloadKeyName,
+            expression: expression,
+            completionHander: completionHandler).continueWithBlock { (task) -> AnyObject? in
+                if let error = task.error {
+                    NSLog("Error: %@",error.localizedDescription)
+                }
+                if let exception = task.exception {
+                    NSLog("Exception: %@",exception.description);
+                }
+                if let _ = task.result {
+                    NSLog("Download Starting!")
+                }
+                return nil;
+        }
     }
     
 }
