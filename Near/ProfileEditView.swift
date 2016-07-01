@@ -40,7 +40,6 @@ class ProfileEditView: UIView, ProfileEditViewModelDelegate {
     
     internal func profileEditVM(didChangeImage sender: NSObject) {
         setImages()
-        User.uploadImageTest()
     }
     
     private func setImages() {

@@ -212,37 +212,45 @@ class User: NSObject {
         }
     }
     
-    class func uploadImageTest() {
-//        let imageData = UIImagePNGRepresentation(currentUser.avatar!)?.base64EncodedDataWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-//        
-//        let params = [
-//            "image": currentUser.avatar!]
-//        
-//        Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/3", parameters: params)
+    class func uploadImageToS3(uploadFileURL: NSURL, image: UIImage, uploadImageName: String, isMain: Bool) {
+        let uploadFileURL = uploadFileURL
+        let imageName = uploadFileURL.lastPathComponent
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
         
+        // getting local path
+        let localPath = (documentDirectory as NSString).stringByAppendingPathComponent(imageName!)
         
-//        let docDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-//        let text = "Upload File."
-//        let fileName = "test.txt"
-//        let filePath = "\(docDir)/\(fileName)"
-//        try! text.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
-//        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-//        
-//        let uploadRequest = AWSS3TransferManagerUploadRequest()
-//        uploadRequest.bucket = "nearfornearinc"
-//        uploadRequest.key = "sample.txt"
-//        uploadRequest.body = NSURL(string: "file://\(filePath)")
-//        uploadRequest.ACL = .PublicRead
-//        uploadRequest.contentType = "text/plain"
-//        
-//        transferManager.upload(uploadRequest).continueWithBlock { (task: AWSTask) -> AnyObject? in
-//            if task.error == nil && task.exception == nil {
-//                print("success")
-//            } else {
-//                print("fail")
-//            }
-//            return nil
-//        }
+        //getting actual image
+        let image = image
+        let data = UIImagePNGRepresentation(image)
+        data!.writeToFile(localPath, atomically: true)
+        
+        let imageURL = NSURL(fileURLWithPath: localPath)
+        
+        let S3BucketName = "nearfornearinc"
+        var S3UploadKeyName = ""
+        if isMain {
+            S3UploadKeyName = "users/\(currentUser.fbID!)/images/main.png"
+        } else {
+            S3UploadKeyName = "users/\(currentUser.fbID!)/images/subs/\(uploadImageName).png"
+        }
+        
+        let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
+        let expression = AWSS3TransferUtilityUploadExpression()
+        
+        transferUtility.uploadFile(imageURL, bucket: S3BucketName, key: S3UploadKeyName, contentType: "image/png", expression: expression, completionHander: nil).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                print("Error: \(error.localizedDescription)")
+            }
+            if let exception = task.exception {
+                print("Exception: \(exception.description)")
+            }
+            if let _ = task.result {
+                print("Upload Start")
+            }
+            return nil;
+        }
+        
     }
     
 }
