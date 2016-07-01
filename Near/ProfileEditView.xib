@@ -7,11 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="gIw-mA-h9A" customClass="ProfileEditView" customModule="Near" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="714"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="863"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybh-0I-hDd">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="714"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="863"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IfG-HF-rSG">
                             <rect key="frame" x="8" y="8" width="359" height="400"/>
@@ -114,7 +114,7 @@
                             </variation>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Knc-qu-0kF">
-                            <rect key="frame" x="8" y="424" width="359" height="266"/>
+                            <rect key="frame" x="8" y="424" width="359" height="324"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uFv-pG-Xba">
                                     <rect key="frame" x="0.0" y="0.0" width="359" height="150"/>
@@ -215,12 +215,51 @@
                                         </mask>
                                     </variation>
                                 </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Kdu-NN-lNi">
+                                    <rect key="frame" x="0.0" y="274" width="359" height="50"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年齢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAd-M9-DGF">
+                                            <rect key="frame" x="0.0" y="0.0" width="34" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="rLf-a7-pqV"/>
+                                                <constraint firstAttribute="width" constant="34" id="xh3-95-fXf"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NeD-uY-5D4">
+                                            <rect key="frame" x="0.0" y="29" width="359" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="xgB-WP-ewg"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NeD-uY-5D4" firstAttribute="leading" secondItem="Kdu-NN-lNi" secondAttribute="leading" id="9nN-xl-0nc"/>
+                                        <constraint firstItem="RAd-M9-DGF" firstAttribute="top" secondItem="Kdu-NN-lNi" secondAttribute="top" id="GIz-8O-7uC"/>
+                                        <constraint firstItem="RAd-M9-DGF" firstAttribute="leading" secondItem="Kdu-NN-lNi" secondAttribute="leading" id="Hzw-9c-Kd9"/>
+                                        <constraint firstItem="NeD-uY-5D4" firstAttribute="top" secondItem="RAd-M9-DGF" secondAttribute="bottom" constant="8" id="MSk-6F-xY4"/>
+                                        <constraint firstItem="NeD-uY-5D4" firstAttribute="top" secondItem="RAd-M9-DGF" secondAttribute="bottom" constant="8" id="NGG-VA-B1O"/>
+                                        <constraint firstAttribute="height" constant="50" id="V6I-sC-nDP"/>
+                                        <constraint firstAttribute="trailing" secondItem="NeD-uY-5D4" secondAttribute="trailing" id="ezV-IL-KRG"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="NGG-VA-B1O"/>
+                                        </mask>
+                                    </variation>
+                                </stackView>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="uFv-pG-Xba" firstAttribute="leading" secondItem="Knc-qu-0kF" secondAttribute="leading" id="4WF-k1-eg4"/>
                                 <constraint firstItem="crb-p5-VLQ" firstAttribute="leading" secondItem="Knc-qu-0kF" secondAttribute="leading" id="8LN-rB-aGf"/>
                                 <constraint firstAttribute="height" constant="266" id="DOt-Co-RHG"/>
+                                <constraint firstItem="Kdu-NN-lNi" firstAttribute="leading" secondItem="Knc-qu-0kF" secondAttribute="leading" id="WHq-rm-Jae"/>
                                 <constraint firstItem="crb-p5-VLQ" firstAttribute="top" secondItem="Z3d-eh-l0S" secondAttribute="bottom" id="Zuq-NU-GZO"/>
+                                <constraint firstAttribute="trailing" secondItem="Kdu-NN-lNi" secondAttribute="trailing" id="j3B-us-Jzi"/>
                                 <constraint firstAttribute="trailing" secondItem="Z3d-eh-l0S" secondAttribute="trailing" id="kMB-lP-k3v"/>
                                 <constraint firstAttribute="trailing" secondItem="uFv-pG-Xba" secondAttribute="trailing" id="psx-Sh-ejd"/>
                                 <constraint firstAttribute="trailing" secondItem="crb-p5-VLQ" secondAttribute="trailing" id="vEo-Yj-Ppn"/>
@@ -230,6 +269,7 @@
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
+                                    <exclude reference="DOt-Co-RHG"/>
                                     <exclude reference="vlT-RX-pnd"/>
                                     <exclude reference="Zuq-NU-GZO"/>
                                 </mask>
@@ -266,15 +306,17 @@
             <connections>
                 <outlet property="SchoolTextField" destination="99O-qz-cZj" id="XKN-zP-SUL"/>
                 <outlet property="aboutTextView" destination="LGJ-pV-9w1" id="vKS-oL-Rjl"/>
+                <outlet property="ageTextField" destination="NeD-uY-5D4" id="Osj-nY-3wr"/>
                 <outlet property="imageView2" destination="UNY-RY-drd" id="I5e-pc-erd"/>
                 <outlet property="imageView3" destination="ThM-x0-13t" id="Bmy-em-ZZr"/>
                 <outlet property="imageView4" destination="t0x-aB-5Yv" id="SxH-qV-7ZU"/>
                 <outlet property="imageView5" destination="cDB-Y4-OnL" id="Use-QH-XgJ"/>
                 <outlet property="imageView6" destination="2Lu-nY-m02" id="Bnf-eS-Ug8"/>
                 <outlet property="mainImageView" destination="2Qx-V2-qUM" id="Aon-HC-xDi"/>
+                <outlet property="mainScrollView" destination="Ybh-0I-hDd" id="BaN-K2-ZoA"/>
                 <outlet property="workTextField" destination="XRz-Rp-BCl" id="dyL-xp-u5c"/>
             </connections>
-            <point key="canvasLocation" x="585.5" y="489"/>
+            <point key="canvasLocation" x="585.5" y="563.5"/>
         </view>
     </objects>
     <resources>
