@@ -26,7 +26,7 @@ class MainTimeLineViewModel: NSObject, UITableViewDataSource, UITableViewDelegat
         cell.userNameLabel.text = users[indexPath.row].userName//userSampleName[indexPath.row]
         cell.greetingMessage.text = "hoge"//users[indexPath.row].greetingMessage
         cell.locationLabel.text = String(users[indexPath.row].distanceFromCurrentUser!) + "m"
-        cell.loginLabel.text = users[indexPath.row].loginTime!
+        cell.loginLabel.text = users[indexPath.row].loginTime
         cell.ageLabel.text = String(users[indexPath.row].age!) + "歳"
         
         return cell
