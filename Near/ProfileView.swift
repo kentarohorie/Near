@@ -8,18 +8,31 @@
 
 import UIKit
 
-class ProfileView: UIView, ProfileViewModelDelegate {
+@objc protocol ProfileViewDelegate {
+    func profileView(tapEdit sender: UIView)
+}
 
-    @IBOutlet weak var boardScrollView: UIScrollView!
-    
+class ProfileView: UIView, ProfileViewModelDelegate, UIScrollViewDelegate {
+
+    private var boardScrollView: UIScrollView!
     private var baseHeadScrollViewHeight: CGFloat!
     private var nameAgeLabelFontSize: CGFloat!
     private var etcInfoLabelFontSize: CGFloat!
     private var textCoverView: UIView = UIView()
     private var textLabelArray: [UILabel] = []
     private var user: User?
+    private var pageControl: UIPageControl!
     
-    override func awakeFromNib() {
+    internal var isCurrentUser = false
+    internal var delegate: ProfileViewDelegate?
+    
+    init(frame: CGRect, isCurrentUser: Bool) {
+        super.init(frame: frame)
+        self.isCurrentUser = isCurrentUser
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     internal func setUser(user: User) {
@@ -27,19 +40,46 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         setUP()
     }
     
+    internal func reload() {
+        // set view. right order
+        setBoardScrollView()
+        setHeadImageScrollView()
+        textCoverView.frame.origin = CGPoint(x: 0, y: baseHeadScrollViewHeight)
+        boardScrollView.addSubview(textCoverView)
+        setNameAgeLabel((user?.userName)!, age: String(user!.age!))
+        setActionButton()
+        if User.currentUser == user {
+            setAllETCLabel([(user?.work)!, (user?.school)!])
+        } else {
+            setAllETCLabel([(user?.work)!, (user?.school)!, (user?.loginTime)!])
+        }
+        setTextCoverViewFrame()
+        setTextView((user?.greetingMessage)!)
+        
+        // setting
+        boardScrollView.showsVerticalScrollIndicator = false
+    }
+    
     private func setUP() {
         // view base point
         baseHeadScrollViewHeight = self.frame.height / 5 * 3
         nameAgeLabelFontSize = 21
         etcInfoLabelFontSize = 10
+        
         // set view. right order
-        setHeadImageScrollView(user!.avatar!)
+        setBoardScrollView()
+        setHeadImageScrollView()
         textCoverView.frame.origin = CGPoint(x: 0, y: baseHeadScrollViewHeight)
         boardScrollView.addSubview(textCoverView)
         setNameAgeLabel((user?.userName)!, age: String(user!.age!))
-        setAllETCLabel(["フリーランス", "関西大学卒業", "ログイン １時間前"])
+        setActionButton()
+        if User.currentUser == user {
+            setAllETCLabel([(user?.work)!, (user?.school)!])
+        } else {
+            setAllETCLabel([(user?.work)!, (user?.school)!, (user?.loginTime)!])
+        }
         setTextCoverViewFrame()
-        setTextView("楽しいことが大好き〜！\n\n好きな物は映画鑑賞とか読書とか〜！\n楽しい方とお話し出来たら嬉しいです！")
+        setTextView((user?.greetingMessage)!)
         
         // setting
         boardScrollView.showsVerticalScrollIndicator = false
@@ -47,25 +87,63 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     
     //================== set views ==================
     
-    private func setHeadImageScrollView(image: UIImage) {
+    private func setBoardScrollView() {
+        boardScrollView = UIScrollView()
+        boardScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        boardScrollView.backgroundColor = UIColor.whiteColor()
+        self.addSubview(boardScrollView)
+    }
+    
+    private func setHeadImageScrollView() {
         let scrollView = UIScrollView()
         scrollView.frame.size = CGSize(width: self.frame.width, height: baseHeadScrollViewHeight)
         scrollView.frame.origin = CGPoint(x: 0, y: 0)
+        scrollView.delegate = self
         boardScrollView.addSubview(scrollView)
         
-        let imageView = UIImageView(image: image)
-        imageView.frame = scrollView.frame
+        let imageView = UIImageView(image: user?.avatar!)
+        imageView.frame.size = CGSize(width: self.frame.width, height: baseHeadScrollViewHeight)
+        imageView.frame.origin = CGPoint(x: 0, y: 0)
         imageView.contentMode = .ScaleAspectFill
         scrollView.addSubview(imageView)
         
-        //============== 複数カバーイメージを設定するときに ============
-        //        let imageViewB = UIImageView(image: UIImage(named: "cat.jpg"))
-        //        imageViewB.frame.size = headerScrollView.frame.size
-        //        headerScrollView.contentSize = CGSize(width: self.frame.width * 2, height: headerScrollView.frame.height)
-        //        imageViewB.frame.origin = CGPoint(x: self.frame.width, y: headerScrollView.frame.origin.y)
-        //        headerScrollView.addSubview(imageViewB)
-        //        headerScrollView.pagingEnabled = true
-        //========================================================
+        let subImages = getUnwrappedSubImage(user!.subImages)
+        for (i, image) in subImages.enumerate() {
+            let subImageView = UIImageView(image: image)
+            subImageView.frame.size = CGSize(width: self.frame.width, height: baseHeadScrollViewHeight)
+            subImageView.frame.origin = CGPoint(x: self.frame.width * CGFloat(i + 1), y: 0)
+            subImageView.contentMode = .ScaleAspectFill
+            scrollView.addSubview(subImageView)
+        }
+        
+        scrollView.contentSize = CGSize(width: self.frame.width * CGFloat(subImages.count + 1), height: baseHeadScrollViewHeight)
+        scrollView.pagingEnabled = true
+        scrollView.showsHorizontalScrollIndicator = false
+        
+        setPageControl(subImages.count)
+    }
+    
+    private func setPageControl(numOfPage: Int) {
+        pageControl = UIPageControl()
+        pageControl.frame.size = CGSize(width: self.frame.width / 2, height: 50)
+        pageControl.center = CGPoint(x: self.frame.width / 2, y: baseHeadScrollViewHeight - 16)
+        pageControl.numberOfPages = numOfPage + 1
+        pageControl.currentPage = 0
+        pageControl.userInteractionEnabled = true
+        boardScrollView.addSubview(pageControl)
+    }
+    
+    private func getUnwrappedSubImage(images: [UIImage?]) -> [UIImage] {
+        var subImages: [UIImage] = []
+        for image in images {
+            guard let uImage = image else {
+                continue
+            }
+            
+            subImages.append(uImage)
+        }
+        
+        return subImages
     }
     
     private func setNameAgeLabel(name: String, age: String) {
@@ -85,7 +163,6 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         textCoverView.addSubview(nameLabel)
         textCoverView.addSubview(ageLabel)
         textLabelArray.append(nameLabel)
-        
     }
     
     private func setETCLabel(text: String, topLabel: UILabel) {
@@ -94,7 +171,7 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         label.sizeToFit()
         label.font = UIFont(name: "AppleSDGothicNeo-Light", size: etcInfoLabelFontSize)
         let yPoint = topLabel.frame.origin.y + topLabel.frame.height
-        label.frame.origin = CGPoint(x: 16, y: yPoint - 4)
+        label.frame.origin = CGPoint(x: 16, y: yPoint)
         textCoverView.addSubview(label)
         textLabelArray.append(label)
     }
@@ -124,6 +201,7 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         textView.font = UIFont(name: "AppleSDGothicNeo-Light", size: etcInfoLabelFontSize + 3)
         textView.sizeToFit()
         textView.frame.origin = CGPoint(x: 11, y: baseY + titleLabel.frame.height)
+        textView.scrollEnabled = false
         
         boardScrollView.addSubview(titleLabel)
         boardScrollView.addSubview(textView)
@@ -131,7 +209,41 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     }
     
     private func setBoardScrollViewContentSize(baseView: UIView) {
-        boardScrollView.contentSize = CGSize(width: self.frame.width, height: baseView.frame.height + baseView.frame.origin.y)
+        boardScrollView.contentSize = CGSize(width: self.frame.width, height: baseView.frame.height + baseView.frame.origin.y + 100)
+    }
+    
+    private func setActionButton() {
+        var imageName = ""
+        
+        if isCurrentUser {
+            imageName = "system"
+        } else {
+            imageName = "message_prof"
+        }
+        let imageView = UIImageView(image: UIImage(named: imageName)!.imageWithRenderingMode(.AlwaysTemplate))
+        let gestureRecog = UITapGestureRecognizer(target: self, action: #selector(ProfileView.tapActionButton))
+        imageView.tintColor = UIColor.customOrange()
+        imageView.frame.size = CGSize(width: 64, height: 64)
+        imageView.frame.origin = CGPoint(x: self.frame.width - 72, y: 8)
+        imageView.addGestureRecognizer(gestureRecog)
+        imageView.userInteractionEnabled = true
+        textCoverView.addSubview(imageView)
+    }
+    
+    //======= action & delegate =============
+    
+    func tapActionButton() {
+        if isCurrentUser {
+            delegate?.profileView(tapEdit: self)
+        } else {
+            print("go message")
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if fmod(scrollView.contentOffset.x, scrollView.frame.maxX) == 0 {
+            pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
+        }
     }
 
 }

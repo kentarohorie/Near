@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import FBSDKCoreKit
 import FBSDKLoginKit
+import AWSS3
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // aws cognit sample code
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.APNortheast1,
+                                                                identityPoolId:"ap-northeast-1:ce1b84cd-b8f0-4ca5-b398-f34e43ad1d90")
+        let configuration = AWSServiceConfiguration(region:.APNortheast1, credentialsProvider:credentialsProvider)
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+        //====
+
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     

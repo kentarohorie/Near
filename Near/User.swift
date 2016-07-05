@@ -8,7 +8,8 @@
 
 import UIKit
 import SwiftyJSON
-import Alamofire //dataが無い場合に代替データを突っ込んでエラーを回避しよう。
+import Alamofire
+import AWSS3
 
 class User: NSObject {
     static var currentUser: User = User()
@@ -18,42 +19,18 @@ class User: NSObject {
     var userName: String?
     var gender: String?
     var age: Int?
-    var avatar: UIImage?
-    var profileCoverImage: UIImage?
     var facebookETCImage: [UIImage]?
     var greetingMessage: String?
-    var company: String?
-    var university: String?
-    var address: String?
-    var relationship: String?
-    var location: String?
-    var loginTime: String? //current => 0000/00/00 ...., others => 00分前
+    var work: String?
+    var school: String?
+    var loginTime: String?
     var fbID: String?
     var distanceFromCurrentUser: Int?
     
-    class func sampleSetUP() -> [User] {
-        let sampleNames = ["Milly", "Emi", "May", "Anna", "Jenne", "Ema"]
-        let age = [21, 30, 28, 25, 19, 23]
-        let avatar = setAvatarImage()
-        let profileCoverImages = setAvatarImage()
-        let facebookImage: [UIImage] = [UIImage(named: "profile_sample_11")!, UIImage(named: "profile_sample_12")!, UIImage(named: "profile_sample_13")!]
-        let greetingMessage = ["友達が欲しい", "海外行きたい!", "１人の夜は寂しい。。。", "飲みに行きたいなぁ", "", "ジム通い中"]
-        let company = ["NRI", "Google", "", "", "softbank", "Recruit"]
-        let university = ["明治大学", "東京大学", "早稲田大学", "慶応義塾大学", "京都大学", "早稲田大学"]
-        let address = ["世田谷区", "新宿区", "渋谷区", "渋谷区", "新宿区", "渋谷区"]
-        let relationship = ["Kana Nishino", "", "Aruki Hotta", "", "", "福山雅治"]
-        let location = ["200m", "500mm", "1.6km", "2km", "2.2km", "3km"]//["世田谷", "渋谷区", "渋谷区", "新宿", "銀座", "渋谷区"]
-        let loginTime = [15, 40, 1, 1, 2, 4]
-        
-        var users: [User] = []
-        for i in 0...5 {
-            users.append(setUser(sampleNames[i], age: age[i], avatar: avatar[i], profileCoverImage: profileCoverImages[i], fbETCImage: facebookImage, greetingMessage: greetingMessage[i], company: company[i], university: university[i], address: address[i], relationship: relationship[i], location: location[i], loginTime: loginTime[i]))
-        }
-        
-        return users
-    }
+    var avatar: UIImage?
+    var subImages: [UIImage?] = [nil, nil, nil, nil, nil]
     
-    class func setCurrentUser(name: String, age: Int, fbID: String, gender: String) {
+    class func setCurrentUser(name: String, age: Int, fbID: String, gender: String, work: String, school: String, greetingMessage: String) {
         var profileImage: UIImage!
         let URL = NSURL(string: "https://graph.facebook.com/\(fbID)/picture?type=large")
         
@@ -67,6 +44,9 @@ class User: NSObject {
         self.currentUser.age = age
         self.currentUser.gender = gender
         self.currentUser.fbID = fbID
+        self.currentUser.greetingMessage = greetingMessage
+        self.currentUser.work = work
+        self.currentUser.school = school
     }
     
     class func setNowLoginTime() {
@@ -77,40 +57,31 @@ class User: NSObject {
         currentUser.loginTime = dateFormatter.stringFromDate(now)
     }
     
-    private class func setUser(name: String?, age: Int?, avatar: UIImage?, profileCoverImage: UIImage?, fbETCImage: [UIImage]?  , greetingMessage: String?, company: String?, university: String?, address: String?, relationship: String?, location: String?, loginTime: Int?) -> User {
-        let user = User()
-        user.userName = name
-        user.age = age
-        user.avatar = avatar
-        user.profileCoverImage = profileCoverImage
-        user.facebookETCImage = fbETCImage
-        user.greetingMessage = greetingMessage
-        user.company = company
-        user.university = university
-        user.address = address
-        user.relationship = relationship
-        user.location = location
-//        user.loginTime = loginTime
-        return user
-    }
-    
     private class func setTimelineUsersFromJSON(users: [JSON]) {
         for jUser in users {
             var profileImage: UIImage!
             let URL = NSURL(string: "https://graph.facebook.com/\(jUser["fbID"].string!)/picture?type=large")
             
-            guard let contentURL = URL else {
-                profileImage = UIImage(named: "empty_user")
-                return
+            if let contentURL = URL {
+                profileImage = UIImage(data: NSData(contentsOfURL: contentURL)!)
             }
-            profileImage = UIImage(data: NSData(contentsOfURL: contentURL)!)
+            
+            profileImage = UIImage(named: "empty_user")
             
             let user = User()
             let nsDate = NSDate()
+            var greetingMessage = ""
+            if jUser["greetingMessage"] != nil {
+                greetingMessage = jUser["greetingMessage"].string!
+            }
+            
             user.userName = jUser["name"].string!
             user.age = jUser["age"].int!
             user.gender = jUser["gender"].string!
             user.distanceFromCurrentUser = jUser["distance"].int!
+            user.work = jUser["work"].string!
+            user.school = jUser["school"].string!
+            user.greetingMessage = greetingMessage
             user.avatar = profileImage
             
             let date = jUser["loginTime"].string!
@@ -150,7 +121,8 @@ class User: NSObject {
                 print("create user request error: \(response.result.error)")
                 return
             }
-            let userID = response.result.value!["userID"]!
+            let jValue = JSON(response.result.value!)
+            let userID = jValue["userID"].int!
             let ud = NSUserDefaults.standardUserDefaults()
             ud.setObject(userID, forKey: "userID")
             callback()
@@ -167,21 +139,42 @@ class User: NSObject {
                 return
             }
             let jValue = JSON(value)
-            setCurrentUser(jValue["name"].string!, age: jValue["age"].int!, fbID: jValue["fbID"].string!, gender: jValue["gender"].string!)
+            var greetingMessage = ""
+            if jValue["greetingMessage"] != nil {
+                greetingMessage = jValue["greetingMessage"].string!
+            }
+            setCurrentUser(jValue["name"].string!, age: jValue["age"].int!, fbID: jValue["fbID"].string!, gender: jValue["gender"].string!, work: jValue["work"].string!, school: jValue["school"].string!, greetingMessage: greetingMessage)
             callback()
         }
     }
     
-    class func updateUserWithAPI(age: Int, name: String, latitude: String, longitude: String, loginTime: String, callback: () -> Void) {
+    class func updateUserWithAPI(age: Int, name: String, latitude: String, longitude: String, loginTime: String, school: String?, work: String?, greetingMessage: String?, callback: () -> Void) {
         let ud = NSUserDefaults.standardUserDefaults()
         let userID = ud.objectForKey("userID")
+        
+        var pwork = "", pschool = "", pgreetingMessage = ""
+        if currentUser.work != nil {
+            pwork = currentUser.work!
+        }
+        
+        if currentUser.school != nil {
+            pschool = currentUser.school!
+        }
+        
+        if currentUser.greetingMessage != nil {
+            pgreetingMessage = currentUser.greetingMessage!
+        }
+        
         
         let params = [
             "age": age,
             "name": name,
             "latitude": latitude,
             "longitude": longitude,
-            "login_time": loginTime
+            "login_time": loginTime,
+            "school": pschool,
+            "work": pwork,
+            "greeting": pgreetingMessage
         ]
         
         Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/\(userID!)", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
@@ -208,6 +201,106 @@ class User: NSObject {
             let jValue = JSON(value)
             setTimelineUsersFromJSON(jValue.array!)
             callback()
+        }
+    }
+    
+    //=========== API request for AWS S3=============
+    //===============================================
+    
+    class func uploadImageToS3(uploadFileURL: NSURL, image: UIImage, uploadImageName: String, isMain: Bool, callback: () -> Void) {
+        let uploadFileURL = uploadFileURL
+        let imageName = uploadFileURL.lastPathComponent
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
+        
+        // getting local path
+        let localPath = (documentDirectory as NSString).stringByAppendingPathComponent(imageName!)
+        
+        //getting actual image
+        let image = image
+        let data = UIImagePNGRepresentation(image)
+        data!.writeToFile(localPath, atomically: true)
+        
+        let imageURL = NSURL(fileURLWithPath: localPath)
+        
+        let S3BucketName = "nearfornearinc"
+        var S3UploadKeyName = ""
+        if isMain {
+            S3UploadKeyName = "users/\(currentUser.fbID!)/images/main.png"
+        } else {
+            S3UploadKeyName = "users/\(currentUser.fbID!)/images/subs/\(uploadImageName).png"
+        }
+        
+        let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
+        let expression = AWSS3TransferUtilityUploadExpression()
+        
+        transferUtility.uploadFile(imageURL, bucket: S3BucketName, key: S3UploadKeyName, contentType: "image/png", expression: expression, completionHander: nil).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                print("*S3 UPLOAD ERROR*: \(error.localizedDescription)")
+            }
+            if let exception = task.exception {
+                print("*S3 UPDATE EXCEPTION*: \(exception.description)")
+            }
+            if let _ = task.result {
+                print("*S3 UPDATE START*")
+                callback()
+            }
+            return nil;
+        }
+    }
+    
+    class func downLoadAllImageFromS3(user: User, callback: () -> Void) {
+        downloadImageFromS3(currentUser, imageKeyPath: "main.png", callback: { (image) in
+            if let img = image {
+                user.avatar = img
+            }
+        })
+        for (i, _) in user.subImages.enumerate() {
+            downloadImageFromS3(user, imageKeyPath: "subs/\(i).png", callback: { (image) in
+                if let img = image {
+                    user.subImages[i] = img
+                }
+                
+                if i == 4 {
+                    callback()
+                }
+            })
+        }
+    }
+    
+    class func downloadImageFromS3(user: User, imageKeyPath: String, callback: (image: UIImage?) -> Void) {
+        let S3BucketName: String = "nearfornearinc"
+        let S3DownloadKeyName: String = "users/\(user.fbID!)/images/\(imageKeyPath)"
+        
+        let expression = AWSS3TransferUtilityDownloadExpression()
+        let completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock = { (task, location, data, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                if ((error) != nil){
+                    NSLog("*S3 COMPLETION DOWNLOAD ERROR*: %@",error!);
+                    callback(image: nil)
+                }
+                else {
+                    callback(image: UIImage(data: data!))
+                }
+            })
+        }
+        
+        let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
+        
+        transferUtility.downloadDataFromBucket(
+            S3BucketName,
+            key: S3DownloadKeyName,
+            expression: expression,
+            completionHander: completionHandler).continueWithBlock { (task) -> AnyObject? in
+                if let error = task.error {
+                    NSLog("*S3 DOWNLOAD ERROR*: %@",error.localizedDescription)
+                }
+                if let exception = task.exception {
+                    NSLog("*S3 DOWNLOAD EXCEPTION*: %@",exception.description);
+                }
+                if let _ = task.result {
+                    NSLog("*DOWNLOAD START*")
+                }
+                return nil;
         }
     }
     
