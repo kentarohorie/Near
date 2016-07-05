@@ -21,6 +21,7 @@ class ProfileView: UIView, ProfileViewModelDelegate {
     private var textCoverView: UIView = UIView()
     private var textLabelArray: [UILabel] = []
     private var user: User?
+    private var mainImage: UIImage!
     
     internal var isCurrentUser = false
     internal var delegate: ProfileViewDelegate?
@@ -39,22 +40,52 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         setUP()
     }
     
+    internal func reload() {
+        // set data
+        mainImage = user?.avatar
+        
+        // set view. right order
+        setBoardScrollView()
+        setHeadImageScrollView()
+        textCoverView.frame.origin = CGPoint(x: 0, y: baseHeadScrollViewHeight)
+        boardScrollView.addSubview(textCoverView)
+        setNameAgeLabel((user?.userName)!, age: String(user!.age!))
+        setActionButton()
+        if User.currentUser == user {
+            setAllETCLabel([(user?.work)!, (user?.school)!])
+        } else {
+            setAllETCLabel([(user?.work)!, (user?.school)!, (user?.loginTime)!])
+        }
+        setTextCoverViewFrame()
+        setTextView((user?.greetingMessage)!)
+        
+        // setting
+        boardScrollView.showsVerticalScrollIndicator = false
+    }
+    
     private func setUP() {
         // view base point
         baseHeadScrollViewHeight = self.frame.height / 5 * 3
         nameAgeLabelFontSize = 21
         etcInfoLabelFontSize = 10
         
+        // set data
+        mainImage = user?.avatar
+        
         // set view. right order
         setBoardScrollView()
-        setHeadImageScrollView(user!.avatar!)
+        setHeadImageScrollView()
         textCoverView.frame.origin = CGPoint(x: 0, y: baseHeadScrollViewHeight)
         boardScrollView.addSubview(textCoverView)
         setNameAgeLabel((user?.userName)!, age: String(user!.age!))
         setActionButton()
-        setAllETCLabel(["フリーランス", "関西大学卒業", "ログイン １時間前"])
+        if User.currentUser == user {
+            setAllETCLabel([(user?.work)!, (user?.school)!])
+        } else {
+            setAllETCLabel([(user?.work)!, (user?.school)!, (user?.loginTime)!])
+        }
         setTextCoverViewFrame()
-        setTextView("楽しいことが大好き〜！\n\n好きな物は映画鑑賞とか読書とか〜！\n楽しい方とお話し出来たら嬉しいです！")
+        setTextView((user?.greetingMessage)!)
         
         // setting
         boardScrollView.showsVerticalScrollIndicator = false
@@ -69,13 +100,13 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         self.addSubview(boardScrollView)
     }
     
-    private func setHeadImageScrollView(image: UIImage) {
+    private func setHeadImageScrollView() {
         let scrollView = UIScrollView()
         scrollView.frame.size = CGSize(width: self.frame.width, height: baseHeadScrollViewHeight)
         scrollView.frame.origin = CGPoint(x: 0, y: 0)
         boardScrollView.addSubview(scrollView)
         
-        let imageView = UIImageView(image: image)
+        let imageView = UIImageView(image: self.mainImage)
         imageView.frame = scrollView.frame
         imageView.contentMode = .ScaleAspectFill
         scrollView.addSubview(imageView)
@@ -115,7 +146,7 @@ class ProfileView: UIView, ProfileViewModelDelegate {
         label.sizeToFit()
         label.font = UIFont(name: "AppleSDGothicNeo-Light", size: etcInfoLabelFontSize)
         let yPoint = topLabel.frame.origin.y + topLabel.frame.height
-        label.frame.origin = CGPoint(x: 16, y: yPoint - 4)
+        label.frame.origin = CGPoint(x: 16, y: yPoint)
         textCoverView.addSubview(label)
         textLabelArray.append(label)
     }

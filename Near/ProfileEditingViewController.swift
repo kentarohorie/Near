@@ -12,7 +12,7 @@ import UIKit
     func profileEditingViewController(tapDone sender: UIViewController)
 }
 
-class ProfileEditingViewController: UIViewController, ProfileEditViewDelegate {
+class ProfileEditingViewController: UIViewController, ProfileEditViewDelegate, ProfileEditViewModelDelegate {
     internal var delegate: ProfileEditingViewControllerDelegate?
     
     private let profileEditVM = ProfileEditViewModel()
@@ -31,9 +31,8 @@ class ProfileEditingViewController: UIViewController, ProfileEditViewDelegate {
     
     private func setView() {
         profileEditV = UINib(nibName: "ProfileEditView", bundle: nil).instantiateWithOwner(self, options: nil).first as! ProfileEditView
-        profileEditV.delegate = profileEditVM
         profileEditV.delegate = self
-        profileEditVM.delegate = profileEditV
+        profileEditVM.delegate = self
         self.view = profileEditV
     }
     
@@ -79,6 +78,14 @@ class ProfileEditingViewController: UIViewController, ProfileEditViewDelegate {
         profileEditV.setInputDataToUser()
         profileEditVM.profileEditingViewController(tapDone: self)
         delegate?.profileEditingViewController(tapDone: self)
+    }
+    
+    func profileEditVM(completeEdit sender: NSObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func profileEditVM(didChangeImage sender: NSObject) {
+        self.profileEditV.setImages()
     }
     
 }

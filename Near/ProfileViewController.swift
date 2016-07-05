@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController, ProfileViewDelegate {
     
     private var user: User? = nil
     private var isCurrentUser: Bool!
+    private var profileV: ProfileView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -38,8 +39,13 @@ class ProfileViewController: UIViewController, ProfileViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.profileV.reload()
+    }
+    
     private func setUP() {
-        let profileV = ProfileView(frame: self.view.frame, isCurrentUser: self.isCurrentUser)
+        profileV = ProfileView(frame: self.view.frame, isCurrentUser: self.isCurrentUser)
         profileV.delegate = self
         self.view = profileV
         
