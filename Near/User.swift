@@ -259,10 +259,11 @@ class User: NSObject {
                 if let img = image {
                     user.subImages[i] = img
                 }
+                
+                if i == 4 {
+                    callback()
+                }
             })
-            if i == 4 {
-                callback()
-            }
         }
     }
     
@@ -275,6 +276,7 @@ class User: NSObject {
             dispatch_async(dispatch_get_main_queue(), {
                 if ((error) != nil){
                     NSLog("*S3 COMPLETION DOWNLOAD ERROR*: %@",error!);
+                    callback(image: nil)
                 }
                 else {
                     callback(image: UIImage(data: data!))
