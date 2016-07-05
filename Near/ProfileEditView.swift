@@ -12,7 +12,7 @@ import UIKit
     optional func profileEditView(tapEditImage sender: UIView, isMain: Bool, subImageName: String)
 }
 
-class ProfileEditView: UIView, ProfileEditViewModelDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
+class ProfileEditView: UIView, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var mainImageView: UIImageView!
@@ -38,6 +38,19 @@ class ProfileEditView: UIView, ProfileEditViewModelDelegate, UITextFieldDelegate
         setTextPlaceholder()
     }
     
+    internal func setImages() {
+        mainImageView.image = user.avatar
+        for (i, imageV) in [imageView2, imageView3, imageView4, imageView5, imageView6].enumerate() {
+            guard let image = user.subImages[i] else {
+                user.subImages[i] = UIImage(named: "empty_user")
+                imageV.image = user.subImages[i]
+                continue
+            }
+            
+            imageV.image = image
+        }
+    }
+    
     private func setGestureForImageView() {
         let tapGestureRecog = UITapGestureRecognizer(target: self, action: #selector(ProfileEditView.tapMainImageView))
         mainImageView.addGestureRecognizer(tapGestureRecog)
@@ -48,19 +61,6 @@ class ProfileEditView: UIView, ProfileEditViewModelDelegate, UITextFieldDelegate
             imageV.tag = i
             imageV.addGestureRecognizer(tapGR)
             imageV.userInteractionEnabled = true
-        }
-    }
-    
-    private func setImages() {
-        mainImageView.image = user.avatar
-        for (i, imageV) in [imageView2, imageView3, imageView4, imageView5, imageView6].enumerate() {
-            guard let image = user.subImages[i] else {
-                user.subImages[i] = UIImage(named: "empty_user")
-                imageV.image = user.subImages[i]
-                continue
-            }
-            
-            imageV.image = image
         }
     }
     
@@ -133,10 +133,6 @@ class ProfileEditView: UIView, ProfileEditViewModelDelegate, UITextFieldDelegate
         workTextField.resignFirstResponder()
         SchoolTextField.resignFirstResponder()
         ageTextField.resignFirstResponder()
-    }
-    
-    internal func profileEditVM(didChangeImage sender: NSObject) {
-        setImages()
     }
     
 }

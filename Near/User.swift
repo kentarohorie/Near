@@ -30,7 +30,7 @@ class User: NSObject {
     var avatar: UIImage?
     var subImages: [UIImage?] = [nil, nil, nil, nil, nil]
     
-    class func setCurrentUser(name: String, age: Int, fbID: String, gender: String) {
+    class func setCurrentUser(name: String, age: Int, fbID: String, gender: String, work: String, school: String, greetingMessage: String) {
         var profileImage: UIImage!
         let URL = NSURL(string: "https://graph.facebook.com/\(fbID)/picture?type=large")
         
@@ -44,6 +44,9 @@ class User: NSObject {
         self.currentUser.age = age
         self.currentUser.gender = gender
         self.currentUser.fbID = fbID
+        self.currentUser.greetingMessage = greetingMessage
+        self.currentUser.work = work
+        self.currentUser.school = school
     }
     
     class func setNowLoginTime() {
@@ -59,18 +62,26 @@ class User: NSObject {
             var profileImage: UIImage!
             let URL = NSURL(string: "https://graph.facebook.com/\(jUser["fbID"].string!)/picture?type=large")
             
-            guard let contentURL = URL else {
-                profileImage = UIImage(named: "empty_user")
-                return
+            if let contentURL = URL {
+                profileImage = UIImage(data: NSData(contentsOfURL: contentURL)!)
             }
-            profileImage = UIImage(data: NSData(contentsOfURL: contentURL)!)
+            
+            profileImage = UIImage(named: "empty_user")
             
             let user = User()
             let nsDate = NSDate()
+            var greetingMessage = ""
+            if jUser["greetingMessage"] != nil {
+                greetingMessage = jUser["greetingMessage"].string!
+            }
+            
             user.userName = jUser["name"].string!
             user.age = jUser["age"].int!
             user.gender = jUser["gender"].string!
             user.distanceFromCurrentUser = jUser["distance"].int!
+            user.work = jUser["work"].string!
+            user.school = jUser["school"].string!
+            user.greetingMessage = greetingMessage
             user.avatar = profileImage
             
             let date = jUser["loginTime"].string!
@@ -128,21 +139,42 @@ class User: NSObject {
                 return
             }
             let jValue = JSON(value)
-            setCurrentUser(jValue["name"].string!, age: jValue["age"].int!, fbID: jValue["fbID"].string!, gender: jValue["gender"].string!)
+            var greetingMessage = ""
+            if jValue["greetingMessage"] != nil {
+                greetingMessage = jValue["greetingMessage"].string!
+            }
+            setCurrentUser(jValue["name"].string!, age: jValue["age"].int!, fbID: jValue["fbID"].string!, gender: jValue["gender"].string!, work: jValue["work"].string!, school: jValue["school"].string!, greetingMessage: greetingMessage)
             callback()
         }
     }
     
-    class func updateUserWithAPI(age: Int, name: String, latitude: String, longitude: String, loginTime: String, callback: () -> Void) {
+    class func updateUserWithAPI(age: Int, name: String, latitude: String, longitude: String, loginTime: String, school: String?, work: String?, greetingMessage: String?, callback: () -> Void) {
         let ud = NSUserDefaults.standardUserDefaults()
         let userID = ud.objectForKey("userID")
+        
+        var pwork = "", pschool = "", pgreetingMessage = ""
+        if currentUser.work != nil {
+            pwork = currentUser.work!
+        }
+        
+        if currentUser.school != nil {
+            pschool = currentUser.school!
+        }
+        
+        if currentUser.greetingMessage != nil {
+            pgreetingMessage = currentUser.greetingMessage!
+        }
+        
         
         let params = [
             "age": age,
             "name": name,
             "latitude": latitude,
             "longitude": longitude,
-            "login_time": loginTime
+            "login_time": loginTime,
+            "school": pschool,
+            "work": pwork,
+            "greeting": pgreetingMessage
         ]
         
         Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/\(userID!)", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
@@ -175,7 +207,7 @@ class User: NSObject {
     //=========== API request for AWS S3=============
     //===============================================
     
-    class func uploadImageToS3(uploadFileURL: NSURL, image: UIImage, uploadImageName: String, isMain: Bool) {
+    class func uploadImageToS3(uploadFileURL: NSURL, image: UIImage, uploadImageName: String, isMain: Bool, callback: () -> Void) {
         let uploadFileURL = uploadFileURL
         let imageName = uploadFileURL.lastPathComponent
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
@@ -203,13 +235,14 @@ class User: NSObject {
         
         transferUtility.uploadFile(imageURL, bucket: S3BucketName, key: S3UploadKeyName, contentType: "image/png", expression: expression, completionHander: nil).continueWithBlock { (task) -> AnyObject! in
             if let error = task.error {
-                print("Error: \(error.localizedDescription)")
+                print("*S3 UPLOAD ERROR*: \(error.localizedDescription)")
             }
             if let exception = task.exception {
-                print("Exception: \(exception.description)")
+                print("*S3 UPDATE EXCEPTION*: \(exception.description)")
             }
             if let _ = task.result {
-                print("Upload Start")
+                print("*S3 UPDATE START*")
+                callback()
             }
             return nil;
         }
@@ -233,8 +266,6 @@ class User: NSObject {
         }
     }
     
-    // edit doneを押したらしばらくお待ち下さい画面。その間にview情報の更新や、アップデート、s3アップロード。
-    
     class func downloadImageFromS3(user: User, imageKeyPath: String, callback: (image: UIImage?) -> Void) {
         let S3BucketName: String = "nearfornearinc"
         let S3DownloadKeyName: String = "users/\(user.fbID!)/images/\(imageKeyPath)"
@@ -243,8 +274,7 @@ class User: NSObject {
         let completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock = { (task, location, data, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 if ((error) != nil){
-                    NSLog("Failed with error")
-                    NSLog("Error: %@",error!);
+                    NSLog("*S3 COMPLETION DOWNLOAD ERROR*: %@",error!);
                 }
                 else {
                     callback(image: UIImage(data: data!))
@@ -260,13 +290,13 @@ class User: NSObject {
             expression: expression,
             completionHander: completionHandler).continueWithBlock { (task) -> AnyObject? in
                 if let error = task.error {
-                    NSLog("Error: %@",error.localizedDescription)
+                    NSLog("*S3 DOWNLOAD ERROR*: %@",error.localizedDescription)
                 }
                 if let exception = task.exception {
-                    NSLog("Exception: %@",exception.description);
+                    NSLog("*S3 DOWNLOAD EXCEPTION*: %@",exception.description);
                 }
                 if let _ = task.result {
-                    NSLog("Download Starting!")
+                    NSLog("*DOWNLOAD START*")
                 }
                 return nil;
         }
