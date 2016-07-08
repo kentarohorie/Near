@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SIOSocket.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,7 +42,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>244CC93020E9DF8AB6866B64AF39F464</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3B41A9B1D49827D58E203AF61D34F608</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>48863AA57FFE592247E47651319E28C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DBB4FB71D956F6B2A766547DD33DC0A1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ED992F6212112E99976F766FD959EB77</key>
+		<key>EEB3D5DAFEDEB651F2FF47CDAAA3BF35</key>
 		<dict>
 			<key>primary</key>
 			<true/>

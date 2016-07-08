@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		59FD0D1CC8EF4FAB68ACC958 /* Pods_Near.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A16B7427380FCF1FEC1A8E6 /* Pods_Near.framework */; };
 		AA016EBA1D1E66A000DCEF83 /* ProfileEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA016EB91D1E66A000DCEF83 /* ProfileEditingViewController.swift */; };
+		AA0A794C1D2F94B0008A7060 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0A794B1D2F94B0008A7060 /* Message.swift */; };
 		AA0E94271CEED7D400C6E7BE /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */; };
 		AA0E94291CEEE7A300C6E7BE /* GeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */; };
 		AA0E942B1CEEF85200C6E7BE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */; };
@@ -74,6 +75,7 @@
 		6A16B7427380FCF1FEC1A8E6 /* Pods_Near.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Near.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9284387568F735E6972C5C3 /* Pods-Near.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Near/Pods-Near.debug.xcconfig"; sourceTree = "<group>"; };
 		AA016EB91D1E66A000DCEF83 /* ProfileEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewController.swift; sourceTree = "<group>"; };
+		AA0A794B1D2F94B0008A7060 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AA0E94261CEED7D400C6E7BE /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		AA0E94281CEEE7A300C6E7BE /* GeneralViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
 		AA0E942A1CEEF85200C6E7BE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				AA17CBAB1CF1A91B002C2C19 /* User.swift */,
+				AA0A794B1D2F94B0008A7060 /* Message.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				AA84DF521CD5D0C700B635D1 /* MainTimeLineViewController.swift in Sources */,
 				AA0E94271CEED7D400C6E7BE /* GeneralViewController.swift in Sources */,
 				AA15E7841CE2083500E998F4 /* MessageViewController.swift in Sources */,
+				AA0A794C1D2F94B0008A7060 /* Message.swift in Sources */,
 				AA15E78D1CE20C1600E998F4 /* UIView+Extension.swift in Sources */,
 				AA6809991D1E412700435279 /* ProfileEditView.swift in Sources */,
 				AA68099F1D1E5E1100435279 /* ProfileEditViewModel.swift in Sources */,
