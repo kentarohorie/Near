@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // aws cognit sample code
-        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.APNortheast1,
-                                                                identityPoolId:"ap-northeast-1:ce1b84cd-b8f0-4ca5-b398-f34e43ad1d90")
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.APNortheast1,identityPoolId:"ap-northeast-1:ce1b84cd-b8f0-4ca5-b398-f34e43ad1d90")
         let configuration = AWSServiceConfiguration(region:.APNortheast1, credentialsProvider:credentialsProvider)
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
         //====
