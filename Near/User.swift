@@ -31,22 +31,30 @@ class User: NSObject {
     var subImages: [UIImage?] = [nil, nil, nil, nil, nil]
     
     class func setCurrentUser(name: String, age: Int, fbID: String, gender: String, work: String, school: String, greetingMessage: String) {
+        self.currentUser = getUser(name, age: age, fbID: fbID, gender: gender, work: work, school: school, greetingMessage: greetingMessage)
+        setNowLoginTime()
+    }
+    
+    class func getUser(name: String, age: Int, fbID: String, gender: String, work: String, school: String, greetingMessage: String) -> User {
+        let user = User()
         var profileImage: UIImage!
         let URL = NSURL(string: "https://graph.facebook.com/\(fbID)/picture?type=large")
+        profileImage = UIImage(named: "empty_user")
         
-        guard let contentURL = URL else {
-            profileImage = UIImage(named: "empty_user")
-            return
+        if let avatarImage = UIImage(data: NSData(contentsOfURL: URL!)!) {
+            profileImage = avatarImage
         }
-        profileImage = UIImage(data: NSData(contentsOfURL: contentURL)!)
-        self.currentUser.avatar = profileImage
-        self.currentUser.userName = name
-        self.currentUser.age = age
-        self.currentUser.gender = gender
-        self.currentUser.fbID = fbID
-        self.currentUser.greetingMessage = greetingMessage
-        self.currentUser.work = work
-        self.currentUser.school = school
+        
+        user.avatar = profileImage
+        user.userName = name
+        user.age = age
+        user.gender = gender
+        user.fbID = fbID
+        user.greetingMessage = greetingMessage
+        user.work = work
+        user.school = school
+        
+        return user
     }
     
     class func setNowLoginTime() {
@@ -59,48 +67,28 @@ class User: NSObject {
     
     private class func setTimelineUsersFromJSON(users: [JSON]) {
         for jUser in users {
-            var profileImage: UIImage!
-            let URL = NSURL(string: "https://graph.facebook.com/\(jUser["fbID"].string!)/picture?type=large")
-            
-            if let contentURL = URL {
-                profileImage = UIImage(data: NSData(contentsOfURL: contentURL)!)
-            }
-            
-            profileImage = UIImage(named: "empty_user")
-            
-            let user = User()
-            let nsDate = NSDate()
+            var user = User()
+            let name = jUser["name"].string!
+            let age = jUser["age"].int!
+            let fbID = jUser["fbID"].string!
+            let gender = jUser["gender"].string!
+            let work = jUser["work"].string!
+            let school = jUser["school"].string!
             var greetingMessage = ""
             if jUser["greetingMessage"] != nil {
                 greetingMessage = jUser["greetingMessage"].string!
             }
+            user = getUser(name, age: age, fbID: fbID, gender: gender, work: work, school: school, greetingMessage: greetingMessage)
             
-            user.userName = jUser["name"].string!
-            user.age = jUser["age"].int!
-            user.gender = jUser["gender"].string!
-            user.distanceFromCurrentUser = jUser["distance"].int!
-            user.work = jUser["work"].string!
-            user.school = jUser["school"].string!
-            user.greetingMessage = greetingMessage
-            user.avatar = profileImage
-            
+            let nsDate = NSDate()
             let date = jUser["loginTime"].string!
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
             let dateData = dateFormatter.dateFromString(date)
             user.loginTime = nsDate.offsetFrom(dateData!)
+            user.distanceFromCurrentUser = jUser["distance"].int!
             timeLineUsers.append(user)
         }
-    }
-    
-    private class func setAvatarImage() -> [UIImage]{
-        var imgViews: [UIImage] = []
-        let imgNames = ["sample_user", "user_sample_2", "user_sample_3", "sample_user_4", "sample_user_5", "user_sample_6"]
-        for i in imgNames {
-            imgViews.append(UIImage(named: i)!)
-        }
-        
-        return imgViews
     }
     
     //============= API request =====================

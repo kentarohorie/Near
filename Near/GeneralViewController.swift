@@ -24,7 +24,6 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         delegate?.generalViewController(viewDidLoad: self)
         generalVM.generalViewController(viewDidLoad: self)
         generalVM.delegate = self
@@ -44,8 +43,10 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
                 User.downLoadAllImageFromS3(User.currentUser) {
                     User.updateUserWithAPI(User.currentUser.age!, name: User.currentUser.userName!, latitude: User.coordinate[0], longitude: User.coordinate[1], loginTime: User.currentUser.loginTime!, school: User.currentUser.school, work: User.currentUser.work, greetingMessage: User.currentUser.greetingMessage, callback: {
                         User.getUsersForTimelineAPI({
-                            self.setPageViewController()
-                            self.setNavigationBar()
+                            MessageRoomManager.getRoomsAndMessagesWithAPI(User.currentUser.fbID!, callback: {
+                                self.setPageViewController()
+                                self.setNavigationBar()
+                            })
                         })
                     })
                 }

@@ -1,3 +1,4 @@
+
 //
 //  ProfileView.swift
 //  Near
@@ -10,6 +11,7 @@ import UIKit
 
 @objc protocol ProfileViewDelegate {
     func profileView(tapEdit sender: UIView)
+    func profileView(willSegueToMessage sender: UIView, room: MessageRoom, opponentUser: User)
 }
 
 class ProfileView: UIView, ProfileViewModelDelegate, UIScrollViewDelegate {
@@ -236,7 +238,9 @@ class ProfileView: UIView, ProfileViewModelDelegate, UIScrollViewDelegate {
         if isCurrentUser {
             delegate?.profileView(tapEdit: self)
         } else {
-            print("go message")
+            MessageRoomManager.createRoomWithAPI(User.currentUser, opponentUser: user!, callback: { (room) in
+                self.delegate?.profileView(willSegueToMessage: self, room: room, opponentUser: self.user!)
+            })
         }
     }
     

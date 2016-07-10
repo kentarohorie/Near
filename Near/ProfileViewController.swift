@@ -97,4 +97,9 @@ class ProfileViewController: UIViewController, ProfileViewDelegate {
         self.navigationController?.pushViewController(profileEditVC, animated: true)
     }
     
+    func profileView(willSegueToMessage sender: UIView, room: MessageRoom, opponentUser: User) {
+        let messageVC = MessageViewController(room: room, opponentUser: opponentUser, isFromProfile: true)
+        self.navigationController?.pushViewController(messageVC, animated: true)
+    }
+    
 }

@@ -5,12 +5,14 @@ PODS:
   - AWSCore (2.4.4)
   - AWSS3 (2.4.4):
     - AWSCore (= 2.4.4)
+  - SIOSocket (0.2.0)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AWSCognito
   - AWSS3
+  - SIOSocket (~> 0.2.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -18,8 +20,9 @@ SPEC CHECKSUMS:
   AWSCognito: 49a62a8f56d605a0454c900a37be207539bcb6e1
   AWSCore: 67be10cc1e295e8238809e980fb1572b9e2ad8e6
   AWSS3: 31a46c196f4a41d324f396181ce16ab687b36a0a
+  SIOSocket: 2facc0bd02ae72d98c223634a46dd8ebdf9be321
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: baf56b2826e96775d4ff92c50cb4b29f40cc612e
+PODFILE CHECKSUM: a31bcccc318984d8c1ddd8f2bcd09eca5cbf4d38
 
 COCOAPODS: 1.0.0.beta.3

@@ -8,5 +8,6 @@ target 'Near' do
     pod 'SwiftyJSON'
     pod 'AWSS3'
     pod 'AWSCognito'
+    pod 'SIOSocket', '~> 0.2.0'
 end
 

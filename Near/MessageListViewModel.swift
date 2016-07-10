@@ -9,15 +9,15 @@
 import UIKit
 
 @objc protocol MessageListViewModelDelegate {
-    optional func didTapMessageLiestViewTableViewCell()
+    optional func didTapMessageLiestViewTableViewCell(room: MessageRoom)
 }
 
 class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var delegate: MessageListViewModelDelegate?
     
-    let users = User.timeLineUsers
-    let messages = ["ご飯いかない？", "はじめまして！", "いや。。。ﾑﾘ。。。"]
+    let rooms = MessageRoomManager.messageRooms
+//    let messages = ["ご飯いかない？", "はじめまして！", "いや。。。ﾑﾘ。。。"]
     
     
     //======================================
@@ -26,15 +26,19 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count - 3
+        return rooms.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MessageListTableViewCell", forIndexPath: indexPath) as! MessageListTableViewCell
 //        let avatarImage = users[indexPath.row + 3].avatar!//UIImage(named: "\(userSampleImage[indexPath.row])")
-        cell.avatarImageView.image = users[indexPath.row].avatar
-        cell.userNameLabel.text = users[indexPath.row].userName//userSampleName[indexPath.row]
-        cell.newMessageLabel.text = messages[indexPath.row]
+        cell.avatarImageView.image = rooms[indexPath.row].opponentUser.avatar
+        cell.userNameLabel.text = rooms[indexPath.row].opponentUser.userName//userSampleName[indexPath.row]
+        var recentMessage = ""
+        if rooms[indexPath.row].messages.count != 0 {
+            recentMessage = (rooms[indexPath.row].messages.last?.content)!
+        }
+        cell.newMessageLabel.text = recentMessage
         
         return cell
     }
@@ -44,7 +48,7 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate?.didTapMessageLiestViewTableViewCell!()
+        delegate?.didTapMessageLiestViewTableViewCell!(rooms[indexPath.row])
     }
     
 }

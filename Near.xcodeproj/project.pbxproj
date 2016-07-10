@@ -53,6 +53,8 @@
 		AA84DF831CD7375200B635D1 /* univ_prof.png in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF7E1CD7375200B635D1 /* univ_prof.png */; };
 		AA84DF841CD7375200B635D1 /* work_prof.png in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF7F1CD7375200B635D1 /* work_prof.png */; };
 		AA84DF861CD738AB00B635D1 /* message_prof.png in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF851CD738AB00B635D1 /* message_prof.png */; };
+		AA9B5A781D2FFB0D00344939 /* MessageRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B5A771D2FFB0D00344939 /* MessageRoom.swift */; };
+		AA9B5A7A1D30E35600344939 /* MessageRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B5A791D30E35600344939 /* MessageRoomManager.swift */; };
 		AAD519781CE21095009D1E1D /* SwiftExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD519771CE21095009D1E1D /* SwiftExampleViewController.swift */; };
 		AAD5197E1CE2219E009D1E1D /* sample_user.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD5197D1CE2219E009D1E1D /* sample_user.png */; };
 		AAD519851CE2245C009D1E1D /* MessageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD519831CE2245C009D1E1D /* MessageListTableViewCell.swift */; };
@@ -118,6 +120,8 @@
 		AA84DF7E1CD7375200B635D1 /* univ_prof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = univ_prof.png; sourceTree = "<group>"; };
 		AA84DF7F1CD7375200B635D1 /* work_prof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = work_prof.png; sourceTree = "<group>"; };
 		AA84DF851CD738AB00B635D1 /* message_prof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message_prof.png; sourceTree = "<group>"; };
+		AA9B5A771D2FFB0D00344939 /* MessageRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRoom.swift; sourceTree = "<group>"; };
+		AA9B5A791D30E35600344939 /* MessageRoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRoomManager.swift; sourceTree = "<group>"; };
 		AAD519771CE21095009D1E1D /* SwiftExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftExampleViewController.swift; sourceTree = "<group>"; };
 		AAD5197D1CE2219E009D1E1D /* sample_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_user.png; sourceTree = "<group>"; };
 		AAD519831CE2245C009D1E1D /* MessageListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListTableViewCell.swift; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				AA17CBAB1CF1A91B002C2C19 /* User.swift */,
+				AA9B5A771D2FFB0D00344939 /* MessageRoom.swift */,
+				AA9B5A791D30E35600344939 /* MessageRoomManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -604,6 +610,7 @@
 				AA84DF561CD5D37700B635D1 /* MessageListView.swift in Sources */,
 				AA17CBAC1CF1A91B002C2C19 /* User.swift in Sources */,
 				AA84DF4E1CD5D0A500B635D1 /* MessageListViewController.swift in Sources */,
+				AA9B5A7A1D30E35600344939 /* MessageRoomManager.swift in Sources */,
 				AA0E942F1CEF0BC100C6E7BE /* UIImageView+Extension.swift in Sources */,
 				AA84DF541CD5D36300B635D1 /* MessageListViewModel.swift in Sources */,
 				AA84DF6F1CD5EB5400B635D1 /* ProfileView.swift in Sources */,
@@ -615,6 +622,7 @@
 				AA6809991D1E412700435279 /* ProfileEditView.swift in Sources */,
 				AA68099F1D1E5E1100435279 /* ProfileEditViewModel.swift in Sources */,
 				AA15E7861CE2085000E998F4 /* MessageViewModel.swift in Sources */,
+				AA9B5A781D2FFB0D00344939 /* MessageRoom.swift in Sources */,
 				AAED41CD1D0A54C7001B2AB5 /* FBLoginViewModel.swift in Sources */,
 				AA0E94291CEEE7A300C6E7BE /* GeneralViewModel.swift in Sources */,
 				AA0E942B1CEEF85200C6E7BE /* UIViewController+Extension.swift in Sources */,

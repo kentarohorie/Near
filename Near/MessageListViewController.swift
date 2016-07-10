@@ -8,9 +8,10 @@
 
 import UIKit
 
-class MessageListViewController: UIViewController, MessageListViewModelDelegate {
+class MessageListViewController: UIViewController, MessageListViewModelDelegate, MessageViewControllerDelegate {
 
     let messageListVM = MessageListViewModel()
+    var messageListV: MessageListView!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -33,21 +34,23 @@ class MessageListViewController: UIViewController, MessageListViewModelDelegate 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func setUP() {
-        let messageListV = UINib(nibName: "MessageListView", bundle: nil).instantiateWithOwner(self, options: nil).first as! MessageListView
+        messageListV = UINib(nibName: "MessageListView", bundle: nil).instantiateWithOwner(self, options: nil).first as! MessageListView
         messageListV.tableView.delegate = messageListVM
         messageListV.tableView.dataSource = messageListVM
         
         self.view = messageListV
-        
+
         messageListVM.delegate = self
     }
     
-    func didTapMessageLiestViewTableViewCell() {
-        let messageVC = MessageViewController()
+    // ========delegate method ==============
+    
+    func didTapMessageLiestViewTableViewCell(room: MessageRoom) {
+        let messageVC = MessageViewController(room: room, opponentUser: room.opponentUser, isFromProfile: false)
+        messageVC.myDelegate = self
 
         for i in (self.navigationController?.navigationBar.subviews)! {
             if let navView = i as? NearNavigationView {
@@ -60,5 +63,9 @@ class MessageListViewController: UIViewController, MessageListViewModelDelegate 
         }
         
         self.navigationController?.pushViewController(messageVC, animated: true)
+    }
+    
+    func messageViewController(sentMessage sender: LGChatController) {
+        messageListV.tableView.reloadData()
     }
 }

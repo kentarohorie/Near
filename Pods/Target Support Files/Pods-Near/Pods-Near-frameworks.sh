@@ -88,6 +88,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Near/AWSCore.framework"
   install_framework "Pods-Near/AWSS3.framework"
   install_framework "Pods-Near/Alamofire.framework"
+  install_framework "Pods-Near/SIOSocket.framework"
   install_framework "Pods-Near/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -95,5 +96,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Near/AWSCore.framework"
   install_framework "Pods-Near/AWSS3.framework"
   install_framework "Pods-Near/Alamofire.framework"
+  install_framework "Pods-Near/SIOSocket.framework"
   install_framework "Pods-Near/SwiftyJSON.framework"
 fi
