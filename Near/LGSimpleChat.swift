@@ -55,6 +55,7 @@ class LGChatMessage : NSObject {
     var sentBy: SentBy
     var content: String
     var timeStamp: NSTimeInterval?
+    var sentTime = ""
     
     required init (content: String, sentBy: SentBy, timeStamp: NSTimeInterval? = nil){
         self.sentBy = sentBy

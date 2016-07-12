@@ -119,6 +119,7 @@
             <connections>
                 <outlet property="avatarImageView" destination="G6V-nC-h2o" id="UZU-KG-69d"/>
                 <outlet property="newMessageLabel" destination="S49-3c-SqP" id="7bc-Ci-5lH"/>
+                <outlet property="sentTimeLabel" destination="zzl-RN-mGa" id="ZcU-0B-ChJ"/>
                 <outlet property="userNameLabel" destination="ppc-WW-roP" id="sdv-i8-dbh"/>
             </connections>
             <point key="canvasLocation" x="442.5" y="379"/>

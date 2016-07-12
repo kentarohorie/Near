@@ -17,7 +17,6 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
     var delegate: MessageListViewModelDelegate?
     
     let rooms = MessageRoomManager.messageRooms
-//    let messages = ["ご飯いかない？", "はじめまして！", "いや。。。ﾑﾘ。。。"]
     
     
     //======================================
@@ -31,7 +30,6 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MessageListTableViewCell", forIndexPath: indexPath) as! MessageListTableViewCell
-//        let avatarImage = users[indexPath.row + 3].avatar!//UIImage(named: "\(userSampleImage[indexPath.row])")
         cell.avatarImageView.image = rooms[indexPath.row].opponentUser.avatar
         cell.userNameLabel.text = rooms[indexPath.row].opponentUser.userName//userSampleName[indexPath.row]
         var recentMessage = ""
@@ -39,6 +37,10 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
             recentMessage = (rooms[indexPath.row].messages.last?.content)!
         }
         cell.newMessageLabel.text = recentMessage
+        if rooms[indexPath.row].messages.last!.sentTime.isEmpty {
+            rooms[indexPath.row].messages.last?.sentTime = "0秒前"
+        }
+        cell.sentTimeLabel.text = rooms[indexPath.row].messages.last?.sentTime
         
         return cell
     }

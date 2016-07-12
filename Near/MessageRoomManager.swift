@@ -49,7 +49,17 @@ class MessageRoomManager: NSObject {
             } else {
                 sendBy = .Opponent
             }
+            
+            let nsDate = NSDate()
+            let date = messageDic["sentTime"].string!
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            
+            let rDateData = dateFormatter.dateFromString(date)
+            let sentTime = nsDate.offsetFrom(rDateData!)
+
             let lgMessage = LGChatMessage(content: message, sentBy: sendBy)
+            lgMessage.sentTime = sentTime
             lgMessagesArray.append(lgMessage)
         }
         
