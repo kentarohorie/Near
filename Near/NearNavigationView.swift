@@ -70,7 +70,7 @@ class NearNavigationView: UIView {
     }
     
     @objc private func tapOnHeader(sender: UITapGestureRecognizer) {
-        delegate?.tapNavigationImageView!(sender.view!.tag)
+//        delegate?.tapNavigationImageView!(sender.view!.tag) タップがうまくいってない
     }
     
     
