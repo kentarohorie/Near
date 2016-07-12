@@ -46,7 +46,6 @@ class MainTimeLineViewController: UIViewController, MainTimeLineViewModelDelegat
     
     func didTapMainTimeLineTableViewCell(selectedUser: User) {
         let profileVC = ProfileViewController(user: selectedUser, isCurrentUser: false)
-        
         for i in (self.navigationController?.navigationBar.subviews)! {
             if let navView = i as? NearNavigationView {
                 for v in navView.subviews {

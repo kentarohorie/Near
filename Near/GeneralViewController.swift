@@ -100,7 +100,6 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
         UIView.animateWithDuration(0.2, animations: {
             dView.backgroundColor = dView.backgroundColor?.colorWithAlphaComponent(0)
             }) { (bool) in
-                print("hogehogehoge")
                 self.navigationController?.navigationBarHidden = false
                 dView.removeFromSuperview()
                 callback()

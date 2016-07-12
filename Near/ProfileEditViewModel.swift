@@ -66,7 +66,6 @@ class ProfileEditViewModel: NSObject, UIImagePickerControllerDelegate, UINavigat
             let url = fileURLDic["fileURL"] as! NSURL
             let subImageNum = fileURLDic["num"] as! Int
             let image = User.currentUser.subImages[subImageNum]
-            print(i)
             User.uploadImageToS3(url, image: image!, uploadImageName: String(subImageNum), isMain: false) {
                 if i == (self.subImageFileURLDicArray.count - 1) {
                     print("updated sub image to s3 ")
