@@ -13,17 +13,11 @@ import FBSDKLoginKit
 class FBLoginView: UIView {
     var loginButton: FBSDKLoginButton!
     
-    init(frame: CGRect, delegate: FBSDKLoginButtonDelegate) {
-        super.init(frame: frame)
+    override func awakeFromNib() {
         loginButton = FBSDKLoginButton()
         loginButton.center = self.center
-        loginButton.delegate = delegate
-
-         self.addSubview(loginButton)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        
+        self.addSubview(loginButton)
     }
     
 }
