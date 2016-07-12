@@ -19,6 +19,8 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
     private let generalVM = GeneralViewModel()
     private let fbLoginVM = FBLoginViewModel()
     private let noLocationView = UIView()
+    private var progressingView = UIView()
+    private var fbLoginView = FBLoginView()
     
     internal var delegate: GeneralViewControllerDelegate?
 
@@ -29,6 +31,7 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
         generalVM.delegate = self
         
         setNoLocationView()
+        setProgressingView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,8 +47,10 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
                     User.updateUserWithAPI(User.currentUser.age!, name: User.currentUser.userName!, latitude: User.coordinate[0], longitude: User.coordinate[1], loginTime: User.currentUser.loginTime!, school: User.currentUser.school, work: User.currentUser.work, greetingMessage: User.currentUser.greetingMessage, callback: {
                         User.getUsersForTimelineAPI({
                             MessageRoomManager.getRoomsAndMessagesWithAPI(User.currentUser.fbID!, callback: {
-                                self.setPageViewController()
-                                self.setNavigationBar()
+                                self.removeViewAnimation(self.progressingView) {
+                                    self.setPageViewController()
+                                    self.setNavigationBar()
+                                }
                             })
                         })
                     })
@@ -53,27 +58,60 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
             })
         } else {
             print("yet login")
-            setFBLoginView()
+            setFBLoginView() //join (already login) process in fbLoginViewModel(didFetchFBDataAndSetData) method
         }
     }
     
 
     
     internal func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject) {
-        User.getUsersForTimelineAPI { 
-            self.setPageViewController()
-            self.setNavigationBar()
-        }
+        fbLoginView.removeFromSuperview()
+        User.fetchFromAPI({
+            User.downLoadAllImageFromS3(User.currentUser) {
+                User.updateUserWithAPI(User.currentUser.age!, name: User.currentUser.userName!, latitude: User.coordinate[0], longitude: User.coordinate[1], loginTime: User.currentUser.loginTime!, school: User.currentUser.school, work: User.currentUser.work, greetingMessage: User.currentUser.greetingMessage, callback: {
+                    User.getUsersForTimelineAPI({
+                        MessageRoomManager.getRoomsAndMessagesWithAPI(User.currentUser.fbID!, callback: {
+                            self.removeViewAnimation(self.progressingView) {
+                                self.setPageViewController()
+                                self.setNavigationBar()
+                            }
+                        })
+                    })
+                })
+            }
+        })
     }
     
     private func setNoLocationView() {
-        noLocationView.frame = self.view.frame
-        noLocationView.backgroundColor = UIColor.redColor()
-        self.view.addSubview(noLocationView)
+//        noLocationView.frame = self.view.frame
+//        noLocationView.backgroundColor = UIColor.redColor()
+//        self.view.addSubview(noLocationView) 位置情報取得できなかったら出現
+    }
+    
+    private func setProgressingView() {
+        self.navigationController?.navigationBarHidden = true
+        progressingView = UINib(nibName: "ProgressingView", bundle: nil).instantiateWithOwner(self, options: nil).first as! ProgressingView
+        progressingView.frame.origin = CGPointZero
+        progressingView.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height + (self.navigationController?.navigationBar.frame.height)!)
+        self.view.addSubview(progressingView)
+    }
+    
+    private func removeViewAnimation(dView: UIView, callback: () -> Void) {
+        UIView.animateWithDuration(0.2, animations: {
+            dView.backgroundColor = dView.backgroundColor?.colorWithAlphaComponent(0)
+            }) { (bool) in
+                print("hogehogehoge")
+                self.navigationController?.navigationBarHidden = false
+                dView.removeFromSuperview()
+                callback()
+        }
     }
     
     private func setFBLoginView() {
-        let fbLoginView = FBLoginView(frame: view.frame, delegate: fbLoginVM)
+        fbLoginView = UINib(nibName: "FBLoginView", bundle: nil).instantiateWithOwner(self, options: nil).first as! FBLoginView
+        fbLoginView.frame.origin = CGPointZero
+        fbLoginView.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height + (self.navigationController?.navigationBar.frame.height)!)
+        fbLoginView.loginButton.delegate = fbLoginVM // require
         fbLoginVM.customDelegate = self
         self.view.addSubview(fbLoginView)
     }

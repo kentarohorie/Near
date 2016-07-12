@@ -56,11 +56,9 @@ class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
             } else if let maxAge = (JSON(result)["age_range"]["max"].int) {
                 age = maxAge
             }
-            
+        
             User.createUserWithAPI(id!, gender: gender!, age: age, name: name!, callback: {
-                User.fetchFromAPI({
-                    self.customDelegate?.fbLoginViewModel(didFetchFBDataAndSetData: self)
-                })
+                self.customDelegate?.fbLoginViewModel(didFetchFBDataAndSetData: self)
             })
         }
     }

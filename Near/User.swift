@@ -95,6 +95,7 @@ class User: NSObject {
     //===============================================
     
     class func createUserWithAPI(fbID: String, gender: String, age: Int, name: String, callback: () -> Void) {
+        setNowLoginTime()
         let params = [
             "facebook_id": fbID,
             "gender": gender,
