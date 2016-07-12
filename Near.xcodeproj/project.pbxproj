@@ -69,6 +69,9 @@
 		AAED41C81D0A4D8D001B2AB5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAED41C51D0A4D8D001B2AB5 /* FBSDKShareKit.framework */; };
 		AAED41CA1D0A5340001B2AB5 /* FBLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED41C91D0A5340001B2AB5 /* FBLoginView.swift */; };
 		AAED41CD1D0A54C7001B2AB5 /* FBLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED41CC1D0A54C7001B2AB5 /* FBLoginViewModel.swift */; };
+		AAFE06251D34A216007CA796 /* ProgressingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE06241D34A216007CA796 /* ProgressingView.swift */; };
+		AAFE06291D34A251007CA796 /* ProgressingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAFE06281D34A251007CA796 /* ProgressingView.xib */; };
+		AAFE062B1D34A5D9007CA796 /* FBLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAFE062A1D34A5D9007CA796 /* FBLoginView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +141,9 @@
 		AAED41C51D0A4D8D001B2AB5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		AAED41C91D0A5340001B2AB5 /* FBLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginView.swift; sourceTree = "<group>"; };
 		AAED41CC1D0A54C7001B2AB5 /* FBLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewModel.swift; sourceTree = "<group>"; };
+		AAFE06241D34A216007CA796 /* ProgressingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressingView.swift; sourceTree = "<group>"; };
+		AAFE06281D34A251007CA796 /* ProgressingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressingView.xib; sourceTree = "<group>"; };
+		AAFE062A1D34A5D9007CA796 /* FBLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBLoginView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +218,8 @@
 			children = (
 				AAED41CB1D0A54AA001B2AB5 /* FBLogin */,
 				AA17CBA11CF06C76002C2C19 /* NearNavigationView.swift */,
+				AAFE06241D34A216007CA796 /* ProgressingView.swift */,
+				AAFE06281D34A251007CA796 /* ProgressingView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -454,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				AAED41C91D0A5340001B2AB5 /* FBLoginView.swift */,
+				AAFE062A1D34A5D9007CA796 /* FBLoginView.xib */,
 				AAED41CC1D0A54C7001B2AB5 /* FBLoginViewModel.swift */,
 			);
 			name = FBLogin;
@@ -521,6 +530,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFE06291D34A251007CA796 /* ProgressingView.xib in Resources */,
 				AAD519861CE2245C009D1E1D /* MessageListTableViewCell.xib in Resources */,
 				AA84DF5C1CD5D3E900B635D1 /* MainTimeLineView.xib in Resources */,
 				AA17CBA61CF184D8002C2C19 /* location_nav.png in Resources */,
@@ -544,6 +554,7 @@
 				AAD971721CCF67E00089DEFF /* Main.storyboard in Resources */,
 				AA84DF811CD7375200B635D1 /* love_prof.png in Resources */,
 				AA4623641CE22D4200D863EE /* sample_user_4.png in Resources */,
+				AAFE062B1D34A5D9007CA796 /* FBLoginView.xib in Resources */,
 				AA84DF821CD7375200B635D1 /* point_prof.png in Resources */,
 				AA4623601CE22D3B00D863EE /* user_sample_3.png in Resources */,
 			);
@@ -630,6 +641,7 @@
 				AA84DF5A1CD5D3DB00B635D1 /* MainTimeLineView.swift in Sources */,
 				AA17CB9F1CF06AA5002C2C19 /* UIColor+Extension.swift in Sources */,
 				AA15E7821CE2080A00E998F4 /* LGSimpleChat.swift in Sources */,
+				AAFE06251D34A216007CA796 /* ProgressingView.swift in Sources */,
 				AA84DF501CD5D0B700B635D1 /* ProfileViewController.swift in Sources */,
 				AAD519781CE21095009D1E1D /* SwiftExampleViewController.swift in Sources */,
 				AA84DF6D1CD5EB4600B635D1 /* ProfileViewModel.swift in Sources */,
