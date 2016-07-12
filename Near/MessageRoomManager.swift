@@ -104,7 +104,6 @@ class MessageRoomManager: NSObject {
                 return
             }
             let jValue = JSON(value)
-            print(jValue)
             self.messageRooms = getRooms(jValue.array!)
             if let callback = callback {
                 callback()
