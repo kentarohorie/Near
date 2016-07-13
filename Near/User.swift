@@ -105,7 +105,7 @@ class User: NSObject {
             "longitude": User.coordinate[1],
             "login_time": User.currentUser.loginTime!
         ]
-        Alamofire.request(.POST, "http://172.20.10.4:3000/api/v1/users/create", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
+        Alamofire.request(.POST, "https://young-thicket-95274.herokuapp.com/api/v1/users/create", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
             guard response.result.error == nil else {
                 print("create user request error: \(response.result.error)")
                 return
@@ -122,7 +122,7 @@ class User: NSObject {
         let ud = NSUserDefaults.standardUserDefaults()
         let userID = ud.objectForKey("userID")
         
-        Alamofire.request(.GET, "http://172.20.10.4:3000/api/v1/users/\(userID!)").responseJSON { (response) in
+        Alamofire.request(.GET, "https://young-thicket-95274.herokuapp.com/api/v1/users/\(userID!)").responseJSON { (response) in
             guard response.result.error == nil, let value = response.result.value else {
                 print("fetch from API request error: \(response.result.error)")
                 return
@@ -166,7 +166,7 @@ class User: NSObject {
             "greeting": pgreetingMessage
         ]
         
-        Alamofire.request(.PUT, "http://172.20.10.4:3000/api/v1/users/\(userID!)", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
+        Alamofire.request(.PUT, "https://young-thicket-95274.herokuapp.com/api/v1/users/\(userID!)", parameters: params as? [String: AnyObject], encoding: .JSON).responseJSON { (response) in
             guard response.result.error == nil else {
                 print("update API error: \(response.result.error)")
                 return
@@ -177,7 +177,7 @@ class User: NSObject {
     }
     
     class func getUsersForTimelineAPI(callback: () -> Void) {
-        let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "http://172.20.10.4:3000/api/v1/users/")!)
+        let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "https://young-thicket-95274.herokuapp.com/api/v1/users/")!)
         mutableURLRequest.HTTPMethod = "GET"
         mutableURLRequest.addValue(currentUser.fbID!, forHTTPHeaderField: "Fbid")
         let manager = Alamofire.Manager.sharedInstance

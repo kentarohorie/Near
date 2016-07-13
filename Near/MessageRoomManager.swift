@@ -74,7 +74,7 @@ class MessageRoomManager: NSObject {
             "opponent_user_id": opponentUser.fbID!
         ]
         
-        Alamofire.request(.POST, "http://172.20.10.4:3000/api/v1/rooms/create", parameters: params, encoding: .JSON, headers: nil).responseJSON { (response) in
+        Alamofire.request(.POST, "https://young-thicket-95274.herokuapp.com/api/v1/rooms/create", parameters: params, encoding: .JSON, headers: nil).responseJSON { (response) in
             guard let jValue = response.result.value else {
                 print("room create api error: \(response.result.error)")
                 return
@@ -102,13 +102,13 @@ class MessageRoomManager: NSObject {
             "room_id": roomID
         ]
         
-        Alamofire.request(.POST, "http://172.20.10.4:3000/api/v1/messages/create", parameters: params as? [String : AnyObject], encoding: .JSON, headers: nil).responseJSON { (response) in
+        Alamofire.request(.POST, "https://young-thicket-95274.herokuapp.com/api/v1/messages/create", parameters: params as? [String : AnyObject], encoding: .JSON, headers: nil).responseJSON { (response) in
             callback?()
         }
     }
     
     internal class func getRoomsAndMessagesWithAPI(userFBID: String, callback: (() -> Void)?) {
-        Alamofire.request(.GET, "http://172.20.10.4:3000/api/v1/rooms/index", parameters: nil, encoding: .JSON, headers: ["Fbid" : userFBID]).responseJSON { (response) in
+        Alamofire.request(.GET, "https://young-thicket-95274.herokuapp.com/api/v1/rooms/index", parameters: nil, encoding: .JSON, headers: ["Fbid" : userFBID]).responseJSON { (response) in
             guard let value = response.result.value else {
                 print("get room and message error: \(response.result.error)")
                 return
