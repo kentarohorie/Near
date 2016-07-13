@@ -29,6 +29,7 @@ class ProfileEditView: UIView, UITextFieldDelegate, UITextViewDelegate, UIScroll
     internal var delegate: ProfileEditViewDelegate?
     
     private let user = User.currentUser
+    private var txtActiveField: UITextField!
     
     override func awakeFromNib() {
         setGestureForImageView()
@@ -36,6 +37,7 @@ class ProfileEditView: UIView, UITextFieldDelegate, UITextViewDelegate, UIScroll
         setImages()
         setDelegate()
         setTextPlaceholder()
+        setNotification()
     }
     
     internal func setImages() {
@@ -49,6 +51,40 @@ class ProfileEditView: UIView, UITextFieldDelegate, UITextViewDelegate, UIScroll
             
             imageV.image = image
         }
+    }
+    
+    func keyboardWillBeShown(notification: NSNotification) {
+//        //郵便入れみたいなもの
+//        let userInfo = notification.userInfo!
+//        //キーボードの大きさを取得
+//        let keyboardRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+//        // 画面のサイズを取得
+//        let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
+//        //　ViewControllerを基準にtextFieldの下辺までの距離を取得
+//        let txtLimit = txtActiveField.bounds.origin.y + txtActiveField.bounds.height + 8.0
+//        // ViewControllerの高さからキーボードの高さを引いた差分を取得
+//        let kbdLimit = myBoundSize.height - keyboardRect.size.height
+//        print(txtLimit, kbdLimit)
+//        
+//        //スクロールビューの移動距離設定
+//        if txtLimit >= kbdLimit {
+//            mainScrollView.contentOffset.y = txtLimit - kbdLimit
+//        }
+    } //textfieldがmainscrollviewに配置しているわけではないためうまくscreen全体から測った位置がとれず挙動がうまくいかない。
+    
+    //ずらした分を戻す処理
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
+        mainScrollView.contentOffset.y = 0
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        mainScrollView.contentOffset.y = 0
+    }
+    
+
+    private func setNotification() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileEditView.keyboardWillBeShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileEditView.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     private func setGestureForImageView() {
@@ -135,4 +171,11 @@ class ProfileEditView: UIView, UITextFieldDelegate, UITextViewDelegate, UIScroll
         ageTextField.resignFirstResponder()
     }
     
+    //========== hide keyboard  ==========
+    //=====================================
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        txtActiveField = textField
+        return true
+    }
 }

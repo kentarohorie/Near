@@ -72,6 +72,7 @@
 		AAFE06251D34A216007CA796 /* ProgressingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE06241D34A216007CA796 /* ProgressingView.swift */; };
 		AAFE06291D34A251007CA796 /* ProgressingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAFE06281D34A251007CA796 /* ProgressingView.xib */; };
 		AAFE062B1D34A5D9007CA796 /* FBLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAFE062A1D34A5D9007CA796 /* FBLoginView.xib */; };
+		AAFE062F1D35F754007CA796 /* near_title.png in Resources */ = {isa = PBXBuildFile; fileRef = AAFE062E1D35F754007CA796 /* near_title.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		AAFE06241D34A216007CA796 /* ProgressingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressingView.swift; sourceTree = "<group>"; };
 		AAFE06281D34A251007CA796 /* ProgressingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressingView.xib; sourceTree = "<group>"; };
 		AAFE062A1D34A5D9007CA796 /* FBLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBLoginView.xib; sourceTree = "<group>"; };
+		AAFE062E1D35F754007CA796 /* near_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = near_title.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				AA17CBA31CF184D8002C2C19 /* location_nav.png */,
+				AAFE062E1D35F754007CA796 /* near_title.png */,
 				AA17CBA41CF184D8002C2C19 /* message_nav.png */,
 				AA17CBA51CF184D8002C2C19 /* prof_nav.png */,
 			);
@@ -546,6 +549,7 @@
 				AA84DF861CD738AB00B635D1 /* message_prof.png in Resources */,
 				AA260A1C1D10305500158104 /* empty_user.png in Resources */,
 				AA84DF621CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.xib in Resources */,
+				AAFE062F1D35F754007CA796 /* near_title.png in Resources */,
 				AAD9717A1CCF67E00089DEFF /* LaunchScreen.storyboard in Resources */,
 				AA84DF831CD7375200B635D1 /* univ_prof.png in Resources */,
 				AA4623611CE22D3B00D863EE /* user_sample_6.png in Resources */,
