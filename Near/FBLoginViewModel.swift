@@ -13,6 +13,7 @@ import SwiftyJSON
 
 @objc protocol FBLoginViewModeldelegate {
     func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject)
+    func fbLoginViewModel(didLogin sender: NSObject)
 }
 
 class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
@@ -30,6 +31,7 @@ class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
             return
         }
         
+        customDelegate?.fbLoginViewModel(didLogin: self)
         loginButton.readPermissions = ["public_profile"]
         fetchUserData()
     }

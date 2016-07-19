@@ -34,6 +34,8 @@
 		AA6809991D1E412700435279 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6809981D1E412700435279 /* ProfileEditView.swift */; };
 		AA68099F1D1E5E1100435279 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68099E1D1E5E1100435279 /* ProfileEditViewModel.swift */; };
 		AA6809A11D1E63AC00435279 /* ProfileEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6809A01D1E63AC00435279 /* ProfileEditView.xib */; };
+		AA7405E51D3E661000FDB22D /* NoLocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7405E41D3E661000FDB22D /* NoLocationView.xib */; };
+		AA7405E71D3E662300FDB22D /* NoLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7405E61D3E662300FDB22D /* NoLocationView.swift */; };
 		AA84DF4E1CD5D0A500B635D1 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF4D1CD5D0A500B635D1 /* MessageListViewController.swift */; };
 		AA84DF501CD5D0B700B635D1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF4F1CD5D0B700B635D1 /* ProfileViewController.swift */; };
 		AA84DF521CD5D0C700B635D1 /* MainTimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DF511CD5D0C700B635D1 /* MainTimeLineViewController.swift */; };
@@ -105,6 +107,8 @@
 		AA6809981D1E412700435279 /* ProfileEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		AA68099E1D1E5E1100435279 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		AA6809A01D1E63AC00435279 /* ProfileEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileEditView.xib; sourceTree = "<group>"; };
+		AA7405E41D3E661000FDB22D /* NoLocationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoLocationView.xib; sourceTree = "<group>"; };
+		AA7405E61D3E662300FDB22D /* NoLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoLocationView.swift; sourceTree = "<group>"; };
 		AA84DF4D1CD5D0A500B635D1 /* MessageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
 		AA84DF4F1CD5D0B700B635D1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AA84DF511CD5D0C700B635D1 /* MainTimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTimeLineViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 				AA17CBA11CF06C76002C2C19 /* NearNavigationView.swift */,
 				AAFE06241D34A216007CA796 /* ProgressingView.swift */,
 				AAFE06281D34A251007CA796 /* ProgressingView.xib */,
+				AA7405E61D3E662300FDB22D /* NoLocationView.swift */,
+				AA7405E41D3E661000FDB22D /* NoLocationView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 				AAD519861CE2245C009D1E1D /* MessageListTableViewCell.xib in Resources */,
 				AA84DF5C1CD5D3E900B635D1 /* MainTimeLineView.xib in Resources */,
 				AA17CBA61CF184D8002C2C19 /* location_nav.png in Resources */,
+				AA7405E51D3E661000FDB22D /* NoLocationView.xib in Resources */,
 				AA84DF841CD7375200B635D1 /* work_prof.png in Resources */,
 				AA84DF5E1CD5D3F600B635D1 /* MessageListView.xib in Resources */,
 				AA46235F1CE22D3B00D863EE /* user_sample_2.png in Resources */,
@@ -622,6 +629,7 @@
 				AAED41CA1D0A5340001B2AB5 /* FBLoginView.swift in Sources */,
 				AAD519851CE2245C009D1E1D /* MessageListTableViewCell.swift in Sources */,
 				AAD971751CCF67E00089DEFF /* Near.xcdatamodeld in Sources */,
+				AA7405E71D3E662300FDB22D /* NoLocationView.swift in Sources */,
 				AA84DF561CD5D37700B635D1 /* MessageListView.swift in Sources */,
 				AA17CBAC1CF1A91B002C2C19 /* User.swift in Sources */,
 				AA84DF4E1CD5D0A500B635D1 /* MessageListViewController.swift in Sources */,

@@ -18,9 +18,9 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
     private let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     private let generalVM = GeneralViewModel()
     private let fbLoginVM = FBLoginViewModel()
-    private let noLocationView = UIView()
     private var progressingView = UIView()
     private var fbLoginView = FBLoginView()
+    private var noLocationView: NoLocationView?
     
     internal var delegate: GeneralViewControllerDelegate?
 
@@ -30,7 +30,6 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
         generalVM.generalViewController(viewDidLoad: self)
         generalVM.delegate = self
         
-        setNoLocationView()
         setProgressingView()
     }
 
@@ -39,7 +38,10 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
     }
     
     internal func generalViewModel(didGetLocation sender: NSObject) {
-        noLocationView.removeFromSuperview()
+        if let v = noLocationView {
+            v.removeFromSuperview()
+        }
+        
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             print("already login")
             User.fetchFromAPI({
@@ -62,7 +64,16 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
         }
     }
     
-
+    internal func generalViewModel(cannotGetLocation sender: NSObject) {
+        setNoLocationView()
+    }
+    
+    internal func generalViewModel(allowGetLocation sender: NSObject) {
+        if noLocationView != nil {
+            noLocationView!.removeFromSuperview()
+            setProgressingView()
+        }
+    }
     
     internal func fbLoginViewModel(didFetchFBDataAndSetData vm: NSObject) {
         fbLoginView.removeFromSuperview()
@@ -82,10 +93,13 @@ class GeneralViewController: UIViewController, FBLoginViewModeldelegate, General
         })
     }
     
+    internal func fbLoginViewModel(didLogin sender: NSObject) {
+        fbLoginView.removeFromSuperview()
+    }
+    
     private func setNoLocationView() {
-//        noLocationView.frame = self.view.frame
-//        noLocationView.backgroundColor = UIColor.redColor()
-//        self.view.addSubview(noLocationView) 位置情報取得できなかったら出現
+        noLocationView = UINib(nibName: "NoLocationView", bundle: nil).instantiateWithOwner(self, options: nil).first as? NoLocationView
+        self.view.addSubview(noLocationView!)
     }
     
     private func setProgressingView() {

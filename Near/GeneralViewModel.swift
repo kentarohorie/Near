@@ -12,6 +12,8 @@ import CoreLocation
 
 @objc protocol GeneralViewModelDelegate {
     optional func generalViewModel(didGetLocation sender: NSObject)
+    func generalViewModel(cannotGetLocation sender: NSObject)
+    func generalViewModel(allowGetLocation sender: NSObject)
 }
 
 class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate, NearNavigationViewDelegate, CLLocationManagerDelegate {
@@ -208,7 +210,7 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
         }
     }
     
-    //=========== CLLocationManager Delegate =============
+    //=========== CLLocationManager Delegate ============= 恐らく一度拒否されるとユーザーが設定しにいかなければもう一度許可を求めることができない
     
     internal func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.stopUpdatingLocation()
@@ -220,11 +222,21 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
         isFirstTimeGetLocation = false
     }
     
+    internal func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
+            delegate?.generalViewModel(allowGetLocation: self)
+            locationManager.startUpdatingLocation()
+        } else {
+            delegate?.generalViewModel(cannotGetLocation: self)
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
     //========= generalVC delegate ===========
     
     internal func generalViewController(viewDidLoad sender: UIViewController) {
         setLocationManager()
-    } //locationを取る前にアプリを開始させたくない。現在地の取得は成功。タイムラインの前、もっというとタイムラインを読み込む前に現在地をセットしなければいけない。現在地をとれなければタイムラインを非表示にするような実装。
+    }
     
     //===========  VM private method    ==============
     
@@ -232,15 +244,15 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationAuthorization()
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 100
-        locationManager.startUpdatingLocation()
     }
     
     private func locationAuthorization() {
         let status = CLLocationManager.authorizationStatus()
-        if status == CLAuthorizationStatus.NotDetermined {
-            locationManager.requestAlwaysAuthorization()
+        if status != CLAuthorizationStatus.AuthorizedWhenInUse || status == .AuthorizedAlways {
+            locationManager.requestWhenInUseAuthorization()
         }
     }
 }
