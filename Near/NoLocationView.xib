@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NoLocationView" customModule="Near" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このアプリケーションは現在地を取得できなければ使用できません。" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbJ-6h-4jx">
+                    <rect key="frame" x="50" y="259" width="274" height="86"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="274" id="MU8-eX-1oq"/>
+                        <constraint firstAttribute="height" constant="86" id="bfc-H2-l6e"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5x-xq-xYP">
+                    <rect key="frame" x="149" y="353" width="77" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="77" id="x4p-qp-M7o"/>
+                        <constraint firstAttribute="height" constant="30" id="xa5-Gn-dud"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="許可する"/>
+                    <connections>
+                        <action selector="tapPermitButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="bvl-7j-jw3"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="I5x-xq-xYP" firstAttribute="top" secondItem="DbJ-6h-4jx" secondAttribute="bottom" constant="8" id="Fbv-Wb-pQJ"/>
+                <constraint firstItem="DbJ-6h-4jx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-32" id="c9L-Je-3kE"/>
+                <constraint firstItem="I5x-xq-xYP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cwJ-ba-1Ad"/>
+                <constraint firstItem="DbJ-6h-4jx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="gpZ-8F-M54"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="455.5" y="374.5"/>
+        </view>
+    </objects>
+</document>
