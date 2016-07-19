@@ -23,10 +23,22 @@
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="BWe-kH-ZbI">
                     <rect key="frame" x="169" y="315" width="37" height="37"/>
                 </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="少し時間がかかる場合があります。" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNH-Eu-no9">
+                    <rect key="frame" x="94" y="400" width="186" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="186" id="CBf-IK-wTC"/>
+                        <constraint firstAttribute="height" constant="21" id="D0J-53-ODs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="BWe-kH-ZbI" firstAttribute="centerX" secondItem="W4g-W2-vu9" secondAttribute="centerX" id="GjY-Tj-nbq"/>
+                <constraint firstItem="GNH-Eu-no9" firstAttribute="top" secondItem="BWe-kH-ZbI" secondAttribute="bottom" constant="48" id="KMQ-QP-tMK"/>
+                <constraint firstItem="GNH-Eu-no9" firstAttribute="centerX" secondItem="W4g-W2-vu9" secondAttribute="centerX" id="Lw1-Fa-CBb"/>
                 <constraint firstItem="BWe-kH-ZbI" firstAttribute="centerY" secondItem="W4g-W2-vu9" secondAttribute="centerY" id="Ta6-fm-Cdr"/>
                 <constraint firstItem="rbG-zd-vLf" firstAttribute="centerX" secondItem="W4g-W2-vu9" secondAttribute="centerX" id="UPL-5u-LFh"/>
                 <constraint firstItem="rbG-zd-vLf" firstAttribute="centerY" secondItem="W4g-W2-vu9" secondAttribute="centerY" constant="-96" id="lWd-Dy-Ysc"/>
