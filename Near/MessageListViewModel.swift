@@ -31,13 +31,13 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MessageListTableViewCell", forIndexPath: indexPath) as! MessageListTableViewCell
         cell.avatarImageView.image = rooms[indexPath.row].opponentUser.avatar
-        cell.userNameLabel.text = rooms[indexPath.row].opponentUser.userName//userSampleName[indexPath.row]
+        cell.userNameLabel.text = rooms[indexPath.row].opponentUser.userName
         var recentMessage = ""
         if rooms[indexPath.row].messages.count != 0 {
             recentMessage = (rooms[indexPath.row].messages.last?.content)!
         }
         cell.newMessageLabel.text = recentMessage
-        if rooms[indexPath.row].messages.last!.sentTime.isEmpty {
+        if ((rooms[indexPath.row].messages.last?.sentTime.isEmpty) != nil) {
             rooms[indexPath.row].messages.last?.sentTime = "0秒前"
         }
         cell.sentTimeLabel.text = rooms[indexPath.row].messages.last?.sentTime
