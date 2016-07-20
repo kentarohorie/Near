@@ -37,7 +37,7 @@ class MessageListViewModel: NSObject, UITableViewDelegate, UITableViewDataSource
             recentMessage = (rooms[indexPath.row].messages.last?.content)!
         }
         cell.newMessageLabel.text = recentMessage
-        if ((rooms[indexPath.row].messages.last?.sentTime.isEmpty) != nil) {
+        if (rooms[indexPath.row].messages.last?.sentTime.isEmpty) != nil {
             rooms[indexPath.row].messages.last?.sentTime = "0秒前"
         }
         cell.sentTimeLabel.text = rooms[indexPath.row].messages.last?.sentTime
