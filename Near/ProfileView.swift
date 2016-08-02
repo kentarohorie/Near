@@ -8,13 +8,14 @@
 //
 
 import UIKit
+import MessageUI
 
 @objc protocol ProfileViewDelegate {
     func profileView(tapEdit sender: UIView)
     func profileView(willSegueToMessage sender: UIView, room: MessageRoom, opponentUser: User)
 }
 
-class ProfileView: UIView, ProfileViewModelDelegate, UIScrollViewDelegate {
+class ProfileView: UIView, ProfileViewModelDelegate, UIScrollViewDelegate, MFMailComposeViewControllerDelegate {
 
     private var boardScrollView: UIScrollView!
     private var baseHeadScrollViewHeight: CGFloat!
@@ -225,7 +226,7 @@ class ProfileView: UIView, ProfileViewModelDelegate, UIScrollViewDelegate {
         if isCurrentUser {
             imageName = "system"
         } else {
-            imageName = "message_prof"
+            imageName = "more_info"
         }
         let imageView = UIImageView(image: UIImage(named: imageName)!.imageWithRenderingMode(.AlwaysTemplate))
         let gestureRecog = UITapGestureRecognizer(target: self, action: #selector(ProfileView.tapActionButton))
@@ -237,15 +238,65 @@ class ProfileView: UIView, ProfileViewModelDelegate, UIScrollViewDelegate {
         textCoverView.addSubview(imageView)
     }
     
+    private func setCurrentUserActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let editAtion = UIAlertAction(title: "プロフィール編集", style: .Default) { (alert) in
+            self.delegate?.profileView(tapEdit: self)
+        }
+        let reportAction = UIAlertAction(title: "報告/ご要望", style: .Default) { (alert) in
+            self.setUPMailer("Nearをご利用いただきありがとうございます。\nNearへのご要望や意見など、どんなことでもお送りください。\n\n今後ともNearをよろしくお願いいたします。")
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        actionSheet.addAction(editAtion)
+        actionSheet.addAction(reportAction)
+        actionSheet.addAction(cancelAction)
+        
+        self.getSuperViewController().presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func setNotCurrentUserActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let messageAction = UIAlertAction(title: "メッセージ", style: .Default) { (alert) in
+            MessageRoomManager.createRoomWithAPI(User.currentUser, opponentUser: self.user!, callback: { (room) in
+                self.delegate?.profileView(willSegueToMessage: self, room: room, opponentUser: self.user!)
+            })
+        }
+        let blockAction = UIAlertAction(title: "ブロック", style: .Default) { (alert) in
+            self.setUPMailer("このまま送信してください。\n\(self.user!.fbID!)")
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        actionSheet.addAction(messageAction)
+        actionSheet.addAction(blockAction)
+        actionSheet.addAction(cancelAction)
+        
+        self.getSuperViewController().presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func setUPMailer(message: String) {
+        let mailViewController = MFMailComposeViewController()
+        let toRecipient = ["info.ratneko@gmail.com"]
+        
+        mailViewController.mailComposeDelegate = self
+        mailViewController.setSubject("[Near]")
+        mailViewController.setToRecipients(toRecipient)
+        mailViewController.setMessageBody(message, isHTML: false)
+        
+        self.getSuperViewController().presentViewController(mailViewController, animated: true, completion: nil)
+    }
+    
     //======= action & delegate =============
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func tapActionButton() {
         if isCurrentUser {
-            delegate?.profileView(tapEdit: self)
+            setCurrentUserActionSheet()
         } else {
-            MessageRoomManager.createRoomWithAPI(User.currentUser, opponentUser: user!, callback: { (room) in
-                self.delegate?.profileView(willSegueToMessage: self, room: room, opponentUser: self.user!)
-            })
+            setNotCurrentUserActionSheet()
         }
     }
     

@@ -57,6 +57,8 @@
 		AA84DF861CD738AB00B635D1 /* message_prof.png in Resources */ = {isa = PBXBuildFile; fileRef = AA84DF851CD738AB00B635D1 /* message_prof.png */; };
 		AA9B5A781D2FFB0D00344939 /* MessageRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B5A771D2FFB0D00344939 /* MessageRoom.swift */; };
 		AA9B5A7A1D30E35600344939 /* MessageRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B5A791D30E35600344939 /* MessageRoomManager.swift */; };
+		AAC4B2531D4C3BB700D2FF14 /* more_info.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC4B2521D4C3BB700D2FF14 /* more_info.png */; };
+		AAC4B2551D4C3CFF00D2FF14 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4B2541D4C3CFF00D2FF14 /* MessageUI.framework */; };
 		AAD519781CE21095009D1E1D /* SwiftExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD519771CE21095009D1E1D /* SwiftExampleViewController.swift */; };
 		AAD5197E1CE2219E009D1E1D /* sample_user.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD5197D1CE2219E009D1E1D /* sample_user.png */; };
 		AAD519851CE2245C009D1E1D /* MessageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD519831CE2245C009D1E1D /* MessageListTableViewCell.swift */; };
@@ -130,6 +132,8 @@
 		AA84DF851CD738AB00B635D1 /* message_prof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message_prof.png; sourceTree = "<group>"; };
 		AA9B5A771D2FFB0D00344939 /* MessageRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRoom.swift; sourceTree = "<group>"; };
 		AA9B5A791D30E35600344939 /* MessageRoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRoomManager.swift; sourceTree = "<group>"; };
+		AAC4B2521D4C3BB700D2FF14 /* more_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_info.png; sourceTree = "<group>"; };
+		AAC4B2541D4C3CFF00D2FF14 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		AAD519771CE21095009D1E1D /* SwiftExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftExampleViewController.swift; sourceTree = "<group>"; };
 		AAD5197D1CE2219E009D1E1D /* sample_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_user.png; sourceTree = "<group>"; };
 		AAD519831CE2245C009D1E1D /* MessageListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListTableViewCell.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC4B2551D4C3CFF00D2FF14 /* MessageUI.framework in Frameworks */,
 				AAED41C81D0A4D8D001B2AB5 /* FBSDKShareKit.framework in Frameworks */,
 				59FD0D1CC8EF4FAB68ACC958 /* Pods_Near.framework in Frameworks */,
 				AAED41C61D0A4D8D001B2AB5 /* FBSDKCoreKit.framework in Frameworks */,
@@ -179,6 +184,7 @@
 		457BBB16B53B95DFB205C134 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAC4B2541D4C3CFF00D2FF14 /* MessageUI.framework */,
 				AAED41C31D0A4D8D001B2AB5 /* FBSDKCoreKit.framework */,
 				AAED41C41D0A4D8D001B2AB5 /* FBSDKLoginKit.framework */,
 				AAED41C51D0A4D8D001B2AB5 /* FBSDKShareKit.framework */,
@@ -426,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				AA84DF7B1CD7375200B635D1 /* home_prof.png */,
+				AAC4B2521D4C3BB700D2FF14 /* more_info.png */,
 				AA84DF7C1CD7375200B635D1 /* love_prof.png */,
 				AA84DF7D1CD7375200B635D1 /* point_prof.png */,
 				AA84DF851CD738AB00B635D1 /* message_prof.png */,
@@ -557,6 +564,7 @@
 				AA260A1C1D10305500158104 /* empty_user.png in Resources */,
 				AA84DF621CD5D5DE00B635D1 /* MainTimeLineViewTableViewCell.xib in Resources */,
 				AAFE062F1D35F754007CA796 /* near_title.png in Resources */,
+				AAC4B2531D4C3BB700D2FF14 /* more_info.png in Resources */,
 				AAD9717A1CCF67E00089DEFF /* LaunchScreen.storyboard in Resources */,
 				AA84DF831CD7375200B635D1 /* univ_prof.png in Resources */,
 				AA4623611CE22D3B00D863EE /* user_sample_6.png in Resources */,
