@@ -193,6 +193,15 @@ class User: NSObject {
         }
     }
     
+    class func blockUser(blockedUserFBID: String) {
+        let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "https://young-thicket-95274.herokuapp.com/api/v1/users/block/\(blockedUserFBID)")!)
+        mutableURLRequest.HTTPMethod = "POST"
+        mutableURLRequest.addValue(currentUser.fbID!, forHTTPHeaderField: "Fbid")
+        Alamofire.Manager.sharedInstance.request(mutableURLRequest).responseJSON { (response) in
+            
+        }
+    }
+    
     //=========== API request for AWS S3=============
     //===============================================
     
