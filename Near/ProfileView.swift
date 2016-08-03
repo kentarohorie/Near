@@ -263,7 +263,7 @@ class ProfileView: UIView, ProfileViewModelDelegate, UIScrollViewDelegate, MFMai
             })
         }
         let blockAction = UIAlertAction(title: "ブロック", style: .Default) { (alert) in
-            User.blockUser((self.user?.fbID!)!)
+            self.setUPMailer("このまま送信してください。\n\(self.user!.fbID!)")
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
