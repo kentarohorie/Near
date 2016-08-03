@@ -14,7 +14,7 @@ import UIKit
 
 class MainTimeLineViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    let users = User.timeLineUsers
+    var users = User.timeLineUsers
     var delegate: MainTimeLineViewModelDelegate?
     //======================================
     //              TableView setting

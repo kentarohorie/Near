@@ -11,6 +11,7 @@ import UIKit
 class MainTimeLineViewController: UIViewController, MainTimeLineViewModelDelegate {
     
     var mainTimeLineVM = MainTimeLineViewModel()
+    var childViewTableView: UITableView?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -35,8 +36,18 @@ class MainTimeLineViewController: UIViewController, MainTimeLineViewModelDelegat
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        guard let tableView = self.childViewTableView else {
+            return
+        }
+        
+        mainTimeLineVM.users = User.timeLineUsers
+        tableView.reloadData()
+    }
+    
     func setUP() {
         let mainTimeLineV = UINib(nibName: "MainTimeLineView", bundle: nil).instantiateWithOwner(self, options: nil).first as! MainTimeLineView
+        self.childViewTableView = mainTimeLineV.tableView
         mainTimeLineV.tableView.delegate = mainTimeLineVM
         mainTimeLineV.tableView.dataSource = mainTimeLineVM
         mainTimeLineVM.delegate = self

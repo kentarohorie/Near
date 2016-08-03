@@ -194,11 +194,16 @@ class User: NSObject {
     }
     
     class func blockUser(blockedUserFBID: String) {
-        let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "https://young-thicket-95274.herokuapp.com/api/v1/users/block/\(blockedUserFBID)")!)
+        for (i, user) in timeLineUsers.enumerate() {
+            if user.fbID! == blockedUserFBID {
+                timeLineUsers.removeAtIndex(i)
+            }
+        }
+        
+        let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "http://172.20.10.4:3000/api/v1/users/block/\(blockedUserFBID)")!)
         mutableURLRequest.HTTPMethod = "POST"
         mutableURLRequest.addValue(currentUser.fbID!, forHTTPHeaderField: "Fbid")
         Alamofire.Manager.sharedInstance.request(mutableURLRequest).responseJSON { (response) in
-            
         }
     }
     
