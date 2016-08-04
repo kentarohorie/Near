@@ -45,8 +45,8 @@ class NearNavigationView: UIView {
     private func setNavItemsToView() {
         for (i, v) in items.enumerate() {
             let screenSize = UIScreen.mainScreen().bounds.size
-            let distance = 150
-            let originX = (screenSize.width/2.0 - v.frame.size.width/2) + CGFloat(i * distance) - CGFloat(distance)
+            let distance = screenSize.width * CGFloat(0.4)
+            let originX = (screenSize.width/2.0 - v.frame.size.width/2) + CGFloat(i) * distance - distance
             v.frame.origin = CGPoint(x: originX, y: 0)
             v.tag = i
             let tapGestureRecog = UITapGestureRecognizer(target: self, action: #selector(NearNavigationView.tapOnHeader(_:)))
@@ -70,7 +70,7 @@ class NearNavigationView: UIView {
     }
     
     @objc private func tapOnHeader(sender: UITapGestureRecognizer) {
-//        delegate?.tapNavigationImageView!(sender.view!.tag) タップがうまくいってない
+        delegate?.tapNavigationImageView!(sender.view!.tag) 
     }
     
     

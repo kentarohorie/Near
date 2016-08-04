@@ -24,7 +24,7 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
     
     private var navBarView: UIView?
     private var currentPage: String = "MainTimeLineViewController"
-    private var isTouching = true
+    private var isTouching = false
     private let orange = UIColor.customOrange()
     private let gray = UIColor.customGray()
     private var isTapNavBar = false
@@ -35,6 +35,10 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
     //========== Tinder UI logic ==============
     
     internal func tapNavigationImageView(index: Int) {
+        guard !(isTapNavBar) && !(isTouching) else {
+            return
+        }
+        
         var vc: UIViewController?
         var direction: UIPageViewControllerNavigationDirection = .Forward
         if currentPage == "MainTimeLineViewController" {
@@ -83,70 +87,33 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
         guard let unwrapvc = vc else {
             return
         }
+
         isTapNavBar = true
         pageVC?.setViewControllers([unwrapvc], direction: direction, animated: true, completion: nil)
     }
     
     internal func scrollViewDidScroll(scrollView: UIScrollView) {
-        guard let navItems = self.navItems else {
-            return
+        if !(isTapNavBar) {
+            isTouching = true
         }
         
-        isTouching = true
-        
-        var xOffset = scrollView.contentOffset.x //ここを動いた分だけとるように変更
-        
-        if currentPage == "ProfileViewController" {
-            xOffset -= UIScreen.mainScreen().bounds.width / 3 + 250
-        } else if currentPage == "MessageListViewController" {
-            xOffset += UIScreen.mainScreen().bounds.width / 3 + 250
-        }
-        
-        if !(isTouching) {
-            if xOffset == 500 {
-                xOffset = 750
-            } else if xOffset == 250 {
-                xOffset = 0
-            }
-        }
-        
-        if isTapNavBar {
-            if isForward {
-                xOffset -= 375
-            } else {
-                xOffset += 375
-            }
-        }
-        
-        let distance = CGFloat(150)
-        
-        for (i, v) in self.navItems!.enumerate() {
-            let vSize = v.frame.size
-            let originX = self.getOriginX(vSize, idx: CGFloat(i), distance: CGFloat(distance), xOffset: xOffset)
-            v.frame.origin = CGPoint(x: originX, y: 0)
-        }
-        
-        for imgV in navItems {
-            var c = gray
-            let originX = Double(imgV.frame.origin.x)
-            
-            if (originX > 71.5 && originX < 171.5) {
-                c = self.gradient(originX, topX: 72.5, bottomX: 170.5, initC: orange, goal: gray)
-            }
-            else if (originX > 171.5 && originX < 271.5) {
-                c = self.gradient(originX, topX: 172.5, bottomX: 270.5, initC: gray, goal: orange)
-            }
-            else if(originX == 171.5) {
-                c = orange
-            }
-            imgV.tintColor = c
-        }
+        navItemMoveAndColoring(scrollView)
         
         isTouching = false
     }
     
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        scrollView.scrollEnabled = true
         isTapNavBar = false
+        isTouching = false
+        
+        navItemMoveAndColoring(scrollView)
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        scrollView.scrollEnabled = true
+        isTapNavBar = false
+        isTouching = false
     }
     
     private func getOriginX(vSize: CGSize, idx: CGFloat, distance: CGFloat, xOffset: CGFloat) -> CGFloat {
@@ -172,6 +139,60 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
         let b = cgInit[2] + CGFloat(t) * (cgGoal[2] - cgInit[2])
         
         return UIColor(red: r, green: g, blue: b, alpha: 1.0)
+    }
+    
+    func navItemMoveAndColoring(scrollView: UIScrollView) {
+        guard let navItems = self.navItems else {
+            return
+        }
+        
+        var xOffset = scrollView.contentOffset.x //ここを動いた分だけとるように変更
+        if currentPage == "ProfileViewController" {
+            xOffset -= UIScreen.mainScreen().bounds.width / 3 + UIScreen.mainScreen().bounds.width * 0.6666 //250
+        } else if currentPage == "MessageListViewController" {
+            xOffset += UIScreen.mainScreen().bounds.width / 3 + UIScreen.mainScreen().bounds.width * 0.6666//250
+        }
+        
+        if !(isTouching) {
+            if xOffset == 500 {
+                xOffset = 750
+            } else if xOffset == 250 {
+                xOffset = 0
+            }
+        }
+        
+        if isTapNavBar {
+            if isForward {
+                xOffset -= 375
+            } else {
+                xOffset += 375
+            }
+            scrollView.scrollEnabled = false
+        }
+        
+        let distance = UIScreen.mainScreen().bounds.size.width * CGFloat(0.4)
+        
+        for (i, v) in self.navItems!.enumerate() {
+            let vSize = v.frame.size
+            let originX = self.getOriginX(vSize, idx: CGFloat(i), distance: CGFloat(distance), xOffset: xOffset)
+            v.frame.origin = CGPoint(x: originX, y: 0)
+        }
+        
+        for imgV in navItems {
+            var c = gray
+            let originX = Double(imgV.frame.origin.x)
+            
+            if (originX > 71.5 && originX < 171.5) {
+                c = self.gradient(originX, topX: 72.5, bottomX: 170.5, initC: orange, goal: gray)
+            }
+            else if (originX > 171.5 && originX < 271.5) {
+                c = self.gradient(originX, topX: 172.5, bottomX: 270.5, initC: gray, goal: orange)
+            }
+            else if(originX == 171.5) {
+                c = orange
+            }
+            imgV.tintColor = c
+        }
     }
     
     
