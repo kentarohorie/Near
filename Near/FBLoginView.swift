@@ -16,8 +16,9 @@ class FBLoginView: UIView {
     @IBOutlet weak var agreementView: UIView!
     
     override func awakeFromNib() {
+        let screenBounds = UIScreen.mainScreen().bounds
         loginButton = FBSDKLoginButton()
-        loginButton.center = self.center
+        loginButton.center = CGPoint(x: screenBounds.width / 2, y: screenBounds.height / 2)
         self.addSubview(loginButton)
         
         self.bringSubviewToFront(agreementView)
