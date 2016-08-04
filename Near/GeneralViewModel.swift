@@ -146,11 +146,12 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
             return
         }
         
+        let screenWidth = UIScreen.mainScreen().bounds.width
         var xOffset = scrollView.contentOffset.x //ここを動いた分だけとるように変更
         if currentPage == "ProfileViewController" {
-            xOffset -= UIScreen.mainScreen().bounds.width / 3 + UIScreen.mainScreen().bounds.width * 0.6666 //250
+            xOffset -= screenWidth / 3 + screenWidth * 0.6666
         } else if currentPage == "MessageListViewController" {
-            xOffset += UIScreen.mainScreen().bounds.width / 3 + UIScreen.mainScreen().bounds.width * 0.6666//250
+            xOffset += screenWidth / 3 + screenWidth * 0.6666
         }
         
         if !(isTouching) {
@@ -163,9 +164,9 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
         
         if isTapNavBar {
             if isForward {
-                xOffset -= 375
+                xOffset -= UIScreen.mainScreen().bounds.width
             } else {
-                xOffset += 375
+                xOffset += UIScreen.mainScreen().bounds.width
             }
             scrollView.scrollEnabled = false
         }
@@ -178,22 +179,31 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
             v.frame.origin = CGPoint(x: originX, y: 0)
         }
         
+        
+        
         for imgV in navItems {
             var c = gray
             let originX = Double(imgV.frame.origin.x)
             
-            if (originX > 71.5 && originX < 171.5) {
-                c = self.gradient(originX, topX: 72.5, bottomX: 170.5, initC: orange, goal: gray)
+            print(originX)
+            
+            if originX > Double(screenWidth * 0.1906) && originX < Double(screenWidth * 0.4573) {
+                c = self.gradient(originX, topX: Double(screenWidth * 0.1906) + 1, bottomX: Double(screenWidth * 0.4573) - 1, initC: orange, goal: gray)
             }
-            else if (originX > 171.5 && originX < 271.5) {
-                c = self.gradient(originX, topX: 172.5, bottomX: 270.5, initC: gray, goal: orange)
+            else if (originX > Double(screenWidth * 0.4573) && originX < Double(screenWidth * 0.724)) {
+                c = self.gradient(originX, topX: Double(screenWidth * 0.4573) + 1, bottomX: Double(screenWidth * 0.724) - 1, initC: gray, goal: orange)
             }
-            else if(originX == 171.5) {
+            else if originX == 171.5 {
                 c = orange
             }
+            
             imgV.tintColor = c
         }
     }
+    
+//    71.5
+//    171.5
+//    271.5
     
     
     //========= pageviewcontroller delegate ===========
