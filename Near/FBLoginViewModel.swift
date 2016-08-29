@@ -32,7 +32,8 @@ class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
         }
         
         customDelegate?.fbLoginViewModel(didLogin: self)
-        loginButton.readPermissions = ["public_profile"]
+        loginButton.readPermissions = ["public_profile", "user_friends"]
+//        fetchUserFriendsData()
         fetchUserData()
     }
     
@@ -64,4 +65,18 @@ class FBLoginViewModel: NSObject, FBSDKLoginButtonDelegate {
             })
         }
     }
+    
+    class func fetchUserFriendsData() {
+        let graphRequest = FBSDKGraphRequest(graphPath: "/me/friends", parameters: ["fields": "total_count"])
+        
+        graphRequest.startWithCompletionHandler { (connection, result, error) in
+            guard (error == nil) else {
+                print("fetch error with facebook: \(error)")
+                return
+            }
+            
+            print("hgeohgoehogehoehgooe\(result)")
+        }
+    }
+
 }

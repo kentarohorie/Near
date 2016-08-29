@@ -185,8 +185,6 @@ class GeneralViewModel: NSObject, GeneralViewControllerDelegate, UIPageViewContr
             var c = gray
             let originX = Double(imgV.frame.origin.x)
             
-            print(originX)
-            
             if originX > Double(screenWidth * 0.1906) && originX < Double(screenWidth * 0.4573) {
                 c = self.gradient(originX, topX: Double(screenWidth * 0.1906) + 1, bottomX: Double(screenWidth * 0.4573) - 1, initC: orange, goal: gray)
             }

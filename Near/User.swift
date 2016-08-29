@@ -79,7 +79,6 @@ class User: NSObject {
                 greetingMessage = jUser["greetingMessage"].string!
             }
             user = getUser(name, age: age, fbID: fbID, gender: gender, work: work, school: school, greetingMessage: greetingMessage)
-            
             let nsDate = NSDate()
             let date = jUser["loginTime"].string!
             let dateFormatter = NSDateFormatter()
@@ -186,7 +185,6 @@ class User: NSObject {
                 print("get timeline users error: \(response.result.error)")
                 return
             }
-            
             let jValue = JSON(value)
             setTimelineUsersFromJSON(jValue.array!)
             callback()
@@ -262,7 +260,6 @@ class User: NSObject {
                 if let img = image {
                     user.subImages[i] = img
                 }
-                
                 if i == 4 {
                     callback()
                 }

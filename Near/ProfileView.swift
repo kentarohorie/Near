@@ -243,12 +243,16 @@ class ProfileView: UIView, ProfileViewModelDelegate, UIScrollViewDelegate, MFMai
         let editAtion = UIAlertAction(title: "プロフィール編集", style: .Default) { (alert) in
             self.delegate?.profileView(tapEdit: self)
         }
+        let fbFriendsAction = UIAlertAction(title: "友達の距離", style: .Default) { (alert) in
+            FBLoginViewModel.fetchUserFriendsData()
+        }
         let reportAction = UIAlertAction(title: "報告/ご要望", style: .Default) { (alert) in
             self.setUPMailer("Nearをご利用いただきありがとうございます。\nNearへのご要望や意見など、どんなことでもお送りください。\n\n今後ともNearをよろしくお願いいたします。")
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
         actionSheet.addAction(editAtion)
+        actionSheet.addAction(fbFriendsAction)
         actionSheet.addAction(reportAction)
         actionSheet.addAction(cancelAction)
         
